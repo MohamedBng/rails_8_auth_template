@@ -49,12 +49,14 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+  gem "factory_bot_rails", "~> 6.4.4"
+  gem "faker", "~> 3.5.1"
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
-  gem 'letter_opener'
+  gem "letter_opener"
 end
 
 group :test do
