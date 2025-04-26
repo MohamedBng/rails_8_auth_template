@@ -6,8 +6,17 @@
         Welcome back! Please log in to access your account and continue where you left off.
       </p>
     </div>
+
     <div class="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "card-body", data: { turbo: false } }) do |f| %>
+      <div class="p-6">
+        <% if flash[:alert] %>
+          <div class="alert alert-error mb-4">
+            <span><%= flash[:alert] %></span>
+          </div>
+        <% end %>
+      </div>
+
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "card-body pt-0", data: { turbo: false } }) do |f| %>
         <div class="form-control">
           <label class="label">
             <span class="label-text"><%= f.label :email %></span>
