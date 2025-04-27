@@ -16,6 +16,10 @@
         <% end %>
       </div>
 
+      <div class="text-center mt-4 p-6">
+        <%= render "devise/shared/omniauth_links" %>
+      </div>
+
       <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "card-body pt-0", data: { turbo: false } }) do |f| %>
         <div class="form-control">
           <label class="label">

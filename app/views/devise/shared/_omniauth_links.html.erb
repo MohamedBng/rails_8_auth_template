@@ -1,0 +1,6 @@
+  <% if devise_mapping.omniauthable? %>
+    <%= button_to omniauth_authorize_path(resource_name, :google_oauth2), method: :post, data: { turbo: false }, class: "btn btn-outline btn-primary w-full flex items-center justify-center gap-2" do %>
+            <%= image_tag "google.svg", class: "google-icon", alt: "Google" %>
+            <span>Continue with Google</span>
+    <% end %>
+  <% end %>
