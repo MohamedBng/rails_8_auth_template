@@ -1,0 +1,15 @@
+<% flash.each do |type, message| %>
+  <% css_class = case type.to_sym
+     when :notice then "alert alert-success shadow-lg mb-4"
+     when :alert  then "alert alert-error shadow-lg mb-4"
+     when :error  then "alert alert-error shadow-lg mb-4"
+     else "alert alert-info shadow-lg mb-4"
+     end %>
+
+  <div class="<%= css_class %>">
+    <div class="flex flex-col">
+      <h2 class="font-bold text-lg"><%= t("flash.titles.#{type}", default: type.to_s.titleize) %></h2>
+      <p class="mt-2 text-sm"><%= message %></p>
+    </div>
+  </div>
+<% end %>
