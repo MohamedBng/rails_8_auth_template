@@ -20,8 +20,18 @@
   <% end %>
 
   <% if devise_mapping.omniauthable? %>
-    <% resource_class.omniauth_providers.each do |provider| %>
-      <%= button_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), method: :post, data: { turbo: false }, class: "btn btn-accent" %>
+    <%= button_to omniauth_authorize_path(resource_name, :google_oauth2), method: :post, data: { turbo: false }, class: "btn btn-outline btn-primary w-full flex items-center justify-center gap-2" do %>
+            <svg class="w-5 h-5" viewBox="0 0 533.5 544.3" xmlns="http://www.w3.org/2000/svg">
+              <path fill="#4285F4" d="M533.5 278.4c0-17.4-1.6-34.1-4.6-50.2H272v95h147.3c-6.4 34.4-25.4 63.6-54.2 83.2v68h87.5c51.1-47.1 80.9-116.6 80.9-196z"/>
+              <path fill="#34A853" d="M272 544.3c73.7 0 135.7-24.4 180.9-66.5l-87.5-68c-24.4 16.4-55.5 26-93.4 26-71.8 0-132.7-48.4-154.5-113.5h-90v70.7c45.3 90.3 138.8 150.3 244.5 150.3z"/>
+              <path fill="#FBBC05" d="M117.5 322.3c-5.7-16.4-9-34-9-52 0-18 3.3-35.6 9-52l-90-70.7c-18.8 37.6-29.5 79.8-29.5 122.7s10.7 85.1 29.5 122.7l90-70.7z"/>
+              <path fill="#EA4335" d="M272 107c39.9 0 75.7 13.8 104 41l78-78C402.6 24.4 340.6 0 272 0 166.3 0 72.8 60 27.5 150.3l90 70.7c21.8-65.1 82.7-113.5 154.5-113.5z"/>
+            </svg>
+            <span>Continue with Google</span>
     <% end %>
   <% end %>
 </div>
+
+
+
+
