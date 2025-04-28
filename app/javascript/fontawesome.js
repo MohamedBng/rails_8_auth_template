@@ -1,8 +1,7 @@
 import { library, dom } from "@fortawesome/fontawesome-svg-core";
 
-import { faCamera, faHeart } from "@fortawesome/free-solid-svg-icons";
-import { faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { faBars, faChartLine, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faCamera, faHeart, faTwitter);
+library.add(faBars, faChartLine, faSignOutAlt);
 
 dom.watch();
