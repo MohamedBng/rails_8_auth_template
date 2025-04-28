@@ -74,4 +74,7 @@ gem "tailwindcss-ruby", "~> 4.1"
 gem "tailwindcss-rails", "~> 4.2"
 
 gem "omniauth-google-oauth2", "~> 1.2.1"
+
 gem "omniauth-rails_csrf_protection", "~> 1.0.2"
+
+gem "view_component", "~> 3.22.0"
