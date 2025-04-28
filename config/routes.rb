@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
 
   namespace :admin do
-    resources :dashboard, only: [:index]
+    resources :dashboard, only: [ :index ]
   end
 
   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
