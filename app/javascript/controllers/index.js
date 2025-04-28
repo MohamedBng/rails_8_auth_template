@@ -4,5 +4,14 @@
 
 import { application } from "./application"
 
+import DashboardController from "./dashboard_controller"
+application.register("dashboard", DashboardController)
+
+import HeadbarController from "./headbar_controller"
+application.register("headbar", HeadbarController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import SidebarController from "./sidebar_controller"
+application.register("sidebar", SidebarController)
