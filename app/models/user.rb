@@ -9,8 +9,8 @@ class User < ApplicationRecord
   def self.from_google(u)
     user = find_or_initialize_by(email: u[:email]) do |new_user|
       new_user.uid         = u[:uid]
-      new_user.first_name  = u[:first_name]
-      new_user.last_name   = u[:last_name]
+      new_user.first_name  = u[:given_name]
+      new_user.last_name   = u[:family_name]
       new_user.provider    = "google"
       new_user.password    = Devise.friendly_token[0, 20]
     end

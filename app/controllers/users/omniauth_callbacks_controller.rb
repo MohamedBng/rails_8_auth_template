@@ -16,8 +16,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       @from_google_params ||= {
         uid: auth.uid,
         email: auth.info.email,
-        first_name: auth.info.first_name,
-        last_name: auth.info.last_name
+        given_name: auth.info.given_name,
+        family_name: auth.info.family_name
       }
     end
 

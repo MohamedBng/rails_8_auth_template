@@ -7,8 +7,8 @@ module OmniauthTestHelper
       uid: '123456789',
       info: {
         email: user.email,
-        first_name: user.first_name,
-        last_name: user.last_name
+        given_name: user.first_name,
+        family_name: user.last_name
       },
       credentials: {
         token: 'fake_token',
