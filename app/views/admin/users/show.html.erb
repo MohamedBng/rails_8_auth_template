@@ -1,0 +1,17 @@
+<div class="card bg-base-100 w-full shadow-sm p-4">
+  <div class="flex justify-between w-full">
+    <div class="flex space-x-4">
+      <div class="avatar <%= @user.online? ? 'avatar-online' : 'avatar-offline' %>">
+        <div class="w-30 rounded-full">
+          <img src="https://img.daisyui.com/images/profile/demo/idiotsandwich@192.webp" />
+        </div>
+      </div>
+      <h2 class="text-xl font-bold"><%= @user.full_name %></h2>
+    </div>
+
+    <%= button_to "#", class: "btn btn-accent btn-outline" do %>
+      <i class="fa-solid fa-share-nodes"></i>
+      Share profile
+    <% end %>
+  </div>
+</div>
