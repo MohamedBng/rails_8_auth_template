@@ -6,5 +6,15 @@ FactoryBot.define do
     password { "password123" }
     password_confirmation { "password123" }
     confirmed_at { Time.current }
+
+    after(:create) do |user|
+      user.roles << create(:role, :user)
+    end
+
+    trait :with_admin_role do
+      after(:create) do |user|
+        user.roles << create(:role, :admin)
+      end
+    end
   end
 end

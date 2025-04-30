@@ -4,7 +4,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :confirmable, :trackable, :omniauthable, omniauth_providers: [ :google_oauth2 ]
+
   validates :first_name, presence: true
+
+  after_create :set_default_role, if: :new_record?
+
+  has_many :users_roles, dependent: :destroy_async
+  has_many :roles, through: :users_roles
 
   def self.from_google(u)
     user = find_or_initialize_by(email: u[:email]) do |new_user|
@@ -27,5 +33,9 @@ class User < ApplicationRecord
 
   def online?
     updated_at > 2.minutes.ago
+  end
+
+  def set_default_role
+    self.roles << Role.find_or_create_by(name: "user") if roles.empty?
   end
 end
