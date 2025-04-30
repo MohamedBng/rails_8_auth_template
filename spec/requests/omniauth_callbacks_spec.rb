@@ -30,17 +30,25 @@ RSpec.describe "Google OAuth2 callback", type: :request do
         get user_google_oauth2_omniauth_callback_path
       }.to change(User, :count).by(1)
 
+      expect(response).to redirect_to(root_path)
+
       follow_redirect!
 
-      expect(session["warden.user.user.key"]).to be_nil
+      expect(session["warden.user.user.key"]).not_to be_nil
 
       new_user = User.last
       expect(new_user.email).to      eq(user_attrs[:email])
       expect(new_user.first_name).to eq(user_attrs[:first_name])
       expect(new_user.last_name).to  eq(user_attrs[:last_name])
-      expect(new_user.confirmed_at).to be_nil
       expect(new_user.provider).to   eq("google")
       expect(new_user.uid).to        eq(user_attrs[:uid])
+    end
+
+    it "skips confirmation" do
+      get user_google_oauth2_omniauth_callback_path
+
+      new_user = User.last
+      expect(new_user.confirmed_at).not_to be_nil
     end
   end
 

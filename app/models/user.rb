@@ -15,6 +15,7 @@ class User < ApplicationRecord
       new_user.password    = Devise.friendly_token[0, 20]
     end
 
+    user.skip_confirmation!
     user.save!
     user
   end
