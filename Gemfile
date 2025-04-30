@@ -65,6 +65,7 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "database_cleaner-active_record"
+  gem "shoulda-matchers", "~> 6.5.0"
 end
 
 gem "devise", "~> 4.9"
