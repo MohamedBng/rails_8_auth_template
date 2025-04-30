@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :confirmable, :omniauthable, omniauth_providers: [ :google_oauth2 ], :trackable
+         :confirmable, :trackable, :omniauthable, omniauth_providers: [ :google_oauth2 ]
   validates :first_name, presence: true
 
   def self.from_google(u)
@@ -23,5 +23,9 @@ class User < ApplicationRecord
 
   def full_name
     "#{first_name} #{last_name}"
+  end
+
+  def online?
+    updated_at > 2.minutes.ago
   end
 end
