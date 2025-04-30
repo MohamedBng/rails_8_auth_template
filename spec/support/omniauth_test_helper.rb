@@ -1,12 +1,14 @@
 # spec/support/omniauth_test_helper.rb
 module OmniauthTestHelper
-  def mock_successful_oauth(provider:, email:)
+  def mock_successful_oauth(provider:, user:)
     OmniAuth.config.test_mode = true
     OmniAuth.config.mock_auth[provider.to_sym] = OmniAuth::AuthHash.new(
       provider: provider.to_s,
       uid: '123456789',
       info: {
-        email: email
+        email: user.email,
+        first_name: user.first_name,
+        last_name: user.last_name
       },
       credentials: {
         token: 'fake_token',
