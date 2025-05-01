@@ -7,3 +7,19 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+%w[admin user].each do |role_name|
+  Role.find_or_create_by!(name: role_name)
+end
+
+perms = {
+  "admin"     => %w[delete_user read_user],
+}
+
+perms.each do |role_name, keys|
+  role = Role.find_by!(name: role_name)
+  keys.each do |key|
+    permission = Permission.find_or_create_by!(name: key)
+    RolesPermission.find_or_create_by!(role: role, permission: permission)
+  end
+end
+
