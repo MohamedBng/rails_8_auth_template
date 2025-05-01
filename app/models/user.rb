@@ -26,6 +26,12 @@ class User < ApplicationRecord
     user
   end
 
+  def has_permission?(permission_name)
+    roles
+      .joins(:permissions)
+      .where(permissions: { name: permission_name })
+      .exists?
+  end
 
   def full_name
     "#{first_name} #{last_name}"
