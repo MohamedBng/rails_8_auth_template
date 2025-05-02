@@ -1,7 +1,7 @@
 import { library, dom } from "@fortawesome/fontawesome-svg-core";
 
-import { faBars, faChartLine, faSignOutAlt, faShareNodes } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faChartLine, faSignOutAlt, faShareNodes, faTrash } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faBars, faChartLine, faSignOutAlt, faShareNodes);
+library.add(faBars, faChartLine, faSignOutAlt, faShareNodes, faTrash);
 
 dom.watch();
