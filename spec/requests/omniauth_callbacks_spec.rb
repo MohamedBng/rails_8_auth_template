@@ -2,8 +2,6 @@ require "rails_helper"
 require "ostruct"
 
 RSpec.describe "Google OAuth2 callback", type: :request do
-  include OmniauthTestHelper
-
   let(:user_attrs) do
     {
       uid:         "123456789",
@@ -13,15 +11,30 @@ RSpec.describe "Google OAuth2 callback", type: :request do
     }
   end
 
+  before do
+    OmniAuth.config.test_mode = true
+  end
+
   after do
-    reset_omniauth
+    OmniAuth.config.test_mode = false
+    OmniAuth.config.mock_auth.clear
   end
 
   context "when the user does not exist" do
     before do
-      mock_successful_oauth(
-        provider: :google_oauth2,
-        user: OpenStruct.new(user_attrs)
+      OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new(
+        provider: 'google_oauth2',
+        uid: user_attrs[:uid],
+        info: {
+          email: user_attrs[:email],
+          first_name: user_attrs[:first_name],
+          last_name: user_attrs[:last_name]
+        },
+        credentials: {
+          token: 'fake_token',
+          refresh_token: 'fake_refresh_token',
+          expires_at: Time.now + 1.week
+        }
       )
     end
 
@@ -56,9 +69,19 @@ RSpec.describe "Google OAuth2 callback", type: :request do
     let!(:user) { create(:user, user_attrs.merge(provider: "google")) }
 
     before do
-      mock_successful_oauth(
-        provider: :google_oauth2,
-        user:     OpenStruct.new(user_attrs)
+      OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new(
+        provider: 'google_oauth2',
+        uid: user_attrs[:uid],
+        info: {
+          email: user_attrs[:email],
+          first_name: user_attrs[:first_name],
+          last_name: user_attrs[:last_name]
+        },
+        credentials: {
+          token: 'fake_token',
+          refresh_token: 'fake_refresh_token',
+          expires_at: Time.now + 1.week
+        }
       )
     end
 
@@ -76,7 +99,7 @@ RSpec.describe "Google OAuth2 callback", type: :request do
 
   context "when authentication fails" do
     before do
-      mock_failed_oauth(provider: :google_oauth2)
+      OmniAuth.config.mock_auth[:google_oauth2] = :invalid_credentials
     end
 
     it "redirects to the sign-in page with an error message" do
