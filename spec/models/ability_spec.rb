@@ -1,0 +1,84 @@
+require 'rails_helper'
+require 'cancan/matchers'
+
+RSpec.describe Ability, type: :model do
+  subject(:ability) { Ability.new(user) }
+
+  let(:target_user) { create(:user) }
+
+  context "when user has 'destroy_user' permission" do
+    let(:user) { create(:user) }
+
+    before do
+      permission = create(:permission, name: "destroy_user")
+      user.roles.first.permissions << permission
+    end
+
+    it "can destroy other users" do
+      expect(ability).to be_able_to(:destroy, target_user)
+    end
+
+    it "cannot read users unless also has 'read_user'" do
+      expect(ability).not_to be_able_to(:read, target_user)
+    end
+  end
+
+  context "when user has 'read_user' permission only" do
+    let(:user) { create(:user) }
+
+    before do
+      permission = create(:permission, name: "read_user")
+      user.roles.first.permissions << permission
+    end
+
+    it "can read users" do
+      expect(ability).to be_able_to(:read, target_user)
+    end
+
+    it "cannot destroy users" do
+      expect(ability).not_to be_able_to(:destroy, target_user)
+    end
+  end
+
+  context "when user has both 'read_user' and 'destroy_user' permissions" do
+    let(:user) { create(:user) }
+
+    before do
+      role = user.roles.first
+      role.permissions << create(:permission, name: "read_user")
+      role.permissions << create(:permission, name: "destroy_user")
+    end
+
+    it "can read and destroy users" do
+      expect(ability).to be_able_to(:read, target_user)
+      expect(ability).to be_able_to(:destroy, target_user)
+    end
+  end
+
+  context "when user has no permissions" do
+    let(:user) { create(:user) }
+
+    it "cannot read or destroy users" do
+      expect(ability).not_to be_able_to(:read, target_user)
+      expect(ability).not_to be_able_to(:destroy, target_user)
+    end
+  end
+
+  context "when user has 'read_dashboard' permission" do
+    let(:user) { create(:user) }
+
+    before do
+      permission = create(:permission, name: "read_dashboard")
+      user.roles.first.permissions << permission
+    end
+
+    it "can read the dashboard" do
+      expect(ability).to be_able_to(:read, :dashboard)
+    end
+
+    it "cannot destroy users" do
+      expect(ability).not_to be_able_to(:destroy, target_user)
+      expect(ability).not_to be_able_to(:read, target_user)
+    end
+  end
+end

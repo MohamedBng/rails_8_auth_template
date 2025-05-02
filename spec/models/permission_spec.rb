@@ -14,7 +14,7 @@ RSpec.describe Permission, type: :model do
   end
 
   describe 'associations' do
-    it { should have_many(:roles_permissions).dependent(:destroy_async) }
+    it { should have_many(:roles_permissions).dependent(:destroy) }
     it { should have_many(:roles) }
   end
 end

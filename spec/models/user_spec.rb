@@ -11,7 +11,7 @@ RSpec.describe User, type: :model do
   end
 
   describe 'associations' do
-    it { should have_many(:users_roles).dependent(:destroy_async) }
+    it { should have_many(:users_roles).dependent(:destroy) }
     it { should have_many(:roles) }
   end
 end

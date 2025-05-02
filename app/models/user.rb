@@ -9,7 +9,7 @@ class User < ApplicationRecord
 
   after_create :set_default_role, if: :new_record?
 
-  has_many :users_roles, dependent: :destroy_async
+  has_many :users_roles, dependent: :destroy
   has_many :roles, through: :users_roles
 
   def self.from_google(u)
@@ -21,6 +21,7 @@ class User < ApplicationRecord
       new_user.password    = Devise.friendly_token[0, 20]
     end
 
+    user.set_default_role
     user.skip_confirmation!
     user.save!
     user
