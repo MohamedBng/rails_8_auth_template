@@ -1,6 +1,6 @@
 class Admin::UsersController < Admin::BaseController
-  before_action :set_user, only: [:show, :destroy]
-  load_and_authorize_resource class: 'User'
+  before_action :set_user, only: [ :show, :destroy ]
+  load_and_authorize_resource class: "User"
 
   def show
   end

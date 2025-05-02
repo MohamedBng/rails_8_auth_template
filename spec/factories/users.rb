@@ -6,7 +6,7 @@ FactoryBot.define do
     password { "password123" }
     password_confirmation { "password123" }
     confirmed_at { Time.current }
-    
+
     after(:create) do |user|
       role = Role.find_or_create_by!(name: "user")
       user.roles << role unless user.roles.include?(role)

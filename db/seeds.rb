@@ -13,7 +13,7 @@ end
 
 perms = {
   "admin"     => %w[destroy_user read_user read_dashboard],
-  "user"      => %w[read_user read_dashboard],
+  "user"      => %w[read_user read_dashboard]
 }
 
 perms.each do |role_name, keys|
@@ -23,4 +23,3 @@ perms.each do |role_name, keys|
     RolesPermission.find_or_create_by!(role: role, permission: permission)
   end
 end
-
