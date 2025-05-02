@@ -21,7 +21,7 @@ class HeadbarComponent < ViewComponent::Base
         <ul
           tabindex="0"
           class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-          <li><%= link_to "Profile", admin_user_path(current_user) %></li>
+          <li><%= link_to "Profile", admin_user_path(current_user), data: { turbo_frame: "main", turbo_action: "advance" } %></li>
           <li><%= button_to "Logout", destroy_user_session_path, method: :delete %></li>
         </ul>
       </div>
