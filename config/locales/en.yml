@@ -28,4 +28,10 @@
 #       enabled: "ON"
 
 en:
-  hello: "Hello world"
+  date:
+    formats:
+      long: "%B %e, %Y"
+      short: "%b %e"
+  time:
+    formats:
+      long: "%B %e, %Y %H:%M"
