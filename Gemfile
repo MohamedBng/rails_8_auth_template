@@ -83,3 +83,5 @@ gem "view_component", "~> 3.22.0"
 gem "cancancan", "~> 3.5.0"
 
 gem "i18n", "~> 1.14.7"
+
+gem 'draper', "~> 4.0.3"
