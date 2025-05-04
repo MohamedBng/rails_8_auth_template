@@ -34,10 +34,6 @@ class User < ApplicationRecord
       .exists?
   end
 
-  def full_name
-    "#{first_name} #{last_name}"
-  end
-
   def online?
     updated_at > 2.minutes.ago
   end
