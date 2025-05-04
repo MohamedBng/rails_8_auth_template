@@ -12,7 +12,7 @@ class HeadbarComponent < ViewComponent::Base
       </div>
        <div class="dropdown dropdown-end">
         <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
-         <%= current_user.decorate.avatar_html(size: 30) %>
+          <%= render(UserAvatarComponent.new(user: current_user, size: 30)) %>
         </div>
         <ul
           tabindex="0"

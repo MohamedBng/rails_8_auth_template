@@ -5,7 +5,7 @@ RSpec.describe 'Admin::Users', type: :request do
 
   describe 'GET #show' do
     context 'when the user has the read_user permission' do
-      let(:user) { create(:user, permissions_list: ['read_user']) }
+      let(:user) { create(:user, permissions_list: [ 'read_user' ]) }
 
       before do
         sign_in(user, scope: :user)
@@ -35,7 +35,7 @@ RSpec.describe 'Admin::Users', type: :request do
 
   describe 'GET #edit' do
     context 'when the user has the update_any_user permission' do
-      let(:user) { create(:user, permissions_list: ['update_any_user']) }
+      let(:user) { create(:user, permissions_list: [ 'update_any_user' ]) }
 
       before { sign_in(user, scope: :user) }
 
@@ -47,7 +47,7 @@ RSpec.describe 'Admin::Users', type: :request do
     end
 
     context 'when the user has the update_own_user permission and edits themselves' do
-      let(:user) { create(:user, permissions_list: ['update_own_user']) }
+      let(:user) { create(:user, permissions_list: [ 'update_own_user' ]) }
 
       before { sign_in(user, scope: :user) }
 
@@ -59,7 +59,7 @@ RSpec.describe 'Admin::Users', type: :request do
     end
 
     context 'when the user has update_own_user permission but tries to edit another user' do
-      let(:user) { create(:user, permissions_list: ['update_own_user']) }
+      let(:user) { create(:user, permissions_list: [ 'update_own_user' ]) }
 
       before { sign_in(user, scope: :user) }
 
@@ -85,7 +85,7 @@ RSpec.describe 'Admin::Users', type: :request do
 
   describe 'DELETE #destroy' do
     context 'when user has destroy_user permission and deletes another user' do
-      let(:user) { create(:user, permissions_list: ['destroy_user']) }
+      let(:user) { create(:user, permissions_list: [ 'destroy_user' ]) }
 
       before { sign_in(user, scope: :user) }
 
@@ -96,7 +96,7 @@ RSpec.describe 'Admin::Users', type: :request do
     end
 
     context 'when user has destroy_user permission but tries to delete themselves' do
-      let(:user) { create(:user, permissions_list: ['destroy_user']) }
+      let(:user) { create(:user, permissions_list: [ 'destroy_user' ]) }
 
       before { sign_in(user, scope: :user) }
 
@@ -120,7 +120,7 @@ RSpec.describe 'Admin::Users', type: :request do
     end
 
     context 'when deletion fails' do
-      let(:user) { create(:user, permissions_list: ['destroy_user']) }
+      let(:user) { create(:user, permissions_list: [ 'destroy_user' ]) }
 
       before do
         sign_in(user, scope: :user)
@@ -164,7 +164,7 @@ RSpec.describe 'Admin::Users', type: :request do
     end
 
     context 'when user has update_any_user permission' do
-      let(:user) { create(:user, permissions_list: ['update_any_user']) }
+      let(:user) { create(:user, permissions_list: [ 'update_any_user' ]) }
 
       before { sign_in(user, scope: :user) }
 
@@ -213,7 +213,7 @@ RSpec.describe 'Admin::Users', type: :request do
     end
 
     context 'when user has update_own_user permission and updates themselves' do
-      let(:user) { create(:user, permissions_list: ['update_own_user']) }
+      let(:user) { create(:user, permissions_list: [ 'update_own_user' ]) }
 
       before { sign_in(user, scope: :user) }
 
@@ -224,7 +224,7 @@ RSpec.describe 'Admin::Users', type: :request do
     end
 
     context 'when user has update_own_user permission but tries to update another user' do
-      let(:user) { create(:user, permissions_list: ['update_own_user']) }
+      let(:user) { create(:user, permissions_list: [ 'update_own_user' ]) }
 
       before { sign_in(user, scope: :user) }
 
@@ -248,7 +248,7 @@ RSpec.describe 'Admin::Users', type: :request do
     end
 
     context 'when update fails internally' do
-      let(:user) { create(:user, permissions_list: ['update_any_user']) }
+      let(:user) { create(:user, permissions_list: [ 'update_any_user' ]) }
 
       before do
         sign_in(user, scope: :user)

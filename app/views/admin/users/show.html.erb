@@ -1,7 +1,7 @@
 <div class="card bg-base-100 w-full shadow-sm p-4">
   <div class="flex justify-between w-full">
     <div class="flex space-x-4">
-      <%= @user.decorate.avatar_html(size: 150) %>
+      <%= render(UserAvatarComponent.new(user: @user, size: 150)) %>
       <div id="user_name_<%= @user.id %>">
         <h2 class="text-xl font-bold"><%= @user.decorate.full_name %></h2>
       </div>
