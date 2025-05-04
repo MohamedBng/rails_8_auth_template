@@ -12,8 +12,8 @@
 end
 
 perms = {
-  "admin"     => %w[destroy_user read_user read_dashboard],
-  "user"      => %w[read_user read_dashboard]
+  "admin"     => %w[destroy_user read_user read_dashboard update_any_user],
+  "user"      => %w[read_user read_dashboard update_own_user]
 }
 
 perms.each do |role_name, keys|
