@@ -31,6 +31,10 @@ fr:
   date:
     formats:
       long: "%-d %B %Y"
+  sidebar:
+    users: "Utilisateurs"
+    logout: "Déconnexion"
+    dashboard: "Tableau de bord"
   time:
     formats:
       long: "%-d %B %Y à %H:%M"

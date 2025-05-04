@@ -61,6 +61,11 @@ en:
     formats:
       long: "%B %e, %Y"
       short: "%b %e"
+  sidebar:
+    users: "Users"
+    logout: "Logout"
+    dashboard: "Dashboard"
   time:
     formats:
       long: "%B %e, %Y %H:%M"
+
