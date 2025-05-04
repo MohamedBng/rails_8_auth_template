@@ -13,6 +13,8 @@ fr:
                 blank: "ne peut pas être vide"
   admin:
     users:
+      search:
+        placeholder: "Recherche par nom ou email"
       sections:
         personal_information: "Informations personnelles"
       fields:

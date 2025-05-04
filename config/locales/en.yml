@@ -42,6 +42,8 @@ en:
               blank: "can't be blank"
   admin:
     users:
+      search:
+        placeholder: "Search by name or email"
       sections:
           personal_information: "Personal Information"
       fields:

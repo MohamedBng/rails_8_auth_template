@@ -1,3 +1,15 @@
+<%= search_form_for @q, url: admin_users_path, method: :get, html: { class: "w-full max-w-md mb-6" } do |f| %>
+  <div class="form-control">
+    <label class="input input-bordered flex items-center gap-2">
+      <i class="fas fa-search"></i>
+      <%= f.search_field :first_name_or_last_name_or_email_cont,
+            placeholder: t("admin.users.search.placeholder"),
+            class: "grow bg-transparent outline-none" %>
+    </label>
+  </div>
+<% end %>
+
+
 <div class="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
   <table class="table">
     <thead>
