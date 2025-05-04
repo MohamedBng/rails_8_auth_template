@@ -4,7 +4,6 @@ class Admin::UsersController < Admin::BaseController
 
   def show
     @user = User.find(params[:id])
-    puts @user.inspect
   end
 
   def edit
