@@ -43,10 +43,7 @@ class Admin::UsersController < Admin::BaseController
 
     flash[:success] = t("admin.users.destroy.success")
 
-    respond_to do |format|
-      format.turbo_stream { render turbo_stream: turbo_stream.replace("main", template: "admin/dashboard/index") }
-      format.html { redirect_to admin_dashboard_index_path }
-    end
+    redirect_to admin_users_path
   end
 
   private

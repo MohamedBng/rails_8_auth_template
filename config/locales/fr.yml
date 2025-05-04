@@ -41,6 +41,9 @@ fr:
       email: "Email"
       roles: "Rôles"
       last_login: "Dernière connexion"
+      actions: "Actions"
+      profile: "Profil"
+      delete: "Supprimer"
   time:
     formats:
       long: "%-d %B %Y à %H:%M"

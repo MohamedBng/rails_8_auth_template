@@ -6,6 +6,7 @@
         <th><%= t("tables.users.email") %></th>
         <th><%= t("tables.users.roles") %></th>
         <th><%= t("tables.users.last_login") %></th>
+        <th><%= t("tables.users.actions") %></th>
       </tr>
     </thead>
     <tbody>
@@ -24,6 +25,42 @@
             <% end %>
           </td>
           <td><%= user.last_sign_in_at&.strftime("%Y-%m-%d %H:%M") || "Never" %></td>
+         <td>
+            <div class="dropdown dropdown-end">
+              <div tabindex="0" role="button" class="btn btn-ghost">
+                <i class="fa-solid fa-ellipsis"></i>
+              </div>
+              <ul
+                tabindex="0"
+                class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+
+                <li class="menu-title">
+                  <%= t("tables.users.actions") %>
+                </li>
+                 <div class="divider m-0"></div>
+                <li>
+                  <%= link_to admin_user_path(user), data: { turbo_frame: "main", turbo_action: "advance" } do %>
+                    <i class="fa-solid fa-user w-4"></i>
+                    <%= t("tables.users.profile") %>
+                  <% end %>
+                </li>
+
+                <div class="divider m-0"></div>
+
+                <li>
+                  <% if can? :destroy, user %>
+                    <%= button_to admin_user_path(user),
+                                  method: :delete,
+                                  data: { turbo_confirm: t("admin.users.actions.confirm_delete") },
+                                  class: "text-error" do %>
+                      <i class="fa-solid fa-trash w-4"></i>
+                      <%= t("tables.users.delete") %>
+                    <% end %>
+                  <% end %>
+                </li>
+              </ul>
+            </div>
+          </td>
         </tr>
       <% end %>
     </tbody>

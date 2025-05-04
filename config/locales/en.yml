@@ -71,6 +71,9 @@ en:
       email: "Email"
       roles: "Roles"
       last_login: "Last login"
+      actions: "Actions"
+      profile: "Profile"
+      delete: "Delete"
   time:
     formats:
       long: "%B %e, %Y %H:%M"
