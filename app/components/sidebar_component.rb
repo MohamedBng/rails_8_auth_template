@@ -14,6 +14,10 @@ class SidebarComponent < ViewComponent::Base
             <i class="fas fa-chart-line"></i>
             <span data-sidebar-target="label" class="hidden">Dashboard</span>
           <% end %>
+          <%= link_to admin_users_path, class: 'flex items-center gap-4 hover:bg-base-200 p-2 rounded' do %>
+            <i class="fas fa-users"></i>
+            <span data-sidebar-target="label" class="hidden">Users</span>
+          <% end %>
         </nav>
       </div>
 
