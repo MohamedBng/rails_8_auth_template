@@ -65,6 +65,12 @@ en:
     users: "Users"
     logout: "Logout"
     dashboard: "Dashboard"
+  tables:
+    users:
+      name: "Name"
+      email: "Email"
+      roles: "Roles"
+      last_login: "Last login"
   time:
     formats:
       long: "%B %e, %Y %H:%M"

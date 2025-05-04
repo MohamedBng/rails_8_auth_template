@@ -1,0 +1,25 @@
+<div class="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
+  <table class="table">
+    <thead>
+      <tr>
+        <th><%= t("tables.users.name") %></th>
+        <th><%= t("tables.users.email") %></th>
+        <th><%= t("tables.users.roles") %></th>
+        <th><%= t("tables.users.last_login") %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td class="flex items-center gap-3">
+            <%= render(UserAvatarComponent.new(user: user, size: 30)) %>
+            <%= user.decorate.full_name %>
+          </td>
+          <td><%= user.email %></td>
+          <td><%= user.roles.map(&:name).join(" ") %></td>
+          <td><%= user.last_sign_in_at&.strftime("%Y-%m-%d %H:%M") || "Never" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

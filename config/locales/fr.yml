@@ -35,6 +35,12 @@ fr:
     users: "Utilisateurs"
     logout: "Déconnexion"
     dashboard: "Tableau de bord"
+  tables:
+    users:
+      name: "Nom"
+      email: "Email"
+      roles: "Rôles"
+      last_login: "Dernière connexion"
   time:
     formats:
       long: "%-d %B %Y à %H:%M"
