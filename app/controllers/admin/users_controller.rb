@@ -2,6 +2,10 @@ class Admin::UsersController < Admin::BaseController
   before_action :set_user, only: [ :destroy, :edit, :update ]
   load_and_authorize_resource class: "User"
 
+  def index
+    @users = User.all.includes(:roles)
+  end
+
   def show
     @user = User.find(params[:id])
   end
