@@ -1,0 +1,43 @@
+<turbo-frame id="personal_info_user_<%= user.id %>">
+  <%= form_with model: user, url: admin_user_path(user), method: :patch,
+                data: { turbo_frame: "_top" } do |f| %>
+    <div class="card bg-base-100 w-full shadow-sm p-4 mt-4">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold">Edit Personal Information</h3>
+      </div>
+      <% if user.errors.any? %>
+        <div class="alert alert-error alert-soft mb-4">
+          <div>
+            <div>
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-circle-xmark"></i>
+                <h3 class="font-bold">Erreur lors de la soumission</h3>
+              </div>
+              <ul class="text-sm list-disc list-inside">
+                <% user.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <%= f.label :first_name, class: "text-sm font-medium" %>
+          <%= f.text_field :first_name, class: "input w-full p-1" %>
+        </div>
+        <div>
+          <%= f.label :last_name, class: "text-sm font-medium" %>
+          <%= f.text_field :last_name, class: "input w-full p-1" %>
+        </div>
+      </div>
+      <div class="flex justify-end mt-4">
+        <%= link_to admin_user_path(user), class: "btn btn-soft btn-error btn-sm mr-2" do %>
+          Cancel
+        <% end %>
+        <%= f.submit "Save", class: "btn btn-accent btn-soft btn-sm" %>
+      </div>
+    </div>
+  <% end %>
+</turbo-frame>

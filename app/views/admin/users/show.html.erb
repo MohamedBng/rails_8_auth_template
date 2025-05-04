@@ -1,32 +1,34 @@
 <div class="card bg-base-100 w-full shadow-sm p-4">
   <div class="flex justify-between w-full">
     <div class="flex space-x-4">
-      <div class="avatar <%= @user.online? ? 'avatar-online' : 'avatar-offline' %>">
-        <div class="w-30 rounded-full">
-          <img src="https://img.daisyui.com/images/profile/demo/idiotsandwich@192.webp" />
-        </div>
+      <%= render(UserAvatarComponent.new(user: @user, size: 150)) %>
+      <div id="user_name_<%= @user.id %>">
+        <h2 class="text-xl font-bold"><%= @user.decorate.full_name %></h2>
       </div>
-      <h2 class="text-xl font-bold"><%= @user.full_name %></h2>
     </div>
 
     <div class="flex space-x-1">
       <%= button_to "#", class: "btn btn-accent btn-outline" do %>
         <i class="fa-solid fa-share-nodes"></i>
-        Share profile
+        <%= t("admin.users.actions.share_profile") %>
       <% end %>
 
       <% if can? :destroy, @user %>
         <%= button_to admin_user_path(@user),
                       method: :delete,
                       data: {
-                        turbo_confirm: "Are you sure you want to delete this user?",
+                        turbo_confirm: t("admin.users.actions.confirm_delete"),
                         turbo_frame: "main"
                       },
                       class: "btn btn-error btn-outline" do %>
           <i class="fa-solid fa-trash"></i>
-          Delete user
+          <%= t("admin.users.actions.delete_user") %>
         <% end %>
       <% end %>
     </div>
   </div>
 </div>
+
+<turbo-frame id="personal_info_user_<%= @user.id %>">
+  <%= render "admin/users/personal_info/fields", user: @user %>
+</turbo-frame>

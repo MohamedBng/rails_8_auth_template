@@ -66,6 +66,7 @@ group :test do
   gem "selenium-webdriver"
   gem "database_cleaner-active_record"
   gem "shoulda-matchers", "~> 6.5.0"
+  gem "simplecov", require: false
 end
 
 gem "devise", "~> 4.9"
@@ -81,3 +82,7 @@ gem "omniauth-rails_csrf_protection", "~> 1.0.2"
 gem "view_component", "~> 3.22.0"
 
 gem "cancancan", "~> 3.5.0"
+
+gem "i18n", "~> 1.14.7"
+
+gem "draper", "~> 4.0.3"

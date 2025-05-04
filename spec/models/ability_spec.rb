@@ -21,7 +21,12 @@ RSpec.describe Ability, type: :model do
     it "cannot read users unless also has 'read_user'" do
       expect(ability).not_to be_able_to(:read, target_user)
     end
+
+    it "cannot destroy themselves" do
+      expect(ability).not_to be_able_to(:destroy, user)
+    end
   end
+
 
   context "when user has 'read_user' permission only" do
     let(:user) { create(:user) }
@@ -79,6 +84,46 @@ RSpec.describe Ability, type: :model do
     it "cannot destroy users" do
       expect(ability).not_to be_able_to(:destroy, target_user)
       expect(ability).not_to be_able_to(:read, target_user)
+    end
+  end
+
+  context "when user has 'update_any_user' permission" do
+    let(:user) { create(:user) }
+
+    before do
+      permission = create(:permission, name: "update_any_user")
+      user.roles.first.permissions << permission
+    end
+
+    it "can update any user" do
+      expect(ability).to be_able_to(:update, target_user)
+      expect(ability).to be_able_to(:update, user)
+    end
+  end
+
+  context "when user has 'update_own_user' permission" do
+    let(:user) { create(:user) }
+
+    before do
+      permission = create(:permission, name: "update_own_user")
+      user.roles.first.permissions << permission
+    end
+
+    it "can update themselves" do
+      expect(ability).to be_able_to(:update, user)
+    end
+
+    it "cannot update other users" do
+      expect(ability).not_to be_able_to(:update, target_user)
+    end
+  end
+
+  context "when user has no update permissions" do
+    let(:user) { create(:user) }
+
+    it "cannot update any user" do
+      expect(ability).not_to be_able_to(:update, target_user)
+      expect(ability).not_to be_able_to(:update, user)
     end
   end
 end

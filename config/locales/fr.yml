@@ -1,0 +1,36 @@
+fr:
+  activerecord:
+      attributes:
+        user:
+          first_name: "Prénom"
+          last_name: "Nom"
+          email: "Adresse e-mail"
+      errors:
+        models:
+          user:
+            attributes:
+              first_name:
+                blank: "ne peut pas être vide"
+  admin:
+    users:
+      sections:
+        personal_information: "Informations personnelles"
+      fields:
+        joined_at: "Inscription le"
+      actions:
+        edit: "Modifier"
+        share_profile: "Partager le profil"
+        delete_user: "Supprimer l'utilisateur"
+        confirm_delete: "Êtes-vous sûr de vouloir supprimer cet utilisateur ?"
+      update:
+        success: "Utilisateur mis à jour avec succès."
+        failure: "Échec de la mise à jour de l'utilisateur : %{errors}"
+      destroy:
+        success: "Utilisateur supprimé avec succès."
+        failure: "Échec de la suppression de l'utilisateur : %{errors}"
+  date:
+    formats:
+      long: "%-d %B %Y"
+  time:
+    formats:
+      long: "%-d %B %Y à %H:%M"
