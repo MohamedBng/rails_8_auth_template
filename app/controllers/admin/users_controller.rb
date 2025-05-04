@@ -3,7 +3,7 @@ class Admin::UsersController < Admin::BaseController
   load_and_authorize_resource class: "User"
 
   def index
-    @users = User.all.includes(:roles)
+    @users = User.includes(:roles).page(params[:page]).per(10)
   end
 
   def show

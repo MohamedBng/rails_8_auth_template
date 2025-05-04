@@ -86,3 +86,5 @@ gem "cancancan", "~> 3.5.0"
 gem "i18n", "~> 1.14.7"
 
 gem "draper", "~> 4.0.3"
+
+gem "kaminari", "~> 1.2"
