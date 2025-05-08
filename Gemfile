@@ -90,4 +90,4 @@ gem "draper", "~> 4.0.3"
 
 gem "kaminari", "~> 1.2"
 
-gem 'ransack', '~> 4.2.1'
+gem "ransack", "~> 4.2.1"

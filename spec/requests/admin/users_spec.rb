@@ -23,7 +23,7 @@ RSpec.describe 'Admin::Users', type: :request do
     end
 
     context 'when user is an admin' do
-      let(:admin_user) { create(:user, permissions_list: ['read_user']) }
+      let(:admin_user) { create(:user, permissions_list: [ 'read_user' ]) }
 
       before do
         create_list(:user, 3)
