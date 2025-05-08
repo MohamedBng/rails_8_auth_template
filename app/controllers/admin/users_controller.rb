@@ -1,5 +1,5 @@
 class Admin::UsersController < Admin::BaseController
-  before_action :set_user, only: [ :destroy, :edit, :update ]
+  before_action :set_user, only: [ :destroy, :edit, :update, :show ]
   load_and_authorize_resource class: "User"
 
   def index
@@ -8,7 +8,9 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def show
-    @user = User.find(params[:id])
+  end
+
+  def new
   end
 
   def edit

@@ -1,0 +1,20 @@
+<%= search_form_for q, url: admin_users_path, method: :get, html: { class: "w-full max-w-4xl mb-6 mx-auto" } do |f| %>
+  <div class="overflow-x-auto flex items-center gap-2 w-full">
+
+    <label class="input input-bordered flex items-center gap-2 grow">
+      <i class="fas fa-search"></i>
+      <%= f.search_field :first_name_or_last_name_or_email_cont,
+            placeholder: t("admin.users.search.placeholder"),
+            class: "bg-transparent outline-none w-full" %>
+    </label>
+
+    <div class="flex items-center gap-2 grow">
+      <i class="fas fa-filter"></i>
+      <%= f.select :roles_name_eq, Role.pluck(:name), { include_blank: t("admin.users.search.all_roles") },
+          class: "select select-bordered w-full" %>
+    </div>
+
+    <%= f.submit t("admin.users.search.submit_button"), class: "btn btn-accent btn-outline whitespace-nowrap" %>
+
+  </div>
+<% end %>

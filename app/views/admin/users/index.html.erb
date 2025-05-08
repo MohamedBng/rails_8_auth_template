@@ -1,14 +1,12 @@
-<%= search_form_for @q, url: admin_users_path, method: :get, html: { class: "w-full max-w-md mb-6" } do |f| %>
-  <div class="form-control">
-    <label class="input input-bordered flex items-center gap-2">
-      <i class="fas fa-search"></i>
-      <%= f.search_field :first_name_or_last_name_or_email_cont,
-            placeholder: t("admin.users.search.placeholder"),
-            class: "grow bg-transparent outline-none" %>
-    </label>
-  </div>
-<% end %>
+<div class="flex justify-between items-center mb-6">
+  <h1 class="text-2xl font-semibold"><%= t("admin.users.index.title") %></h1>
+  <%= link_to new_admin_user_path, class: "btn btn-accent" do %>
+    <i class="fas fa-plus mr-2"></i>
+    <%= t("admin.users.index.add_new_user") %>
+  <% end %>
+</div>
 
+<%= render 'admin/users/search_form', q: @q %>
 
 <div class="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
   <table class="table">

@@ -67,6 +67,7 @@ group :test do
   gem "database_cleaner-active_record"
   gem "shoulda-matchers", "~> 6.5.0"
   gem "simplecov", require: false
+  gem "rails-controller-testing"
 end
 
 gem "devise", "~> 4.9"

@@ -44,6 +44,11 @@ en:
     users:
       search:
         placeholder: "Search by name or email"
+        all_roles: "All Roles"
+        submit_button: "Search"
+      index:
+        title: "User Management"
+        add_new_user: "Add New User"
       sections:
           personal_information: "Personal Information"
       fields:

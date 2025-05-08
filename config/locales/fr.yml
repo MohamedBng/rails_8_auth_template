@@ -15,6 +15,11 @@ fr:
     users:
       search:
         placeholder: "Recherche par nom ou email"
+        all_roles: "Tous les rôles"
+        submit_button: "Rechercher"
+      index:
+        title: "Gestion des utilisateurs"
+        add_new_user: "Ajouter un nouvel utilisateur"
       sections:
         personal_information: "Informations personnelles"
       fields:
