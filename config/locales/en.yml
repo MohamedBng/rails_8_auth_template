@@ -42,6 +42,13 @@ en:
               blank: "can't be blank"
   admin:
     users:
+      search:
+        placeholder: "Search by name or email"
+        all_roles: "All Roles"
+        submit_button: "Search"
+      index:
+        title: "User Management"
+        add_new_user: "Add New User"
       sections:
           personal_information: "Personal Information"
       fields:
@@ -61,6 +68,20 @@ en:
     formats:
       long: "%B %e, %Y"
       short: "%b %e"
+  sidebar:
+    users: "Users"
+    logout: "Logout"
+    dashboard: "Dashboard"
+  tables:
+    users:
+      name: "Name"
+      email: "Email"
+      roles: "Roles"
+      last_login: "Last login"
+      actions: "Actions"
+      profile: "Profile"
+      delete: "Delete"
   time:
     formats:
       long: "%B %e, %Y %H:%M"
+

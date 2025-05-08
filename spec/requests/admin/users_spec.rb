@@ -3,6 +3,53 @@ require 'rails_helper'
 RSpec.describe 'Admin::Users', type: :request do
   let(:target_user) { create(:user) }
 
+  describe 'GET #index' do
+    context 'when user is not authenticated' do
+      it 'redirects to the sign in page' do
+        get admin_users_path
+        expect(response).to redirect_to(new_user_session_path)
+      end
+    end
+
+    context 'when user is authenticated but not an admin' do
+      let(:user) { create(:user) }
+      before { sign_in(user, scope: :user) }
+
+      it 'raises CanCan::AccessDenied' do
+        expect {
+          get admin_users_path
+        }.to raise_error(CanCan::AccessDenied)
+      end
+    end
+
+    context 'when user is an admin' do
+      let(:admin_user) { create(:user, permissions_list: [ 'read_user' ]) }
+
+      before do
+        create_list(:user, 3)
+        sign_in(admin_user, scope: :user)
+        get admin_users_path
+      end
+
+      it 'returns a successful response' do
+        expect(response).to have_http_status(:ok)
+      end
+
+      it 'renders the index template' do
+        expect(response).to render_template(:index)
+      end
+
+      it 'assigns @users' do
+        expect(assigns(:users)).not_to be_nil
+        expect(assigns(:users).count).to eq(User.count)
+      end
+
+      it 'assigns @q for Ransack' do
+        expect(assigns(:q)).to be_a(Ransack::Search)
+      end
+    end
+  end
+
   describe 'GET #show' do
     context 'when the user has the read_user permission' do
       let(:user) { create(:user, permissions_list: [ 'read_user' ]) }

@@ -1,9 +1,16 @@
 class Admin::UsersController < Admin::BaseController
-  before_action :set_user, only: [ :destroy, :edit, :update ]
+  before_action :set_user, only: [ :destroy, :edit, :update, :show ]
   load_and_authorize_resource class: "User"
 
+  def index
+    @q = User.ransack(params[:q])
+    @users = @q.result(distinct: true).includes(:roles).page(params[:page]).per(10)
+  end
+
   def show
-    @user = User.find(params[:id])
+  end
+
+  def new
   end
 
   def edit
@@ -39,10 +46,7 @@ class Admin::UsersController < Admin::BaseController
 
     flash[:success] = t("admin.users.destroy.success")
 
-    respond_to do |format|
-      format.turbo_stream { render turbo_stream: turbo_stream.replace("main", template: "admin/dashboard/index") }
-      format.html { redirect_to admin_dashboard_index_path }
-    end
+    redirect_to admin_users_path
   end
 
   private

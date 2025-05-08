@@ -5,4 +5,8 @@ class Role < ApplicationRecord
   has_many :permissions, through: :roles_permissions
 
   validates :name, presence: true, uniqueness: true
+
+  def self.ransackable_attributes(auth_object = nil)
+    [ "name" ]
+  end
 end
