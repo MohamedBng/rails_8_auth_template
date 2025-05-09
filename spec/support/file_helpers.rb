@@ -19,4 +19,3 @@ end
 RSpec.configure do |config|
     config.include FileHelpers
 end
-  
