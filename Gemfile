@@ -95,3 +95,4 @@ gem "ransack", "~> 4.2.1"
 gem "shrine", "~> 3.6"
 
 gem "image_processing", "~> 1.14"
+gem "fastimage", "~> 2.3" # For Shrine, helps with image dimensions
