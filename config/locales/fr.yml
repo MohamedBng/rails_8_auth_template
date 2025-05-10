@@ -5,12 +5,25 @@ fr:
           first_name: "Prénom"
           last_name: "Nom"
           email: "Adresse e-mail"
+        fields:
+          first_name: "Prénom"
+          last_name: "Nom de famille"
+          email: "Email"
+          role: "Rôle"
       errors:
         models:
           user:
             attributes:
               first_name:
                 blank: "ne peut pas être vide"
+        image:
+          file_size: "est trop volumineux (maximum %{max_size} Mo)"
+          mime_type: "n'est pas un type d'image valide. Types autorisés : %{valid_types}"
+          extension: "n'est pas une extension d'image valide. Extensions autorisées : %{valid_extensions}"
+  common:
+    save: "Enregistrer"
+    cancel: "Annuler"
+
   admin:
     users:
       search:
@@ -20,6 +33,10 @@ fr:
       index:
         title: "Gestion des utilisateurs"
         add_new_user: "Ajouter un nouvel utilisateur"
+      profile_image:
+        upload_title: "Mettre à jour la photo de profil"
+        file_input_label: "Choisir une nouvelle photo de profil"
+        delete_confirm: "Êtes-vous sûr de vouloir supprimer la photo de profil ?"
       sections:
         personal_information: "Informations personnelles"
       fields:

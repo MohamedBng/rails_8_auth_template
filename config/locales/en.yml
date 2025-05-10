@@ -40,6 +40,14 @@ en:
           attributes:
             first_name:
               blank: "can't be blank"
+      image:
+        file_size: "is too large (max is %{max_size} MB)"
+        mime_type: "is not a valid image type. Allowed types: %{valid_types}"
+        extension: "is not a valid image extension. Allowed extensions: %{valid_extensions}"
+  common:
+    save: "Save"
+    cancel: "Cancel"
+
   admin:
     users:
       search:
@@ -49,6 +57,10 @@ en:
       index:
         title: "User Management"
         add_new_user: "Add New User"
+      profile_image:
+        upload_title: "Update Profile Picture"
+        file_input_label: "Choose a new profile picture"
+        delete_confirm: "Are you sure you want to delete this profile picture?"
       sections:
           personal_information: "Personal Information"
       fields:

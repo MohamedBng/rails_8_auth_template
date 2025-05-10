@@ -16,8 +16,12 @@ class UserAvatarComponent < ViewComponent::Base
 
   erb_template <<-ERB
     <div class="avatar <%= avatar_status_class %>">
-      <div class="rounded-full flex items-center justify-center" style="width: <%= @size %>px; height: <%= @size %>px;">
-        <%= image_tag("avatar.png", alt: full_name) %>
+      <div class="rounded-full flex items-center justify-center overflow-hidden" style="width: <%= @size %>px; height: <%= @size %>px;">
+        <% if @user.profile_image.present? %>
+          <%= image_tag @user.profile_image_url(:thumbnail), alt: full_name, class: "w-full h-full object-cover" %>
+        <% else %>
+          <%= image_tag("avatar.png", alt: full_name, class: "w-full h-full object-cover") %>
+        <% end %>
       </div>
     </div>
   ERB

@@ -22,7 +22,7 @@ class SidebarComponent < ViewComponent::Base
       </div>
 
       <div class="p-4">
-        <%= link_to destroy_user_session_path, method: :delete, class: 'btn btn-accent w-full flex items-center justify-center gap-2' do %>
+        <%= button_to destroy_user_session_path, method: :delete, class: 'btn btn-accent w-full flex items-center justify-center gap-2' do %>
           <i class="fas fa-sign-out-alt text-lg"></i>
           <span data-sidebar-target="label" class="hidden"><%= t("sidebar.logout") %></span>
         <% end %>

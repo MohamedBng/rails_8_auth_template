@@ -49,6 +49,22 @@ class Admin::UsersController < Admin::BaseController
     redirect_to admin_users_path
   end
 
+  def delete_profile_image
+    @user.remove_profile_image = true
+
+    if @user.save
+      flash.now[:success] = t("admin.users.delete_profile_image.success")
+      redirect_to admin_user_path(@user)
+    else
+      flash.now[:error] = t("admin.users.delete_profile_image.failure", errors: @user.errors.full_messages.join(", "))
+      render turbo_stream: turbo_stream.replace(
+        "personal_info_user_#{@user.id}",
+        partial: "admin/users/personal_info/form",
+        locals: { user: @user }
+      ), status: :unprocessable_entity
+    end
+  end
+
   private
 
   def set_user
@@ -56,6 +72,6 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name)
+    params.require(:user).permit(:first_name, :last_name, :profile_image)
   end
 end
