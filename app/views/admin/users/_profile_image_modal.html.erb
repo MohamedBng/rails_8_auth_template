@@ -17,18 +17,11 @@
       <div class="form-control w-full">
         <div class="avatar w-full flex justify-center mb-4">
           <div class="w-40 h-40 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 overflow-hidden">
-            <% if user.profile_image.present? %>
-              <%= image_tag(
-                    user.profile_image_url(:thumbnail),
-                    class: "object-cover w-full h-full",
-                    data: { "file-preview-target": "preview" }
-                  ) %>
-            <% else %>
-              <div class="w-full h-full bg-base-200 flex items-center justify-center text-base-content/50"
-                   data-file-preview-target="preview">
-                <i class="fa-solid fa-user text-4xl"></i>
-              </div>
-            <% end %>
+            <%= image_tag(
+              user.profile_image.present? ? user.profile_image_url(:thumbnail) : asset_path("avatar.png"),
+              class: "object-cover w-full h-full",
+              data: { file_preview_target: "preview" }
+            ) %>
           </div>
         </div>
 
