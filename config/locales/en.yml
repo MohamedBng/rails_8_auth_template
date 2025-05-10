@@ -55,6 +55,11 @@ en:
         other: "%{count} errors prohibited this record from being saved"
 
   admin:
+    roles:
+      users_count:
+        zero: "No users"
+        one: "1 user"
+        other: "%{count} users"
     users:
       search:
         placeholder: "Search by name or email"

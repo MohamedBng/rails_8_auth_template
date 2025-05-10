@@ -31,6 +31,11 @@ fr:
         other: "%{count} erreurs ont empêché l'enregistrement de ce document"
 
   admin:
+    roles:
+      users_count:
+        zero: "Aucun utilisateur"
+        one: "1 utilisateur"
+        other: "%{count} utilisateurs"
     users:
       search:
         placeholder: "Recherche par nom ou email"
