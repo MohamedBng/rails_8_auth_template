@@ -1,0 +1,62 @@
+<h1 class="text-2xl font-bold mb-2">
+  <%= t("admin.users.new.title") %>
+</h1>
+<p class="text-l mb-6 subtitle">
+  <%= t("admin.users.new.subtitle") %>
+</p>
+
+<%= form_with model: [:admin, @user], local: true, html: { multipart: true }, data: { "controller": "file-preview" } do |f| %>
+  <div class="form-control w-full flex flex-row items-start justify-start">
+    <div class="avatar mb-4">
+      <div class="w-40 h-40 rounded-full ring ring-accent ring-offset-base-100 ring-offset-2 overflow-hidden">
+        <%= image_tag(
+          @user.profile_image.present? ? @user.profile_image_url(:thumbnail) : asset_path("avatar.png"),
+          class: "object-cover w-full h-full",
+          data: { file_preview_target: "preview" }
+        ) %>
+      </div>
+    </div>
+    
+    <%= f.file_field :profile_image, accept: 'image/*', class: 'file-input file-input-bordered file-input-accent w-60', data: { 'file-preview-target': 'input', 'action': 'change->file-preview#preview' } %>
+  </div>
+
+  <div class="grid grid-cols-2 gap-4 mt-6">
+    <div class="form-control">
+      <%= f.label :first_name, t("activerecord.attributes.user.first_name"), class: "label" %>
+      <%= f.text_field :first_name, 
+          class: "input input-bordered w-full", 
+          placeholder: t("activerecord.attributes.user.first_name") %>
+    </div>
+
+    <div class="form-control">
+      <%= f.label :last_name, t("activerecord.attributes.user.last_name"), class: "label" %>
+      <%= f.text_field :last_name, 
+          class: "input input-bordered w-full", 
+          placeholder: t("activerecord.attributes.user.last_name") %>
+    </div>
+
+    <div class="form-control">
+      <%= f.label :email, t("activerecord.attributes.user.email"), class: "label" %>
+      <%= f.email_field :email, 
+          class: "input input-bordered w-full", 
+          placeholder: t("activerecord.attributes.user.email") %>
+    </div>
+
+    <div class="form-control">
+      <%= f.label :roles, t("activerecord.attributes.user.roles"), class: "label" %>
+      <div class="grid grid-cols-4 items-start mt-2">
+        <%= f.collection_check_boxes :role_ids, Role.all, :id, :name do |b| %>
+          <label class="cursor-pointer label flex items-center space-x-2">
+            <%= b.check_box(class: "checkbox checkbox-primary") %>
+            <span class="label-text"><%= b.text %></span>
+          </label>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-control flex justify-end mt-6 gap-2">
+    <%= link_to t("common.cancel"), admin_users_path, class: "btn btn-error btn-outline", data: { turbo_frame: "main", turbo_action: "advance" } %>
+    <%= f.submit t("common.save"), class: "btn btn-accent" %>
+  </div>
+<% end %>

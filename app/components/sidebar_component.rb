@@ -10,11 +10,11 @@ class SidebarComponent < ViewComponent::Base
         <% end %>
 
         <nav class="space-y-4">
-          <%= link_to admin_dashboard_index_path, class: 'flex items-center gap-4 hover:bg-base-200 p-2 rounded' do %>
+          <%= link_to admin_dashboard_index_path, data: { turbo_frame: "main", turbo_action: "advance" }, class: 'flex items-center gap-4 hover:bg-base-200 p-2 rounded' do %>
             <i class="fas fa-chart-line"></i>
             <span data-sidebar-target="label" class="hidden"><%= t("sidebar.dashboard") %></span>
           <% end %>
-          <%= link_to admin_users_path, class: 'flex items-center gap-4 hover:bg-base-200 p-2 rounded' do %>
+          <%= link_to admin_users_path, data: { turbo_frame: "main", turbo_action: "advance" }, class: 'flex items-center gap-4 hover:bg-base-200 p-2 rounded' do %>
             <i class="fas fa-users"></i>
             <span data-sidebar-target="label" class="hidden"><%= t("sidebar.users") %></span>
           <% end %>

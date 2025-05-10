@@ -34,6 +34,7 @@ en:
         first_name: "First Name"
         last_name: "Last Name"
         email: "Email Address"
+        roles: "Roles"
     errors:
       models:
         user:
@@ -47,6 +48,11 @@ en:
   common:
     save: "Save"
     cancel: "Cancel"
+    errors:
+      form_error:
+        zero: "No errors"
+        one: "1 error prohibited this record from being saved"
+        other: "%{count} errors prohibited this record from being saved"
 
   admin:
     users:
@@ -55,8 +61,14 @@ en:
         all_roles: "All Roles"
         submit_button: "Search"
       index:
-        title: "User Management"
+        title: "Users"
         add_new_user: "Add New User"
+        all_roles: "Select Role"
+      new:
+        title: "Add New User"
+        subtitle: "Fill in the details below to create a new user account"
+        success: "User was successfully created. An email with reset password instructions has been sent."
+        failure: "Failed to create user: %{errors}"
       profile_image:
         upload_title: "Update Profile Picture"
         file_input_label: "Choose a new profile picture"

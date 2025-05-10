@@ -5,6 +5,7 @@ fr:
           first_name: "Prénom"
           last_name: "Nom"
           email: "Adresse e-mail"
+          roles: "Rôles"
         fields:
           first_name: "Prénom"
           last_name: "Nom de famille"
@@ -23,6 +24,11 @@ fr:
   common:
     save: "Enregistrer"
     cancel: "Annuler"
+    errors:
+      form_error:
+        zero: "Aucune erreur"
+        one: "1 erreur a empêché l'enregistrement de ce document"
+        other: "%{count} erreurs ont empêché l'enregistrement de ce document"
 
   admin:
     users:
@@ -33,6 +39,12 @@ fr:
       index:
         title: "Gestion des utilisateurs"
         add_new_user: "Ajouter un nouvel utilisateur"
+        all_roles: "Tous les rôles"
+      new:
+        title: "Ajouter un nouvel utilisateur"
+        subtitle: "Remplissez les détails ci-dessous pour créer un nouveau compte utilisateur"
+        success: "L'utilisateur a été créé avec succès. Un e-mail avec des instructions de réinitialisation de mot de passe a été envoyé."
+        failure: "Impossible de créer l'utilisateur : %{errors}"
       profile_image:
         upload_title: "Mettre à jour la photo de profil"
         file_input_label: "Choisir une nouvelle photo de profil"
