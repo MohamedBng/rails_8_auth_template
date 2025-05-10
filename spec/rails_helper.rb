@@ -84,7 +84,7 @@ RSpec.configure do |config|
 
   config.include FactoryBot::Syntax::Methods
   config.include ActionDispatch::TestProcess::FixtureFile, type: :model
-  config.include ActionDispatch::TestProcess::FixtureFile, type: :request # Already present or useful here
+  config.include ActionDispatch::TestProcess::FixtureFile, type: :request
 
   config.include Devise::Test::IntegrationHelpers, type: :request
   config.include Devise::Test::ControllerHelpers, type: :controller
