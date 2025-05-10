@@ -59,21 +59,21 @@ RSpec.describe User, type: :model do
         persisted_user.profile_image = large_file
         expect(persisted_user).not_to be_valid
         expect(persisted_user.errors[:profile_image])
-          .to include("is too large (max is 5 MB)")
+          .to include(I18n.t('errors.image.file_size', max_size: ImageUploader::MAX_SIZE / 1024 / 1024))
       end
 
       it "rejects non-image mime types" do
         persisted_user.profile_image = text_file
         expect(persisted_user).not_to be_valid
         expect(persisted_user.errors[:profile_image])
-          .to include("is not a valid image type")
+          .to include(I18n.t('errors.image.mime_type', valid_types: ImageUploader::VALID_MIME_TYPES.join(', ')))
       end
 
       it "rejects disallowed extensions" do
         persisted_user.profile_image = exe_file
         expect(persisted_user).not_to be_valid
         expect(persisted_user.errors[:profile_image])
-          .to include("is not a valid image type")
+          .to include(I18n.t('errors.image.extension', valid_extensions: ImageUploader::VALID_EXTENSIONS.join(', ')))
       end
     end
   end

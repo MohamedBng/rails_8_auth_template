@@ -13,5 +13,5 @@ Shrine.plugin :determine_mime_type
 Shrine.plugin :instrumentation, logger: Rails.logger
 Shrine.plugin :validation_helpers
 Shrine.plugin :url_options, store: { host: "http://localhost:3000" }
-Shrine.plugin :derivatives,create_on_promote: true, delete: true
+Shrine.plugin :derivatives, create_on_promote: true, delete: true
 Shrine.plugin :remove_attachment
