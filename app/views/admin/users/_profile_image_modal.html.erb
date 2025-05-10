@@ -1,0 +1,51 @@
+<div class="modal modal-bottom sm:modal-middle" role="dialog">
+  <div class="modal-box relative" data-controller="file-preview enable-submit-button">
+    <label 
+      for="profile_image_modal_<%= user.id %>" 
+      class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+    >
+      <i class="fa-solid fa-xmark text-xl"></i>
+    </label>
+
+    <h3 class="font-bold text-lg mb-4">
+      <%= t("admin.users.profile_image.upload_title") %>
+    </h3>
+
+    <%= form_with model: [:admin, user], local: true, html: { multipart: true } do |f| %>
+      <div class="form-control w-full">
+        <div class="avatar w-full flex justify-center mb-4">
+          <div class="w-40 h-40 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 overflow-hidden">
+            <% if user.profile_image.present? %>
+              <%= image_tag(
+                    user.profile_image_url(:thumbnail),
+                    class: "object-cover w-full h-full",
+                    data: { "file-preview-target": "preview" }
+                  ) %>
+            <% else %>
+              <div class="w-full h-full bg-base-200 flex items-center justify-center text-base-content/50"
+                   data-file-preview-target="preview">
+                <i class="fa-solid fa-user text-4xl"></i>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+         <%= f.label :profile_image, class: "label label-text", style: "display: block" do %>
+          <%= t("admin.users.profile_image.file_input_label") %>
+        <% end %>
+        
+        <%= f.file_field :profile_image, accept: 'image/*', class: 'file-input file-input-bordered file-input-primary w-full', data: { 'file-preview-target': 'input', "enable-submit-button-target": "field", 'action': 'change->file-preview#preview' } %>
+
+        <div class="modal-action">      
+          <label for="profile_image_modal_<%= user.id %>" class="btn btn-ghost">
+            <%= t("common.cancel") %>
+          </label>
+
+          <%= f.submit t("common.save"), class: "btn btn-primary", disabled: true, data: { "enable-submit-button-target": "submitButton" } %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <label class="modal-backdrop" for="profile_image_modal_<%= user.id %>">Close</label>
+</div>

@@ -15,3 +15,9 @@ application.register("hello", HelloController)
 
 import SidebarController from "./sidebar_controller"
 application.register("sidebar", SidebarController)
+
+import FilePreviewController from "./file_preview_controller"
+application.register("file-preview", FilePreviewController)
+
+import EnableSubmitButtonController from "./enable_submit_button_controller"
+application.register("enable-submit-button", EnableSubmitButtonController)

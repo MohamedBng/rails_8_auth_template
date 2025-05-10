@@ -1,9 +1,30 @@
 <div class="card bg-base-100 w-full shadow-sm p-4">
   <div class="flex justify-between w-full">
     <div class="flex space-x-4">
-      <%= render(UserAvatarComponent.new(user: @user, size: 150)) %>
+      <div class="relative w-[150px] h-[150px]" id="<%= dom_id(@user, :avatar_container) %>">
+        <%= render(UserAvatarComponent.new(user: @user, size: 150)) %>
+        <% if can? :update, @user %>
+          <label 
+            for="profile_image_modal_<%= @user.id %>" 
+            class="absolute bottom-0 right-0 bg-base-200 hover:bg-base-300 text-base-content 
+                  rounded-full p-2 shadow-md transition-all cursor-pointer"
+          >
+            <i class="fa-solid fa-pencil"></i>
+          </label>
+
+          <input 
+            type="checkbox" 
+            id="profile_image_modal_<%= @user.id %>" 
+            class="modal-toggle" 
+          />
+          <%= render partial: 'admin/users/profile_image_modal', locals: { user: @user } %> 
+        <% end %>
+      </div>
+
       <div id="user_name_<%= @user.id %>">
-        <h2 class="text-xl font-bold"><%= @user.decorate.full_name %></h2>
+        <h2 class="text-xl font-bold">
+          <%= @user.decorate.full_name %>
+        </h2>
       </div>
     </div>
 
@@ -16,11 +37,11 @@
       <% if can? :destroy, @user %>
         <%= button_to admin_user_path(@user),
                       method: :delete,
+                      class: "btn btn-error btn-outline",
                       data: {
                         turbo_confirm: t("admin.users.actions.confirm_delete"),
-                        turbo_frame: "main"
-                      },
-                      class: "btn btn-error btn-outline" do %>
+                        turbo_frame:   "main"
+                      } do %>
           <i class="fa-solid fa-trash"></i>
           <%= t("admin.users.actions.delete_user") %>
         <% end %>

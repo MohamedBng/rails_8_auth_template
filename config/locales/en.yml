@@ -40,6 +40,10 @@ en:
           attributes:
             first_name:
               blank: "can't be blank"
+  common:
+    save: "Save"
+    cancel: "Cancel"
+
   admin:
     users:
       search:
@@ -49,6 +53,9 @@ en:
       index:
         title: "User Management"
         add_new_user: "Add New User"
+      profile_image:
+        upload_title: "Update Profile Picture"
+        file_input_label: "Choose a new profile picture"
       sections:
           personal_information: "Personal Information"
       fields:

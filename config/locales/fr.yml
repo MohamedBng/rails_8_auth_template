@@ -11,6 +11,10 @@ fr:
             attributes:
               first_name:
                 blank: "ne peut pas être vide"
+  common:
+    save: "Enregistrer"
+    cancel: "Annuler"
+
   admin:
     users:
       search:
@@ -20,6 +24,9 @@ fr:
       index:
         title: "Gestion des utilisateurs"
         add_new_user: "Ajouter un nouvel utilisateur"
+      profile_image:
+        upload_title: "Mettre à jour la photo de profil"
+        file_input_label: "Choisir une nouvelle photo de profil"
       sections:
         personal_information: "Informations personnelles"
       fields:
