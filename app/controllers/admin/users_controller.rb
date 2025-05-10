@@ -50,7 +50,7 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def delete_profile_image
-    @user.profile_image = nil
+    @user.remove_profile_image = true
 
     if @user.save
       flash.now[:success] = t("admin.users.delete_profile_image.success")
