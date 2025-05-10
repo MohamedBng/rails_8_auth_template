@@ -154,4 +154,22 @@ RSpec.describe Ability, type: :model do
       expect(ability).not_to be_able_to(:update, user)
     end
   end
+
+  context "with create_user permission" do
+    let(:user) { create(:user, permissions_list: [ 'create_user' ]) }
+    let(:ability) { Ability.new(user) }
+  
+    it "allows creating a new user" do
+      expect(ability).to be_able_to(:create, User)
+    end
+  end
+
+  context "without create_user permission" do
+    let(:user) { create(:user) }
+    let(:ability) { Ability.new(user) }
+  
+    it "prevents creating a new user" do
+      expect(ability).not_to be_able_to(:create, User)
+    end
+  end
 end
