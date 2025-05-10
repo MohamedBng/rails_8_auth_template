@@ -344,7 +344,7 @@ RSpec.describe 'Admin::Users', type: :request do
 
       it 'deletes the user\'s own profile image' do
         delete delete_profile_image_admin_user_path(user)
-        
+
         expect(response).to redirect_to(admin_user_path(user))
         user.reload
         expect(user.profile_image).to be_nil
@@ -367,7 +367,7 @@ RSpec.describe 'Admin::Users', type: :request do
 
       it 'deletes any user\'s profile image' do
         delete delete_profile_image_admin_user_path(target_user)
-        
+
         expect(response).to redirect_to(admin_user_path(target_user))
         target_user.reload
         expect(target_user.profile_image).to be_nil

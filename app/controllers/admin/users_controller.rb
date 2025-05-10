@@ -51,7 +51,7 @@ class Admin::UsersController < Admin::BaseController
 
   def delete_profile_image
     @user.profile_image = nil
-    
+
     if @user.save
       flash.now[:success] = t("admin.users.delete_profile_image.success")
       redirect_to admin_user_path(@user)
