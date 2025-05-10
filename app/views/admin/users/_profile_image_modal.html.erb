@@ -16,7 +16,7 @@
     <%= form_with model: [:admin, user], local: true, html: { multipart: true } do |f| %>
       <div class="form-control w-full">
         <div class="avatar w-full flex justify-center mb-4">
-          <div class="w-40 h-40 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 overflow-hidden">
+          <div class="w-40 h-40 rounded-full ring ring-accent ring-offset-base-100 ring-offset-2 overflow-hidden">
             <%= image_tag(
               user.profile_image.present? ? user.profile_image_url(:thumbnail) : asset_path("avatar.png"),
               class: "object-cover w-full h-full",
@@ -29,7 +29,7 @@
           <%= t("admin.users.profile_image.file_input_label") %>
         <% end %>
         
-        <%= f.file_field :profile_image, accept: 'image/*', class: 'file-input file-input-bordered file-input-primary w-full', data: { 'file-preview-target': 'input', "enable-submit-button-target": "field", 'action': 'change->file-preview#preview' } %>
+        <%= f.file_field :profile_image, accept: 'image/*', class: 'file-input file-input-bordered file-input-accent w-full', data: { 'file-preview-target': 'input', "enable-submit-button-target": "field", 'action': 'change->file-preview#preview' } %>
 
         <div class="modal-action flex justify-between items-center w-full">
           <% if user.profile_image.present? %>
@@ -48,7 +48,7 @@
               <%= t("common.cancel") %>
             </label>
 
-            <%= f.submit t("common.save"), class: "btn btn-primary", disabled: true, data: { "enable-submit-button-target": "submitButton" } %>
+            <%= f.submit t("common.save"), class: "btn btn-accent", disabled: true, data: { "enable-submit-button-target": "submitButton" } %>
           </div>
         </div>
       </div>
