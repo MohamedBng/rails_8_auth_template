@@ -314,4 +314,64 @@ RSpec.describe 'Admin::Users', type: :request do
       end
     end
   end
+
+  describe 'DELETE #delete_profile_image' do
+    context 'when user is not authenticated' do
+      it 'redirects to the sign in page' do
+        delete delete_profile_image_admin_user_path(target_user)
+        expect(response).to redirect_to(new_user_session_path)
+      end
+    end
+
+    context 'when user is authenticated but lacks permission' do
+      let(:user) { create(:user) }
+      before { sign_in(user, scope: :user) }
+
+      it 'raises CanCan::AccessDenied' do
+        expect {
+          delete delete_profile_image_admin_user_path(target_user)
+        }.to raise_error(CanCan::AccessDenied)
+      end
+    end
+
+    context 'when user has permission to delete own profile image' do
+      let(:user) { create(:user, permissions_list: [ 'delete_own_profile_image' ]) }
+      before do
+        user.profile_image = dummy_file
+        user.save!
+        sign_in(user, scope: :user)
+      end
+
+      it 'deletes the user\'s own profile image' do
+        delete delete_profile_image_admin_user_path(user)
+        
+        expect(response).to redirect_to(admin_user_path(user))
+        user.reload
+        expect(user.profile_image).to be_nil
+      end
+
+      it 'cannot delete another user\'s profile image' do
+        expect {
+          delete delete_profile_image_admin_user_path(target_user)
+        }.to raise_error(CanCan::AccessDenied)
+      end
+    end
+
+    context 'when user has permission to delete any profile image' do
+      let(:admin_user) { create(:user, permissions_list: [ 'delete_profile_image' ]) }
+      before do
+        target_user.profile_image = dummy_file
+        target_user.save!
+        sign_in(admin_user, scope: :user)
+      end
+
+      it 'deletes any user\'s profile image' do
+        delete delete_profile_image_admin_user_path(target_user)
+        
+        expect(response).to redirect_to(admin_user_path(target_user))
+        target_user.reload
+        expect(target_user.profile_image).to be_nil
+      end
+    end
+  end
 end

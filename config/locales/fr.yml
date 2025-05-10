@@ -27,6 +27,7 @@ fr:
       profile_image:
         upload_title: "Mettre à jour la photo de profil"
         file_input_label: "Choisir une nouvelle photo de profil"
+        delete_confirm: "Êtes-vous sûr de vouloir supprimer la photo de profil ?"
       sections:
         personal_information: "Informations personnelles"
       fields:

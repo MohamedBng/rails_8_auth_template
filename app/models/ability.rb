@@ -19,6 +19,16 @@ class Ability
       end
     end
 
+    can :delete_profile_image, User do |target_user|
+      if user.has_permission?("delete_profile_image")
+        true
+      elsif user.has_permission?("delete_own_profile_image") && user == target_user
+        true
+      else
+        false
+      end
+    end
+
     can :destroy, User do |target_user|
       true if user.has_permission?("destroy_user") && user != target_user
     end

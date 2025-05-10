@@ -11,7 +11,11 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :dashboard, only: [ :index ]
-    resources :users, only: [ :show, :destroy, :edit, :update, :index, :new ]
+    resources :users, only: [ :show, :destroy, :edit, :update, :index, :new ] do
+      member do
+        delete :delete_profile_image
+      end
+    end
   end
 
   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)

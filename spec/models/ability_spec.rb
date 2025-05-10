@@ -101,6 +101,34 @@ RSpec.describe Ability, type: :model do
     end
   end
 
+  context "when user has 'delete_own_profile_image' permission" do
+    let(:user) { create(:user) }
+
+    before do
+      permission = create(:permission, name: "delete_own_profile_image")
+      user.roles.first.permissions << permission
+    end
+
+    it "can delete own profile image" do
+      expect(ability).to be_able_to(:delete_profile_image, user)
+      expect(ability).not_to be_able_to(:delete_profile_image, target_user)
+    end
+  end
+
+  context "when user has 'delete_profile_image' permission" do
+    let(:user) { create(:user) }
+
+    before do
+      permission = create(:permission, name: "delete_profile_image")
+      user.roles.first.permissions << permission
+    end
+
+    it "can delete any user's profile image" do
+      expect(ability).to be_able_to(:delete_profile_image, user)
+      expect(ability).to be_able_to(:delete_profile_image, target_user)
+    end
+  end
+
   context "when user has 'update_own_user' permission" do
     let(:user) { create(:user) }
 

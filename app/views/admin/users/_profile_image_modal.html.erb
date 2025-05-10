@@ -1,5 +1,7 @@
 <div class="modal modal-bottom sm:modal-middle" role="dialog">
   <div class="modal-box relative" data-controller="file-preview enable-submit-button">
+    <%= render "shared/flash" %>
+
     <label 
       for="profile_image_modal_<%= user.id %>" 
       class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
@@ -36,12 +38,25 @@
         
         <%= f.file_field :profile_image, accept: 'image/*', class: 'file-input file-input-bordered file-input-primary w-full', data: { 'file-preview-target': 'input', "enable-submit-button-target": "field", 'action': 'change->file-preview#preview' } %>
 
-        <div class="modal-action">      
-          <label for="profile_image_modal_<%= user.id %>" class="btn btn-ghost">
-            <%= t("common.cancel") %>
-          </label>
+        <div class="modal-action flex justify-between items-center w-full">
+          <% if user.profile_image.present? %>
+            <%= link_to t("admin.users.profile_image.delete"), 
+                delete_profile_image_admin_user_path(user), 
+                method: :delete, 
+                data: { 
+                  turbo_method: :delete, 
+                  turbo_confirm: t("admin.users.profile_image.delete_confirm") 
+                }, 
+                class: "btn btn-error btn-outline" %>
+          <% end %>
 
-          <%= f.submit t("common.save"), class: "btn btn-primary", disabled: true, data: { "enable-submit-button-target": "submitButton" } %>
+          <div class="flex space-x-2">
+            <label for="profile_image_modal_<%= user.id %>" class="btn btn-ghost">
+              <%= t("common.cancel") %>
+            </label>
+
+            <%= f.submit t("common.save"), class: "btn btn-primary", disabled: true, data: { "enable-submit-button-target": "submitButton" } %>
+          </div>
         </div>
       </div>
     <% end %>
