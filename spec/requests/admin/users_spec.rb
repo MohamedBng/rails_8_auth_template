@@ -374,4 +374,103 @@ RSpec.describe 'Admin::Users', type: :request do
       end
     end
   end
+
+  describe 'GET #new' do
+    context 'when user has create_user permission' do
+      let(:user) { create(:user, permissions_list: [ 'create_user' ]) }
+      before { sign_in(user, scope: :user) }
+
+      it 'renders the new user page' do
+        get new_admin_user_path
+        expect(response).to have_http_status(:ok)
+        expect(response).to render_template(:new)
+      end
+    end
+
+    context 'when user does not have create_user permission' do
+      let(:user) { create(:user) }
+      before { sign_in(user, scope: :user) }
+
+      it 'raises CanCan::AccessDenied' do
+        expect {
+          get new_admin_user_path
+        }.to raise_error(CanCan::AccessDenied)
+      end
+    end
+
+    context 'when user is not authenticated' do
+      it 'redirects to sign in page' do
+        get new_admin_user_path
+        expect(response).to redirect_to(new_user_session_path)
+      end
+    end
+  end
+
+  describe 'POST #create' do
+    let(:valid_attributes) do
+      {
+        first_name: 'John',
+        last_name: 'Doe',
+        email: 'john.doe@example.com',
+        profile_image: dummy_file,
+        role_ids: [ create(:role).id ]
+      }
+    end
+
+    context 'when user has create_user permission' do
+      let(:user) { create(:user, permissions_list: [ 'create_user' ]) }
+      before { sign_in(user, scope: :user) }
+
+      it 'creates a new user successfully' do
+        expect {
+          post admin_users_path, params: { user: valid_attributes }
+        }.to change(User, :count).by(1)
+
+        new_user = User.last
+        expect(new_user.first_name).to eq('John')
+        expect(new_user.last_name).to eq('Doe')
+        expect(new_user.email).to eq('john.doe@example.com')
+        expect(new_user.roles).to eq(Role.where(id: valid_attributes[:role_ids]))
+
+        expect(response).to redirect_to(admin_user_path(new_user))
+        expect(flash[:success]).to be_present
+      end
+
+      it 'sends reset password instructions' do
+        expect_any_instance_of(User).to receive(:send_reset_password_instructions)
+
+        post admin_users_path, params: { user: valid_attributes }
+      end
+
+      it 'handles invalid user creation' do
+        invalid_attributes = valid_attributes.merge(email: '')
+
+        expect {
+          post admin_users_path, params: { user: invalid_attributes }
+        }.not_to change(User, :count)
+
+        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to render_template(:new)
+        expect(flash[:error]).to be_present
+      end
+    end
+
+    context 'when user does not have create_user permission' do
+      let(:user) { create(:user) }
+      before { sign_in(user, scope: :user) }
+
+      it 'raises CanCan::AccessDenied' do
+        expect {
+          post admin_users_path, params: { user: valid_attributes }
+        }.to raise_error(CanCan::AccessDenied)
+      end
+    end
+
+    context 'when user is not authenticated' do
+      it 'redirects to sign in page' do
+        post admin_users_path, params: { user: valid_attributes }
+        expect(response).to redirect_to(new_user_session_path)
+      end
+    end
+  end
 end
