@@ -96,6 +96,7 @@ en:
     users: "Users"
     logout: "Logout"
     dashboard: "Dashboard"
+    roles: "Roles"
   tables:
     users:
       name: "Name"

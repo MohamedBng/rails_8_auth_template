@@ -18,6 +18,10 @@ class SidebarComponent < ViewComponent::Base
             <i class="fas fa-users"></i>
             <span data-sidebar-target="label" class="hidden"><%= t("sidebar.users") %></span>
           <% end %>
+          <%= link_to admin_roles_path, data: { turbo_frame: "main", turbo_action: "advance" }, class: 'flex items-center gap-4 hover:bg-base-200 p-2 rounded' do %>
+            <i class="fas fa-user-shield"></i>
+            <span data-sidebar-target="label" class="hidden"><%= t("sidebar.roles") %></span>
+          <% end %>
         </nav>
       </div>
 

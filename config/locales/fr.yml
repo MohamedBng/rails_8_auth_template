@@ -71,6 +71,7 @@ fr:
     users: "Utilisateurs"
     logout: "Déconnexion"
     dashboard: "Tableau de bord"
+    roles: "Rôles"
   tables:
     users:
       name: "Nom"
