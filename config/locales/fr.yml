@@ -5,12 +5,21 @@ fr:
           first_name: "Prénom"
           last_name: "Nom"
           email: "Adresse e-mail"
+        fields:
+          first_name: "Prénom"
+          last_name: "Nom de famille"
+          email: "Email"
+          role: "Rôle"
       errors:
         models:
           user:
             attributes:
               first_name:
                 blank: "ne peut pas être vide"
+        image:
+          file_size: "est trop volumineux (maximum %{max_size} Mo)"
+          mime_type: "n'est pas un type d'image valide. Types autorisés : %{valid_types}"
+          extension: "n'est pas une extension d'image valide. Extensions autorisées : %{valid_extensions}"
   common:
     save: "Enregistrer"
     cancel: "Annuler"
