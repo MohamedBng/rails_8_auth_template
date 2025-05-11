@@ -32,7 +32,7 @@
             </div>
             
             <div class="card-actions justify-end">
-              <%= link_to t('common.manage'), '#', class: 'btn btn-sm btn-accent btn-outline' %>
+              <%= link_to t('common.manage'), admin_role_path(role), class: 'btn btn-sm btn-accent btn-outline', data: { turbo_frame: "main", turbo_action: "advance" } %>
             </div>
           </div>
         </div>
