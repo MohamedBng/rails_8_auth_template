@@ -1,0 +1,27 @@
+<h1 class="text-2xl font-bold mb-2">
+    <%= t("admin.roles.new.title") %>
+</h1>
+
+<p class="text-l mb-6 subtitle">
+    <%= t("admin.roles.new.subtitle") %>
+</p>
+    
+<div class="md:w-2/3 w-full">
+  <%= form_with(model: [:admin, @role], class: "contents") do |form| %>
+    <div class="my-5">
+      <%= form.label :name, class: "label" %>
+      <%= form.text_field :name, class: "input input-bordered w-full", required: true %>
+    </div>
+
+    <div class="my-5">
+        <%= form.label :color, class: "label" %>
+        <%= form.color_field :color, class: "w-20 input" %>
+    </div>
+
+
+     <div class="form-control flex justify-end mt-6 gap-2">
+        <%= link_to t("common.cancel"), admin_roles_path, class: "btn btn-error btn-outline", data: { turbo_frame: "main", turbo_action: "advance" } %>
+        <%= form.submit t("common.save"), class: "btn btn-accent" %>
+    </div>
+  <% end %>
+</div>

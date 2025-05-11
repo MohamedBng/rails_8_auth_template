@@ -35,6 +35,9 @@ en:
         last_name: "Last Name"
         email: "Email Address"
         roles: "Roles"
+      role:
+        name: "Name"
+        color: "Color"
     errors:
       models:
         user:
@@ -45,6 +48,11 @@ en:
         file_size: "is too large (max is %{max_size} MB)"
         mime_type: "is not a valid image type. Allowed types: %{valid_types}"
         extension: "is not a valid image extension. Allowed extensions: %{valid_extensions}"
+  errors:
+    messages:
+      not_saved:
+        one: "1 error prohibited this %{resource} from being saved:"
+        other: "%{count} errors prohibited this %{resource} from being saved:"
   common:
     save: "Save"
     cancel: "Cancel"
@@ -53,13 +61,18 @@ en:
         zero: "No errors"
         one: "1 error prohibited this record from being saved"
         other: "%{count} errors prohibited this record from being saved"
-
   admin:
     roles:
+      new:
+        title: "New Role"
+        subtitle: "Fill in the details below to create a new role"
+        create_role: "Create Role"
       index:
         title: "Role Management"
         subtitle: "Manage roles and permissions"
         add_new_role: "Add New Role"
+      create:
+        success: "Role was successfully created."
       users_count:
         zero: "No users"
         one: "1 user"
@@ -101,6 +114,7 @@ en:
     formats:
       long: "%B %e, %Y"
       short: "%b %e"
+  cancel: "Cancel"
   sidebar:
     users: "Users"
     logout: "Logout"

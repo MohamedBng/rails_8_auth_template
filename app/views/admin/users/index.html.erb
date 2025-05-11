@@ -29,9 +29,7 @@
           <td><%= user.email %></td>
           <td class="flex flex-wrap gap-2">
             <% user.roles.each do |role| %>
-              <span class="badge badge-soft badge-<%= role.color.presence || 'neutral' %>">
-                <%= role.name.titleize %>
-              </span>
+              <%= role.decorate.badge %>
             <% end %>
           </td>
           <td><%= user.last_sign_in_at&.strftime("%Y-%m-%d %H:%M") || "Never" %></td>
