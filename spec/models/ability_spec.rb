@@ -190,4 +190,20 @@ RSpec.describe Ability, type: :model do
       expect(ability).not_to be_able_to(:read, Role)
     end
   end
+
+  context "with create_role permission" do
+    let(:user) { create(:user, permissions_list: ['create_role']) }
+
+    it "allows creating a new role" do
+      expect(ability).to be_able_to(:create, Role)
+    end
+  end
+
+  context "without create_role permission" do
+    let(:user) { create(:user) }
+
+    it "prevents creating a new role" do
+      expect(ability).not_to be_able_to(:create, Role)
+    end
+  end
 end
