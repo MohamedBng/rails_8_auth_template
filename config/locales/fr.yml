@@ -1,0 +1,95 @@
+fr:
+  activerecord:
+      attributes:
+        user:
+          first_name: "Prénom"
+          last_name: "Nom"
+          email: "Adresse e-mail"
+          roles: "Rôles"
+        fields:
+          first_name: "Prénom"
+          last_name: "Nom de famille"
+          email: "Email"
+          role: "Rôle"
+      errors:
+        models:
+          user:
+            attributes:
+              first_name:
+                blank: "ne peut pas être vide"
+        image:
+          file_size: "est trop volumineux (maximum %{max_size} Mo)"
+          mime_type: "n'est pas un type d'image valide. Types autorisés : %{valid_types}"
+          extension: "n'est pas une extension d'image valide. Extensions autorisées : %{valid_extensions}"
+  common:
+    save: "Enregistrer"
+    cancel: "Annuler"
+    errors:
+      form_error:
+        zero: "Aucune erreur"
+        one: "1 erreur a empêché l'enregistrement de ce document"
+        other: "%{count} erreurs ont empêché l'enregistrement de ce document"
+
+  admin:
+    roles:
+      index:
+        title: "Gestion des rôles"
+        subtitle: "Gérer les rôles et les permissions"
+        add_new_role: "Ajouter un nouveau rôle"
+      users_count:
+        zero: "Aucun utilisateur"
+        one: "1 utilisateur"
+        other: "%{count} utilisateurs"
+    users:
+      search:
+        placeholder: "Recherche par nom ou email"
+        all_roles: "Tous les rôles"
+        submit_button: "Rechercher"
+      index:
+        title: "Gestion des utilisateurs"
+        add_new_user: "Ajouter un nouvel utilisateur"
+        all_roles: "Tous les rôles"
+      new:
+        title: "Ajouter un nouvel utilisateur"
+        subtitle: "Remplissez les détails ci-dessous pour créer un nouveau compte utilisateur"
+        success: "L'utilisateur a été créé avec succès. Un e-mail avec des instructions de réinitialisation de mot de passe a été envoyé."
+        failure: "Impossible de créer l'utilisateur : %{errors}"
+      profile_image:
+        upload_title: "Mettre à jour la photo de profil"
+        file_input_label: "Choisir une nouvelle photo de profil"
+        delete_confirm: "Êtes-vous sûr de vouloir supprimer la photo de profil ?"
+      sections:
+        personal_information: "Informations personnelles"
+      fields:
+        joined_at: "Inscription le"
+      actions:
+        edit: "Modifier"
+        share_profile: "Partager le profil"
+        delete_user: "Supprimer l'utilisateur"
+        confirm_delete: "Êtes-vous sûr de vouloir supprimer cet utilisateur ?"
+      update:
+        success: "Utilisateur mis à jour avec succès."
+        failure: "Échec de la mise à jour de l'utilisateur : %{errors}"
+      destroy:
+        success: "Utilisateur supprimé avec succès."
+        failure: "Échec de la suppression de l'utilisateur : %{errors}"
+  date:
+    formats:
+      long: "%-d %B %Y"
+  sidebar:
+    users: "Utilisateurs"
+    logout: "Déconnexion"
+    dashboard: "Tableau de bord"
+    roles: "Rôles"
+  tables:
+    users:
+      name: "Nom"
+      email: "Email"
+      roles: "Rôles"
+      last_login: "Dernière connexion"
+      actions: "Actions"
+      profile: "Profil"
+      delete: "Supprimer"
+  time:
+    formats:
+      long: "%-d %B %Y à %H:%M"

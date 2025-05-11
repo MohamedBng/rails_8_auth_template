@@ -1,0 +1,42 @@
+<div class="flex justify-between items-center mb-6">
+  <div>
+    <h1 class="text-2xl font-bold mb-2">
+      <%= t("admin.roles.index.title") %>
+    </h1>
+
+    <p class="text-l mb-6 subtitle">
+      <%= t("admin.roles.index.subtitle") %>
+    </p>
+  </div>
+
+  <div class="mb-6">
+    <%= link_to "#", data: { turbo_frame: "main", turbo_action: "advance" }, class: "btn btn-accent" do %>
+      <i class="fas fa-plus mr-2"></i>
+      <%= t("admin.roles.index.add_new_role") %>
+    <% end %>
+  </div>
+</div>
+
+<div class="container mx-auto">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <% @roles.each do |role| %>
+      <div class="card bg-base-100 shadow-xl border border-base-300">
+        <div class="card-body">
+          <h2 class="card-title text-xl font-semibold"><%= role.name.capitalize %></h2>
+          
+          <div class="divider my-2"></div>
+          
+          <div class="flex justify-between items-end">
+            <div class="text-sm text-gray-600">
+              <%= t('admin.roles.users_count', count: role.users_count) %>
+            </div>
+            
+            <div class="card-actions justify-end">
+              <%= link_to t('common.manage'), '#', class: 'btn btn-sm btn-accent btn-outline' %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

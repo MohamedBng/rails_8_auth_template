@@ -1,0 +1,82 @@
+<div class="flex justify-between items-center mb-6">
+  <h1 class="text-2xl font-semibold"><%= t("admin.users.index.title") %></h1>
+  <%= link_to new_admin_user_path, data: { turbo_frame: "main", turbo_action: "advance" }, class: "btn btn-accent" do %>
+    <i class="fas fa-plus mr-2"></i>
+    <%= t("admin.users.index.add_new_user") %>
+  <% end %>
+</div>
+
+<%= render 'admin/users/search_form', q: @q %>
+
+<div class="rounded-box border border-base-content/5 bg-base-100">
+  <table class="table">
+    <thead>
+      <tr>
+        <th><%= t("tables.users.name") %></th>
+        <th><%= t("tables.users.email") %></th>
+        <th><%= t("tables.users.roles") %></th>
+        <th><%= t("tables.users.last_login") %></th>
+        <th><%= t("tables.users.actions") %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td class="flex items-center gap-3">
+            <%= render(UserAvatarComponent.new(user: user, size: 30)) %>
+            <%= user.decorate.full_name %>
+          </td>
+          <td><%= user.email %></td>
+          <td class="flex flex-wrap gap-2">
+            <% user.roles.each do |role| %>
+              <span class="badge badge-soft badge-<%= role.color.presence || 'neutral' %>">
+                <%= role.name.titleize %>
+              </span>
+            <% end %>
+          </td>
+          <td><%= user.last_sign_in_at&.strftime("%Y-%m-%d %H:%M") || "Never" %></td>
+         <td>
+            <div class="dropdown dropdown-end">
+              <div tabindex="0" role="button" class="btn btn-ghost">
+                <i class="fa-solid fa-ellipsis"></i>
+              </div>
+              <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                <li class="menu-title">
+                  <%= t("tables.users.actions") %>
+                </li>
+          
+                 <div class="divider m-0"></div>
+
+                <li>
+                  <%= link_to admin_user_path(user), data: { turbo_frame: "main", turbo_action: "advance" } do %>
+                    <i class="fa-solid fa-user w-4"></i>
+                    <%= t("tables.users.profile") %>
+                  <% end %>
+                </li>
+
+                <div class="divider m-0"></div>
+
+                <li>
+                  <% if can? :destroy, user %>
+                    <%= button_to admin_user_path(user),
+                                  method: :delete,
+                                  data: { turbo_confirm: t("admin.users.actions.confirm_delete") },
+                                  class: "text-error" do %>
+                      <i class="fa-solid fa-trash w-4"></i>
+                      <%= t("tables.users.delete") %>
+                    <% end %>
+                  <% end %>
+                </li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= render(PaginationComponent.new(pagy: @users)) %>
+
+
+

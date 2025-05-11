@@ -13,6 +13,8 @@ RSpec.describe "Google OAuth2 callback", type: :request do
 
   before do
     OmniAuth.config.test_mode = true
+    role = Role.find_or_create_by!(name: "user")
+    role.permissions << Permission.find_or_create_by!(name: "read_dashboard")
   end
 
   after do

@@ -19,4 +19,26 @@ RSpec.describe Role, type: :model do
     it { should have_many(:permissions) }
     it { should have_many(:roles_permissions).dependent(:destroy) }
   end
+
+  describe 'scopes' do
+    context 'with_users_count' do
+      it 'returns roles with correct users_count' do
+        role_with_users = create(:role)
+
+        create_list(:user, 3).each do |user|
+          create(:users_role, user: user, role: role_with_users)
+        end
+
+        role_without_users = create(:role)
+
+        roles = Role.with_users_count
+
+        result_with_users = roles.find { |r| r.id == role_with_users.id }
+        expect(result_with_users.users_count.to_i).to eq(3)
+
+        result_without_users = roles.find { |r| r.id == role_without_users.id }
+        expect(result_without_users.users_count.to_i).to eq(0)
+      end
+    end
+  end
 end

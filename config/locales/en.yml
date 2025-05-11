@@ -28,4 +28,94 @@
 #       enabled: "ON"
 
 en:
-  hello: "Hello world"
+  activerecord:
+    attributes:
+      user:
+        first_name: "First Name"
+        last_name: "Last Name"
+        email: "Email Address"
+        roles: "Roles"
+    errors:
+      models:
+        user:
+          attributes:
+            first_name:
+              blank: "can't be blank"
+      image:
+        file_size: "is too large (max is %{max_size} MB)"
+        mime_type: "is not a valid image type. Allowed types: %{valid_types}"
+        extension: "is not a valid image extension. Allowed extensions: %{valid_extensions}"
+  common:
+    save: "Save"
+    cancel: "Cancel"
+    errors:
+      form_error:
+        zero: "No errors"
+        one: "1 error prohibited this record from being saved"
+        other: "%{count} errors prohibited this record from being saved"
+
+  admin:
+    roles:
+      index:
+        title: "Role Management"
+        subtitle: "Manage roles and permissions"
+        add_new_role: "Add New Role"
+      users_count:
+        zero: "No users"
+        one: "1 user"
+        other: "%{count} users"
+    users:
+      search:
+        placeholder: "Search by name or email"
+        all_roles: "All Roles"
+        submit_button: "Search"
+      index:
+        title: "Users"
+        add_new_user: "Add New User"
+        all_roles: "Select Role"
+      new:
+        title: "Add New User"
+        subtitle: "Fill in the details below to create a new user account"
+        success: "User was successfully created. An email with reset password instructions has been sent."
+        failure: "Failed to create user: %{errors}"
+      profile_image:
+        upload_title: "Update Profile Picture"
+        file_input_label: "Choose a new profile picture"
+        delete_confirm: "Are you sure you want to delete this profile picture?"
+      sections:
+          personal_information: "Personal Information"
+      fields:
+        joined_at: "Joined At"
+      actions:
+        edit: "Edit"
+        share_profile: "Share profile"
+        delete_user: "Delete user"
+        confirm_delete: "Are you sure you want to delete this user?"
+      update:
+        success: "User updated successfully."
+        failure: "Failed to update user: %{errors}"
+      destroy:
+        success: "User deleted successfully."
+        failure: "Failed to delete user: %{errors}"
+  date:
+    formats:
+      long: "%B %e, %Y"
+      short: "%b %e"
+  sidebar:
+    users: "Users"
+    logout: "Logout"
+    dashboard: "Dashboard"
+    roles: "Roles"
+  tables:
+    users:
+      name: "Name"
+      email: "Email"
+      roles: "Roles"
+      last_login: "Last login"
+      actions: "Actions"
+      profile: "Profile"
+      delete: "Delete"
+  time:
+    formats:
+      long: "%B %e, %Y %H:%M"
+

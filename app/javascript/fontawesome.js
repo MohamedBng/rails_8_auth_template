@@ -1,7 +1,7 @@
 import { library, dom } from "@fortawesome/fontawesome-svg-core";
 
-import { faBars, faChartLine, faSignOutAlt, faShareNodes, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faChartLine, faSignOutAlt, faShareNodes, faTrash, faCircleXmark, faPencil, faUsers, faEllipsis, faUser, faSearch, faFilter, faPlus, faXmark, faUserShield } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faBars, faChartLine, faSignOutAlt, faShareNodes, faTrash);
+library.add(faBars, faChartLine, faSignOutAlt, faShareNodes, faTrash, faCircleXmark, faPencil, faUsers, faEllipsis, faUser, faSearch, faFilter, faPlus, faXmark, faUserShield);
 
 dom.watch();
