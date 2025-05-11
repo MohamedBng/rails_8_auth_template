@@ -9,6 +9,7 @@ class Ability
     can :create, User if user.has_permission?("create_user")
     can :read, User if user.has_permission?("read_user")
     can :read, :dashboard if user.has_permission?("read_dashboard")
+    can :read, Role if user.has_permission?("read_role")
 
     can :update, User do |target_user|
       if user.has_permission?("update_any_user")

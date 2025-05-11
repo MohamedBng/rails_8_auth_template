@@ -15,7 +15,7 @@ end
 
 # Assign permissions
 perms = {
-  "admin" => %w[destroy_user read_user read_dashboard update_any_user delete_profile_image create_user],
+  "admin" => %w[destroy_user read_user read_dashboard update_any_user delete_profile_image create_user read_role],
   "user"  => %w[read_user read_dashboard update_own_user delete_own_profile_image]
 }
 

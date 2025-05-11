@@ -16,6 +16,7 @@ Rails.application.routes.draw do
         delete :delete_profile_image
       end
     end
+    resources :roles, only: [ :index ]
   end
 
   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)

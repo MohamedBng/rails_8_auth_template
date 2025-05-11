@@ -55,6 +55,15 @@ en:
         other: "%{count} errors prohibited this record from being saved"
 
   admin:
+    roles:
+      index:
+        title: "Role Management"
+        subtitle: "Manage roles and permissions"
+        add_new_role: "Add New Role"
+      users_count:
+        zero: "No users"
+        one: "1 user"
+        other: "%{count} users"
     users:
       search:
         placeholder: "Search by name or email"
@@ -96,6 +105,7 @@ en:
     users: "Users"
     logout: "Logout"
     dashboard: "Dashboard"
+    roles: "Roles"
   tables:
     users:
       name: "Name"

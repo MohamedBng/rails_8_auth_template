@@ -2,7 +2,7 @@ class UserDecorator < Draper::Decorator
   delegate_all
 
   def full_name
-    [ object.first_name, object.last_name ].join(" ")
+    [ object.first_name.capitalize, object.last_name.capitalize ].join(" ")
   end
 
   def joined_on(format: :long)
