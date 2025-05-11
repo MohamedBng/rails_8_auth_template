@@ -32,6 +32,10 @@ fr:
 
   admin:
     roles:
+      index:
+        title: "Gestion des rôles"
+        subtitle: "Gérer les rôles et les permissions"
+        add_new_role: "Ajouter un nouveau rôle"
       users_count:
         zero: "Aucun utilisateur"
         one: "1 utilisateur"

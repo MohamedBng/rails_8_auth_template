@@ -56,6 +56,10 @@ en:
 
   admin:
     roles:
+      index:
+        title: "Role Management"
+        subtitle: "Manage roles and permissions"
+        add_new_role: "Add New Role"
       users_count:
         zero: "No users"
         one: "1 user"

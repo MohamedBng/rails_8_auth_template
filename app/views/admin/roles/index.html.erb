@@ -1,10 +1,21 @@
-<h1 class="text-2xl font-bold mb-2">
-  <%= t("admin.roles.index.title") %>
-</h1>
+<div class="flex justify-between items-center mb-6">
+  <div>
+    <h1 class="text-2xl font-bold mb-2">
+      <%= t("admin.roles.index.title") %>
+    </h1>
 
-<p class="text-l mb-6 subtitle">
-  <%= t("admin.roles.index.subtitle") %>
-</p>
+    <p class="text-l mb-6 subtitle">
+      <%= t("admin.roles.index.subtitle") %>
+    </p>
+  </div>
+
+  <div class="mb-6">
+    <%= link_to "#", data: { turbo_frame: "main", turbo_action: "advance" }, class: "btn btn-accent" do %>
+      <i class="fas fa-plus mr-2"></i>
+      <%= t("admin.roles.index.add_new_role") %>
+    <% end %>
+  </div>
+</div>
 
 <div class="container mx-auto">
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
