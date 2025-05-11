@@ -12,6 +12,12 @@ class Role < ApplicationRecord
       .group("roles.id")
   }
 
+  scope :with_permissions_count, -> {
+    left_joins(:permissions)
+      .select("roles.*, COUNT(permissions.id) AS permissions_count")
+      .group("roles.id")
+  }
+
   def self.ransackable_attributes(auth_object = nil)
     [ "name" ]
   end
