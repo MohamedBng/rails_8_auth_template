@@ -4,8 +4,8 @@
 
 # Create roles with color
 roles_with_colors = {
-  "admin" => "primary",
-  "user"  => "info"
+  "admin" => "#DC3545",
+  "user"  => "#17A2B8"
 }
 
 roles_with_colors.each do |role_name, color|

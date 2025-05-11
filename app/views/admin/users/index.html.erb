@@ -29,7 +29,7 @@
           <td><%= user.email %></td>
           <td class="flex flex-wrap gap-2">
             <% user.roles.each do |role| %>
-              <span class="badge badge-soft badge-<%= role.color.presence || 'neutral' %>">
+              <span class="badge badge-soft" style="background-color: <%= role.color.presence || '#6c757d' %>; color: <%= ideal_text_color(role.color.presence || '#6c757d') %>;">
                 <%= role.name.titleize %>
               </span>
             <% end %>

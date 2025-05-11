@@ -6,6 +6,9 @@ fr:
           last_name: "Nom"
           email: "Adresse e-mail"
           roles: "Rôles"
+        role:
+          name: "Nom"
+          color: "Couleur"
         fields:
           first_name: "Prénom"
           last_name: "Nom de famille"
@@ -21,6 +24,17 @@ fr:
           file_size: "est trop volumineux (maximum %{max_size} Mo)"
           mime_type: "n'est pas un type d'image valide. Types autorisés : %{valid_types}"
           extension: "n'est pas une extension d'image valide. Extensions autorisées : %{valid_extensions}"
+        role:
+          attributes:
+            name:
+              blank: "ne peut pas être vide"
+              too_short: "est trop court (minimum %{min} caractères)"
+              too_long: "est trop long (maximum %{max} caractères)"
+  errors:
+    messages:
+      not_saved:
+        one: "1 erreur a empêché l'enregistrement de ce %{resource} :"
+        other: "%{count} erreurs ont empêché l'enregistrement de ce %{resource} :"
   common:
     save: "Enregistrer"
     cancel: "Annuler"
@@ -33,12 +47,15 @@ fr:
   admin:
     roles:
       new:
-        title: "Ajouter un nouveau rôle"
+        title: "Nouveau Rôle"
         subtitle: "Remplissez les détails ci-dessous pour créer un nouveau rôle"
+        create_role: "Créer le Rôle"
       index:
         title: "Gestion des rôles"
         subtitle: "Gérer les rôles et les permissions"
         add_new_role: "Ajouter un nouveau rôle"
+      create:
+        success: "Le rôle a été créé avec succès."
       users_count:
         zero: "Aucun utilisateur"
         one: "1 utilisateur"
@@ -96,3 +113,4 @@ fr:
   time:
     formats:
       long: "%-d %B %Y à %H:%M"
+  cancel: "Annuler"
