@@ -7,7 +7,7 @@ module Users
         u.uid        = auth[:uid]
         u.first_name = auth[:first_name]
         u.last_name  = auth[:last_name]
-        u.provider   = 'google'
+        u.provider   = "google"
         u.password   = Devise.friendly_token[0, 20]
       end
 

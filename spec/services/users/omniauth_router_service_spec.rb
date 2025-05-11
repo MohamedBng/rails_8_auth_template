@@ -38,7 +38,7 @@ RSpec.describe Users::OmniauthRouterService, type: :service do
     end
 
     context 'when the delegated service fails' do
-      let(:errors) { { base: ['Something went wrong'] } }
+      let(:errors) { { base: [ 'Something went wrong' ] } }
       before do
         allow(Users::GoogleOmniauthService).to receive(:call).with(auth: auth_data).and_return(Dry::Monads::Failure.new(errors))
       end

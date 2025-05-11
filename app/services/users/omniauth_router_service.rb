@@ -3,7 +3,7 @@ module Users
     extend Dry::Monads[:result]
 
     PROVIDERS = {
-      'google_oauth2' => GoogleOmniauthService
+      "google_oauth2" => GoogleOmniauthService
     }.freeze
 
     def self.call(provider:, auth:)
