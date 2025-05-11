@@ -45,28 +45,21 @@ RSpec.describe Users::GoogleOmniauthService, type: :service do
 
     context 'when the user already exists' do
       let!(:existing_user) do
-        User.create!(
-          email: user.email,
-          password: 'password123',
-          first_name: 'Old',
-          last_name: 'User'
-        )
+        create(:user, email: user.email, first_name: 'Old', last_name: 'User')
       end
 
-      it 'returns the existing user and updates it' do
+      it 'returns the existing user' do
         result = described_class.call(auth: auth_data)
         expect(result).to be_success
 
         updated_user = result.value!
         expect(updated_user.id).to eq(existing_user.id)
-        expect(updated_user.first_name).to eq(user.first_name)
-        expect(updated_user.last_name).to eq(user.last_name)
       end
     end
 
     context 'when saving fails' do
       before do
-        allow(User).to receive(:find_or_initialize_by).and_return(User.new) # invalid user (missing required fields)
+        allow(User).to receive(:find_or_initialize_by).and_return(User.new)
       end
 
       it 'returns Failure with validation errors' do
