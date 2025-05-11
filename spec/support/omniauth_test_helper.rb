@@ -1,4 +1,3 @@
-# spec/support/omniauth_test_helper.rb
 module OmniauthTestHelper
   def mock_successful_oauth(provider:, user:)
     OmniAuth.config.test_mode = true
