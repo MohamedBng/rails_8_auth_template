@@ -7,14 +7,14 @@ class Role < ApplicationRecord
   validates :name, presence: true, uniqueness: true
 
   scope :with_users_count, -> {
-    left_joins(:users)
-      .select("roles.*, COUNT(users.id) AS users_count")
+    joins("LEFT JOIN users_roles ON users_roles.role_id = roles.id")
+      .select("roles.*, COUNT(DISTINCT users_roles.user_id) AS users_count")
       .group("roles.id")
   }
 
   scope :with_permissions_count, -> {
-    left_joins(:permissions)
-      .select("roles.*, COUNT(permissions.id) AS permissions_count")
+    joins("LEFT JOIN roles_permissions ON roles_permissions.role_id = roles.id")
+      .select("roles.*, COUNT(DISTINCT roles_permissions.permission_id) AS permissions_count")
       .group("roles.id")
   }
 

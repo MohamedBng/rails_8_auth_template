@@ -22,7 +22,7 @@ class Admin::RolesController < Admin::BaseController
   end
 
   def show
-    @role = Role.find(params[:id]).with_users_count
+    @role = Role.with_users_count.with_permissions_count.find(params[:id])
   end
 
   private

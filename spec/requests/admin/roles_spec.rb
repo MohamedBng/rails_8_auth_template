@@ -155,4 +155,61 @@ RSpec.describe 'Admin::Roles', type: :request do
       end
     end
   end
+
+  describe 'GET #show' do
+    let(:role) { create(:role) }
+
+    context 'when user is not authenticated' do
+      it 'redirects to the sign in page' do
+        get admin_role_path(role)
+        expect(response).to redirect_to(new_user_session_path)
+      end
+    end
+
+    context 'when user is authenticated but does not have read_role permission' do
+      let(:user) { create(:user) }
+      before { sign_in(user, scope: :user) }
+
+      it 'raises CanCan::AccessDenied' do
+        expect {
+          get admin_role_path(role)
+        }.to raise_error(CanCan::AccessDenied)
+      end
+    end
+
+    context 'when user is an admin with read_role permission' do
+      let(:admin_user) { create(:user, permissions_list: ['read_role']) }
+      let!(:target_role) do
+        role = create(:role)
+        create_list(:user, 2).each { |u| create(:users_role, user: u, role: role) }
+        create_list(:permission, 3).each { |p| create(:roles_permission, permission: p, role: role) }
+        role
+      end
+
+      before do
+        sign_in(admin_user, scope: :user)
+        get admin_role_path(target_role)
+      end
+
+      it 'returns a successful response' do
+        expect(response).to have_http_status(:ok)
+      end
+
+      it 'renders the show template' do
+        expect(response).to render_template(:show)
+      end
+
+      it 'assigns the requested role to @role with counts' do
+        assigned_role = assigns(:role)
+        expect(assigned_role).to eq(target_role)
+
+        expect(assigned_role.users_count.to_i).to eq(2)
+        expect(assigned_role.permissions_count.to_i).to eq(3)
+      end
+
+      it 'displays the role name' do
+        expect(response.body).to include(target_role.name)
+      end
+    end
+  end
 end
