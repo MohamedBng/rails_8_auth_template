@@ -11,7 +11,11 @@
 
 
    <div class="form-control flex justify-end mt-6 gap-2">
-      <%= link_to t("common.cancel"), admin_roles_path, class: "btn btn-error btn-outline", data: { turbo_frame: "main", turbo_action: "advance" } %>
+      <% if @role.new_record? %>
+        <%= link_to t("common.cancel"), admin_roles_path, class: "btn btn-error btn-outline", data: { turbo_frame: "main", turbo_action: "advance" } %>
+      <% else %>
+        <%= link_to t("common.cancel"), admin_role_path(@role), class: "btn btn-error btn-outline", data: { turbo_frame: "role_basic_info_content" } %>
+      <% end %>
       <%= form.submit t("common.save"), class: "btn btn-accent" %>
   </div>
 <% end %>
