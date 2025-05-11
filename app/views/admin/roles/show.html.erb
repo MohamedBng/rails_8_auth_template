@@ -5,3 +5,109 @@
 <p class="text-l mb-6 subtitle">
     <%= t("admin.roles.show.subtitle") %>
 </p>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+  <!-- Carte gauche : Basic Information -->
+  <div class="bg-base-100 shadow overflow-hidden rounded-lg p-4">
+    <h3 class="text-lg leading-6 font-medium mb-4">
+        <%= t("admin.roles.show.basic_information") %>
+    </h3>
+
+    <div>
+      <dl class="space-y-6">
+        <!-- Nom -->
+        <div>
+          <dt class="text-sm font-medium mb-1">
+            <%= t("admin.roles.show.name") %>
+          </dt>
+          <dd class="text-sm">
+            <%= @role.decorate.name %>
+          </dd>
+        </div>
+
+        <!-- Couleur -->
+        <div>
+          <dt class="text-sm font-medium mb-1">
+            <%= t("admin.roles.show.color") %>
+          </dt>
+          <dd class="text-sm flex items-center">
+            <div class="w-6 h-6 rounded-full mr-3 border" style="background-color: <%= @role.color.presence || '#6c757d' %>;"></div>
+            <%= @role.color.presence || t("admin.roles.show.no_color_specified") %>
+          </dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+
+  <!-- Carte droite : Statistiques -->
+  <div class="bg-base-100 shadow rounded-lg p-4 grid grid-cols-1 gap-4">
+    <h3 class="text-lg leading-6 font-medium">
+        <%= t(".statistics_title") %>
+    </h3>
+
+    <!-- Carte Total Users -->
+    <div class="bg-base-200 rounded-lg p-4 flex justify-between items-center">
+      <div>
+        <h4 class="text-sm font-semibold"><%= t(".total_users") %></h4>
+        <p class="text-xl font-bold"><%= @role.users_count %></p>
+      </div>
+      <i class="fas fa-users text-2xl"></i>
+    </div>
+
+    <!-- Carte Permissions -->
+    <div class="bg-base-200 rounded-lg p-4 flex justify-between items-center">
+      <div>
+        <h4 class="text-sm font-semibold"><%= t(".permissions") %></h4>
+        <p class="text-xl font-bold"><%= @role.permissions.count %></p>
+      </div>
+      <i class="fas fa-shield-alt text-2xl"></i>
+    </div>
+
+    <!-- Carte Last Modified -->
+    <div class="bg-base-200 rounded-lg p-4 flex justify-between items-center">
+      <div>
+        <h4 class="text-sm font-semibold"><%= t(".last_modified") %></h4>
+        <p class="text-sm"><%= l(@role.updated_at, format: :long) %></p>
+      </div>
+      <i class="fas fa-history text-2xl"></i>
+    </div>
+  </div>
+</div>
+
+<!-- Assigned Users Section -->
+<div class="bg-base-100 shadow rounded-lg p-6 mt-6">
+  <h3 class="text-lg font-medium mb-1">
+    <%= t(".assigned_users") %>
+  </h3>
+  <p class="text-sm text-gray-600 mb-4">
+    <%= t(".manage_users_with_this_role") %>
+  </p>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <% @role.users.each do |user| %>
+      <div class="bg-base-200 rounded-lg p-4 flex items-center space-x-3">
+        <%= render(UserAvatarComponent.new(user: user, size: 30)) %>
+        <span class="text-sm font-medium"><%= user.decorate.full_name %></span>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<!-- Role Permissions Section -->
+<div class="bg-base-100 shadow rounded-lg p-6 mt-6">
+  <h3 class="text-lg font-medium mb-1">
+    <%= t(".role_permissions_title") %>
+  </h3>
+  <p class="text-sm text-gray-600 mb-4">
+    <%= t(".manage_role_permissions_subtitle") %>
+  </p>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <% @role.permissions.each do |permission| %>
+      <div class="bg-base-200 rounded-lg p-4 flex items-center space-x-3">
+        <i class="fas fa-key text-gray-600"></i> <!-- Or another appropriate icon -->
+        <span class="text-sm font-medium"><%= permission.name.titleize %></span>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -49,6 +49,18 @@ fr:
       show:
         title: "Gestion du rôle %{role_name}"
         subtitle: "Configurez les paramètres du rôle et les utilisateurs assignés"
+        basic_information: "Informations de base"
+        name: "Nom"
+        color: "Couleur"
+        no_color_specified: "Aucune couleur spécifiée"
+        total_users: "Utilisateurs Totaux"
+        permissions: "Permissions"
+        last_modified: "Dernière Modification"
+        statistics_title: "Statistiques du Rôle"
+        assigned_users: "Utilisateurs Assignés"
+        manage_users_with_this_role: "Gérer les utilisateurs auxquels ce rôle est assigné."
+        role_permissions_title: "Permissions du Rôle"
+        manage_role_permissions_subtitle: "Voir les permissions associées à ce rôle."
       new:
         title: "Nouveau Rôle"
         subtitle: "Remplissez les détails ci-dessous pour créer un nouveau rôle"

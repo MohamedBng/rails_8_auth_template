@@ -66,6 +66,18 @@ en:
       show:
         title: "Manage %{role_name} Role"
         subtitle: "Configure role settings and assigned users"
+        basic_information: "Basic Information"
+        name: "Name"
+        color: "Color"
+        no_color_specified: "No color specified"
+        total_users: "Total Users"
+        permissions: "Permissions"
+        last_modified: "Last Modified"
+        statistics_title: "Role Statistics"
+        assigned_users: "Assigned Users"
+        manage_users_with_this_role: "Manage users who have this role assigned."
+        role_permissions_title: "Role Permissions"
+        manage_role_permissions_subtitle: "View permissions associated with this role."
       new:
         title: "New Role"
         subtitle: "Fill in the details below to create a new role"
