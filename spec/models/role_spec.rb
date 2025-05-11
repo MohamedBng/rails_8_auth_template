@@ -40,5 +40,24 @@ RSpec.describe Role, type: :model do
         expect(result_without_users.users_count.to_i).to eq(0)
       end
     end
+
+    context 'with_permissions_count' do
+      it 'returns roles with correct permissions_count' do
+        role_with_permissions = create(:role)
+        create_list(:permission, 2).each do |permission|
+          create(:roles_permission, role: role_with_permissions, permission: permission)
+        end
+
+        role_without_permissions = create(:role)
+
+        roles = Role.with_permissions_count
+
+        result_with_permissions = roles.find { |r| r.id == role_with_permissions.id }
+        expect(result_with_permissions.permissions_count.to_i).to eq(2)
+
+        result_without_permissions = roles.find { |r| r.id == role_without_permissions.id }
+        expect(result_without_permissions.permissions_count.to_i).to eq(0)
+      end
+    end
   end
 end
