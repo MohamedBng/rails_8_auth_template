@@ -192,7 +192,7 @@ RSpec.describe Ability, type: :model do
   end
 
   context "with create_role permission" do
-    let(:user) { create(:user, permissions_list: ['create_role']) }
+    let(:user) { create(:user, permissions_list: [ 'create_role' ]) }
 
     it "allows creating a new role" do
       expect(ability).to be_able_to(:create, Role)

@@ -2,12 +2,12 @@ module ApplicationHelper
   # Determines the ideal text color (black or white) for a given hex background color
   # to ensure good contrast.
   def ideal_text_color(hex_background_color)
-    return '#000000' if hex_background_color.blank? # Default to black for blank/nil
+    return "#000000" if hex_background_color.blank? # Default to black for blank/nil
 
-    hex_color = hex_background_color.gsub('#', '')
+    hex_color = hex_background_color.gsub("#", "")
 
     # Ensure hex_color is valid (6 characters) after removing #
-    return '#000000' unless hex_color.match?(/^[0-9a-fA-F]{6}$/)
+    return "#000000" unless hex_color.match?(/^[0-9a-fA-F]{6}$/)
 
     r = hex_color[0..1].hex
     g = hex_color[2..3].hex
@@ -20,6 +20,6 @@ module ApplicationHelper
     # A simpler formula often used is (R*299 + G*587 + B*114) / 1000
     brightness = (r * 299 + g * 587 + b * 114) / 1000
 
-    brightness > 150 ? '#000000' : '#FFFFFF' # Threshold can be adjusted (128-186 is common)
+    brightness > 150 ? "#000000" : "#FFFFFF" # Threshold can be adjusted (128-186 is common)
   end
 end
