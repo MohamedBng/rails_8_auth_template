@@ -46,6 +46,9 @@ fr:
 
   admin:
     roles:
+      show:
+        title: "Gestion du rôle %{role_name}"
+        subtitle: "Configurez les paramètres du rôle et les utilisateurs assignés"
       new:
         title: "Nouveau Rôle"
         subtitle: "Remplissez les détails ci-dessous pour créer un nouveau rôle"

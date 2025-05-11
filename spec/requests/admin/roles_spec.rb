@@ -178,7 +178,7 @@ RSpec.describe 'Admin::Roles', type: :request do
     end
 
     context 'when user is an admin with read_role permission' do
-      let(:admin_user) { create(:user, permissions_list: ['read_role']) }
+      let(:admin_user) { create(:user, permissions_list: [ 'read_role' ]) }
       let!(:target_role) do
         role = create(:role)
         create_list(:user, 2).each { |u| create(:users_role, user: u, role: role) }
