@@ -16,7 +16,7 @@ Rails.application.routes.draw do
         delete :delete_profile_image
       end
     end
-    resources :roles, only: [ :index, :new, :create, :show, :update] do
+    resources :roles, only: [ :index, :new, :create, :show, :update ] do
       member do
         get :edit_basic_info
       end

@@ -33,13 +33,14 @@ class Admin::RolesController < Admin::BaseController
       locals: { role: @role }
     )
   end
-  
+
   def update
     if @role.update(role_params)
       flash[:success] = t("admin.roles.update.success")
       redirect_to admin_role_path(@role)
     else
       flash.now[:error] = @role.errors.full_messages.to_sentence
+      @role = Role.with_users_count.with_permissions_count.find(@role.id)
       render :show, status: :unprocessable_entity
     end
   end

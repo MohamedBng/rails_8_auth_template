@@ -13,7 +13,7 @@ class Ability
     can :create, Role if user.has_permission?("create_role")
     can :edit_basic_info, Role if user.has_permission?("edit_basic_info")
     can :update, Role if user.has_permission?("update_role")
-    
+
     can :update, User do |target_user|
       if user.has_permission?("update_any_user")
         true
