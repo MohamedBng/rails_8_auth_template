@@ -21,6 +21,10 @@ class Admin::RolesController < Admin::BaseController
     end
   end
 
+  def show
+    @role = Role.find(params[:id]).with_users_count
+  end
+
   private
 
   def role_params
