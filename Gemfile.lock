@@ -92,7 +92,7 @@ GEM
     brakeman (7.0.2)
       racc
     builder (3.3.0)
-    cancancan (3.5.0)
+    cancancan (3.6.1)
     capybara (3.40.0)
       addressable
       matrix
@@ -546,13 +546,13 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   brakeman
-  cancancan (~> 3.5.0)
+  cancancan (~> 3.6.1)
   capybara
   database_cleaner-active_record
   debug
   devise (~> 4.9)
-  dry-monads (~> 1.8.3)
   draper (~> 4.0.3)
+  dry-monads (~> 1.8.3)
   factory_bot_rails (~> 6.4.4)
   faker (~> 3.5.1)
   fastimage (~> 2.3)
