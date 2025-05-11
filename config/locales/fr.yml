@@ -32,6 +32,9 @@ fr:
 
   admin:
     roles:
+      new:
+        title: "Ajouter un nouveau rôle"
+        subtitle: "Remplissez les détails ci-dessous pour créer un nouveau rôle"
       index:
         title: "Gestion des rôles"
         subtitle: "Gérer les rôles et les permissions"

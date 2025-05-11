@@ -53,9 +53,11 @@ en:
         zero: "No errors"
         one: "1 error prohibited this record from being saved"
         other: "%{count} errors prohibited this record from being saved"
-
   admin:
     roles:
+      new:
+        title: "Add New Role"
+        subtitle: "Fill in the details below to create a new role"
       index:
         title: "Role Management"
         subtitle: "Manage roles and permissions"
