@@ -84,6 +84,8 @@ gem "view_component", "~> 3.22.0"
 
 gem "cancancan", "~> 3.5.0"
 
+gem "dry-monads", "~> 1.8.3"
+
 gem "i18n", "~> 1.14.7"
 
 gem "draper", "~> 4.0.3"
@@ -95,4 +97,5 @@ gem "ransack", "~> 4.2.1"
 gem "shrine", "~> 3.6"
 
 gem "image_processing", "~> 1.14"
+
 gem "fastimage", "~> 2.3"
