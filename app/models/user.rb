@@ -14,6 +14,10 @@ class User < ApplicationRecord
   has_many :users_roles, dependent: :destroy
   has_many :roles, through: :users_roles
 
+  scope :without_role, ->(role) {
+    where.not(id: role.users.select(:id))
+  }
+
   def has_permission?(permission_name)
     roles
       .joins(:permissions)
