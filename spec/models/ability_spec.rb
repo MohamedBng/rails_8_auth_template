@@ -208,7 +208,7 @@ RSpec.describe Ability, type: :model do
   end
 
   context "with edit_basic_info permission" do
-    let(:user) { create(:user, permissions_list: ['edit_basic_info']) }
+    let(:user) { create(:user, permissions_list: [ 'edit_basic_info' ]) }
 
     it "allows editing basic info of a role" do
       expect(ability).to be_able_to(:edit_basic_info, Role)
@@ -220,6 +220,22 @@ RSpec.describe Ability, type: :model do
 
     it "prevents editing basic info of a role" do
       expect(ability).not_to be_able_to(:edit_basic_info, Role)
+    end
+  end
+
+  context "with create_users_role permission" do
+    let(:user) { create(:user, permissions_list: [ 'create_users_role' ]) }
+
+    it "allows creating user roles" do
+      expect(ability).to be_able_to(:create, UsersRole)
+    end
+  end
+
+  context "without create_users_role permission" do
+    let(:user) { create(:user) }
+
+    it "prevents creating user roles" do
+      expect(ability).not_to be_able_to(:create, UsersRole)
     end
   end
 end
