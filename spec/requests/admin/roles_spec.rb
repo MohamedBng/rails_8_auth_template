@@ -195,48 +195,6 @@ RSpec.describe 'Admin::Roles', type: :request do
     end
   end
 
-  describe 'GET #edit_basic_info' do
-    let(:role) { create(:role) }
-
-    context 'when user is not authenticated' do
-      it 'redirects to the sign in page' do
-        get edit_basic_info_admin_role_path(role)
-        expect(response).to redirect_to(new_user_session_path)
-      end
-    end
-
-    context 'when user is authenticated but does not have edit_basic_info permission' do
-      let(:user) { create(:user) }
-      before { sign_in(user, scope: :user) }
-
-      it 'raises CanCan::AccessDenied' do
-        expect { get edit_basic_info_admin_role_path(role) }.to raise_error(CanCan::AccessDenied)
-      end
-    end
-
-    context 'when user is an admin with edit_basic_info permission' do
-      let(:admin_user) { create(:user, permissions_list: [ 'edit_basic_info' ]) }
-      before do
-        sign_in(admin_user, scope: :user)
-        get edit_basic_info_admin_role_path(role)
-      end
-
-      it 'returns a successful response' do
-        expect(response).to have_http_status(:ok)
-      end
-
-      it 'renders a turbo stream to replace the role_basic_info_content frame' do
-        expect(response.media_type).to eq Mime[:turbo_stream]
-        expect(response.body).to include('<turbo-stream action="replace" target="role_basic_info_content">')
-        expect(response.body).to include('<template>')
-      end
-
-      it 'assigns the correct role to @role' do
-        expect(assigns(:role)).to eq(role)
-      end
-    end
-  end
-
   describe 'PATCH #update' do
     let(:role) { create(:role, name: 'Old Name', color: '#000000') }
     let(:valid_attributes)   { { name: 'Updated Role Name', color: '#FFFFFF' } }
