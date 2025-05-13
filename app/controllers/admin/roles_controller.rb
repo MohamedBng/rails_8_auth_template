@@ -26,8 +26,6 @@ class Admin::RolesController < Admin::BaseController
   end
 
   def update
-    @role = Role.find(params[:id])
-
     if @role.update(role_params)
       flash[:success] = t("admin.roles.update.success")
       redirect_to admin_role_path(@role)
