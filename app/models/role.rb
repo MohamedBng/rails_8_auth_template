@@ -21,4 +21,16 @@ class Role < ApplicationRecord
   def self.ransackable_attributes(auth_object = nil)
     [ "name" ]
   end
+
+  def add_users!(user_ids)
+    processed_user_ids = Array(user_ids).map(&:to_s).compact_blank.uniq
+    return if processed_user_ids.empty?
+
+    current_user_ids = self.user_ids.map(&:to_s)
+    ids_to_add = processed_user_ids - current_user_ids
+
+    return if ids_to_add.empty?
+
+    self.users << User.where(id: ids_to_add)
+  end
 end

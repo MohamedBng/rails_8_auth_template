@@ -60,4 +60,66 @@ RSpec.describe Role, type: :model do
       end
     end
   end
+
+  describe '#add_users!' do
+    let(:role) { create(:role) }
+    let!(:user1) { create(:user) }
+    let!(:user2) { create(:user) }
+    let!(:user3) { create(:user) }
+
+    context 'when adding new users' do
+      it 'associates the users with the role' do
+        expect {
+          role.add_users!([ user1.id, user2.id ])
+        }.to change { role.users.count }.by(2)
+        expect(role.users).to include(user1, user2)
+      end
+    end
+
+    context 'when user_ids array is empty' do
+      it 'does not change the associated users' do
+        expect {
+          role.add_users!([])
+        }.not_to change { role.users.count }
+      end
+    end
+
+    context 'when some user_ids are invalid' do
+      it 'associates only valid users' do
+        expect {
+          role.add_users!([ user1.id, 'invalid-id', user3.id ])
+        }.to change { role.users.count }.by(2)
+        expect(role.users).to include(user1, user3)
+        expect(role.users).not_to include(user2)
+      end
+    end
+
+    context 'when some users are already associated' do
+      before do
+        role.users << user1
+      end
+
+      it 'associates only new users and does not duplicate' do
+        expect {
+          role.add_users!([ user1.id, user2.id, user3.id ])
+        }.to change { role.users.count }.by(2)
+        expect(role.users).to include(user1, user2, user3)
+        expect(role.users.where(id: user1.id).count).to eq(1)
+      end
+    end
+
+    context 'when all provided user_ids are already associated' do
+      before do
+        role.users << user1
+        role.users << user2
+      end
+
+      it 'does not change the associated users' do
+        expect {
+          role.add_users!([ user1.id, user2.id ])
+        }.not_to change { role.users.count }
+        expect(role.users).to include(user1, user2)
+      end
+    end
+  end
 end
