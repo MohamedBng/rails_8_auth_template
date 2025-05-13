@@ -206,4 +206,20 @@ RSpec.describe Ability, type: :model do
       expect(ability).not_to be_able_to(:create, Role)
     end
   end
+
+  context "with edit_basic_info permission" do
+    let(:user) { create(:user, permissions_list: ['edit_basic_info']) }
+
+    it "allows editing basic info of a role" do
+      expect(ability).to be_able_to(:edit_basic_info, Role)
+    end
+  end
+
+  context "without edit_basic_info permission" do
+    let(:user) { create(:user) }
+
+    it "prevents editing basic info of a role" do
+      expect(ability).not_to be_able_to(:edit_basic_info, Role)
+    end
+  end
 end
