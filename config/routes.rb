@@ -17,7 +17,7 @@ Rails.application.routes.draw do
       end
     end
     resources :roles, only: [ :index, :new, :create, :show, :update, :edit ] do
-      resources :user_roles, only: [ :create, :new ], module: :roles
+      resources :user_roles, only: [ :create, :new, :destroy ], module: :roles
     end
   end
 
