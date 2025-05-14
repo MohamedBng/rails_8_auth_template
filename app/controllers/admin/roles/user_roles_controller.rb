@@ -23,7 +23,7 @@ class Admin::Roles::UserRolesController < Admin::BaseController
 
   def create
     @role.add_users!(role_params[:user_ids])
-    redirect_to admin_role_path(@role), notice: t("admin.roles.users_list.add_selected_users")
+    redirect_to admin_role_path(@role), notice: t("admin.roles.add_role_to_users.success", count: role_params[:user_ids].size, role_name: @role.name)
   end
 
   private
