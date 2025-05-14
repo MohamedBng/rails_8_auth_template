@@ -223,6 +223,22 @@ RSpec.describe Ability, type: :model do
     end
   end
 
+  context "with destroy_users_role permission" do
+    let(:user) { create(:user, permissions_list: [ 'destroy_users_role' ]) }
+
+    it "allows destroying user roles" do
+      expect(ability).to be_able_to(:destroy, UsersRole)
+    end
+  end
+
+  context "without destroy_users_role permission" do
+    let(:user) { create(:user) }
+
+    it "prevents destroying user roles" do
+      expect(ability).not_to be_able_to(:destroy, UsersRole)
+    end
+  end
+
   context "with update_role permission" do
     let(:user) { create(:user, permissions_list: [ 'update_role' ]) }
 
