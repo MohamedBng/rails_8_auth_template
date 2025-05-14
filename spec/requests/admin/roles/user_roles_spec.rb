@@ -53,4 +53,55 @@ RSpec.describe "Admin::Roles::UserRolesController", type: :request do
       end
     end
   end
+
+  describe "DELETE /admin/roles/:role_id/user_roles/:id" do
+    let(:users_role) { UsersRole.create(user: user1, role: role) }
+
+    context "when user is not authenticated" do
+      it "redirects to the sign in page" do
+        delete admin_role_user_role_path(role, users_role)
+        expect(response).to redirect_to(new_user_session_path)
+      end
+    end
+
+    context "when user is authenticated but does not have destroy_users_role permission" do
+      let(:user) { create(:user) }
+      before { sign_in(user, scope: :user) }
+
+      it "raises CanCan::AccessDenied" do
+        expect {
+          delete admin_role_user_role_path(role, users_role)
+        }.to raise_error(CanCan::AccessDenied)
+      end
+    end
+
+    context "when user has destroy_users_role permission" do
+      let(:user) { create(:user, permissions_list: [ 'destroy_users_role' ]) }
+      before { sign_in(user, scope: :user) }
+
+      it "removes the user from the role" do
+        expect {
+          delete admin_role_user_role_path(role, users_role)
+        }.to change(UsersRole, :count).by(1)
+
+        expect(response).to redirect_to(admin_role_path(role))
+        expect(flash[:notice]).to eq(I18n.t('admin.user_roles.user_removed', role_name: role.name))
+      end
+
+      context "when the users_role cannot be destroyed" do
+        it "redirects back with an error message" do
+          users_role = UsersRole.create!(user: user1, role: role)
+          allow(UsersRole).to receive(:find).with(users_role.id.to_s).and_return(users_role)
+          allow(users_role).to receive(:destroy).and_return(false)
+          allow(users_role).to receive_message_chain(:errors, :full_messages, :to_sentence).and_return("Cannot destroy this user role")
+
+          delete admin_role_user_role_path(role, users_role)
+
+          expect(response).to redirect_to(admin_role_path(role))
+          expect(flash[:alert]).to eq("Cannot destroy this user role")
+          expect(UsersRole.exists?(users_role.id)).to be true
+        end
+      end
+    end
+  end
 end

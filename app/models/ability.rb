@@ -12,6 +12,7 @@ class Ability
     can :read, Role if user.has_permission?("read_role")
     can :create, Role if user.has_permission?("create_role")
     can :update, Role if user.has_permission?("update_role")
+    can :destroy, UsersRole if user.has_permission?("destroy_users_role")
     can :create, UsersRole if user.has_permission?("create_users_role")
 
 

@@ -62,6 +62,9 @@ en:
         one: "1 error prohibited this record from being saved"
         other: "%{count} errors prohibited this record from being saved"
   admin:
+    user_roles:
+      user_removed: "User was successfully removed from %{role_name} Role"
+      confirm_removal: "Are you sure you want to remove this user from %{role_name} Role?"
     roles:
       update:
         success: "Role was successfully updated"

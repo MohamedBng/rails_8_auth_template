@@ -26,6 +26,16 @@ class Admin::Roles::UserRolesController < Admin::BaseController
     redirect_to admin_role_path(@role), notice: t("admin.roles.add_role_to_users.success", count: role_params[:user_ids].size, role_name: @role.name)
   end
 
+  def destroy
+    @users_role = UsersRole.find(params[:id])
+
+    if @users_role.destroy
+      redirect_to admin_role_path(@role), notice: t("admin.user_roles.user_removed", role_name: @role.name)
+    else
+      redirect_to admin_role_path(@role), alert: @users_role.errors.full_messages.to_sentence
+    end
+  end
+
   private
 
   def role_params

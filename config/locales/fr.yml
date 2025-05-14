@@ -45,6 +45,9 @@ fr:
         other: "%{count} erreurs ont empêché l'enregistrement de ce document"
 
   admin:
+    user_roles:
+      user_removed: "L'utilisateur a été supprimé du rôle %{role_name} avec succès"
+      confirm_removal: "Êtes-vous sûr de vouloir supprimer l'utilisateur du rôle %{role_name}?"
     roles:
       update:
         success: "Le rôle a été mis à jour avec succès"
