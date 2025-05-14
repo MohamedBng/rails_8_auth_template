@@ -21,29 +21,38 @@
                     method: :post,
                     data:  { turbo_frame: "main", controller: "enable-submit-button" } do |form| %>
 
-        <% users_available.each do |user| %>
-            <div class="bg-base-200 rounded-lg p-4 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <%= render UserAvatarComponent.new(user: user, size: 30) %>
-                <div>
-                <div class="text-sm font-medium"><%= user.decorate.full_name %></div>
-                <div class="text-xs text-gray-500"><%= user.email %></div>
-                </div>
-            </div>
-            <%= form.check_box :user_ids,
-                { multiple: true,
-                    class: "checkbox checkbox-accent",
-                    data:  { "enable-submit-button-target": "checkbox" }
-                },
-                user.id,
-                nil %>
-            </div>
-        <% end %>
+        <% if users_available.any? %>
+          <% users_available.each do |user| %>
+              <div class="bg-base-200 rounded-lg p-4 flex items-center justify-between">
+              <div class="flex items-center space-x-3">
+                  <%= render UserAvatarComponent.new(user: user, size: 30) %>
+                  <div>
+                  <div class="text-sm font-medium"><%= user.decorate.full_name %></div>
+                  <div class="text-xs text-gray-500"><%= user.email %></div>
+                  </div>
+              </div>
+              <%= form.check_box :user_ids,
+                  { multiple: true,
+                      class: "checkbox checkbox-accent",
+                      data:  { "enable-submit-button-target": "checkbox" }
+                  },
+                  user.id,
+                  nil %>
+              </div>
+          <% end %>
 
-        <div class="flex justify-end mt-4">
-            <%= form.submit t("admin.roles.users_list.add_selected_users"),
-                            class: "btn btn-accent btn-soft", disabled: true, data: { "enable-submit-button-target": "submitButton" } %>
-        </div>
+          <div class="flex justify-end mt-4">
+              <%= form.submit t("admin.roles.users_list.add_selected_users"),
+                              class: "btn btn-accent btn-soft", disabled: true, data: { "enable-submit-button-target": "submitButton" } %>
+          </div>
+        <% else %>
+          <div class="alert alert-info shadow-lg">
+            <div>
+              <i class="fas fa-user-slash"></i>
+              <span><%= t("admin.roles.users_list.no_users_available") %></span>
+            </div>
+          </div>
+        <% end %>
 
         <%= render PaginationComponent.new(pagy: users_available) %>
         <% end %>

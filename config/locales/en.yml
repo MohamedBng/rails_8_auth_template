@@ -117,7 +117,8 @@ en:
         success: "Successfully added %{count} users to the %{role_name} role."
         no_users_selected: "No users were selected."
       users_list:
-        add_selected_users: "Add Selected Users"
+        add_selected_users: "Add selected users"
+        no_users_available: "No users available to add to this role"
       permissions_list:
         add_selected_permissions: "Add selected permissions"
         no_permissions_available: "No permissions available to add to this role"
