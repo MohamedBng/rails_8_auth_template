@@ -21,26 +21,33 @@
                     method: :post,
                     data:  { turbo_frame: "main", controller: "enable-submit-button" } do |form| %>
 
-        <% permissions_available.each do |permission| %>
-            <div class="bg-base-200 rounded-lg p-4 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <div class="text-sm font-medium"><%= permission.name.titleize %></div>
+        <% if permissions_available.any? %>
+          <% permissions_available.each do |permission| %>
+              <div class="bg-base-200 rounded-lg p-4 flex items-center justify-between">
+              <div class="flex items-center space-x-3">
+                  <div class="text-sm font-medium"><%= permission.name.titleize %></div>
+              </div>
+              <%= form.check_box :permission_ids,
+                  { multiple: true,
+                      class: "checkbox checkbox-accent",
+                      data:  { "enable-submit-button-target": "checkbox" }
+                  },
+                  permission.id,
+                  nil %>
+              </div>
+              <div class="flex justify-end mt-4">
+                <%= form.submit t("admin.roles.permissions_list.add_selected_permissions"),
+                                class: "btn btn-accent btn-soft", disabled: true, data: { "enable-submit-button-target": "submitButton" } %>
+              </div>
+          <% end %>
+        <% else %>
+          <div class="alert alert-info shadow-lg">
+            <div>
+              <i class="fas fa-shield-alt"></i>
+              <span><%= t("admin.roles.permissions_list.no_permissions_available") %></span>
             </div>
-            <%= form.check_box :permission_ids,
-                { multiple: true,
-                    class: "checkbox checkbox-accent",
-                    data:  { "enable-submit-button-target": "checkbox" }
-                },
-                permission.id,
-                nil %>
-            </div>
+          </div>
         <% end %>
-
-        <div class="flex justify-end mt-4">
-            <%= form.submit t("admin.roles.permissions_list.add_selected_permissions"),
-                            class: "btn btn-accent btn-soft", disabled: true, data: { "enable-submit-button-target": "submitButton" } %>
-        </div>
-
         <%= render PaginationComponent.new(pagy: permissions_available) %>
         <% end %>
 </turbo-frame>

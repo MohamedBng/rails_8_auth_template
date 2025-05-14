@@ -73,6 +73,9 @@ en:
     roles:
       update:
         success: "Role was successfully updated"
+      add_users:
+        title: "Add Users to Role"
+        subtitle: "Assign new users to %{role_name} role"
       add_role_to_permissions:
         success: "Successfully added %{count} permissions to the %{role_name} role."
       add_permissions:
@@ -113,8 +116,11 @@ en:
       add_role_to_users:
         success: "Successfully added %{count} users to the %{role_name} role."
         no_users_selected: "No users were selected."
+      users_list:
+        add_selected_users: "Add Selected Users"
       permissions_list:
         add_selected_permissions: "Add selected permissions"
+        no_permissions_available: "No permissions available to add to this role"
       users_count:
         zero: "No users"
         one: "1 user"
