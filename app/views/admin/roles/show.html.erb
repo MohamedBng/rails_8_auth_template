@@ -78,7 +78,7 @@
 
     <div class="mb-6">
         <% if can? :create, UsersRole %>
-            <button onclick="document.getElementById('add_users_modal_<%= @role.id %>').showModal()" class="btn btn-accent cursor-pointer">
+            <button onclick="document.getElementById('add_users_modal_<%= @role.id %>').showModal()" class="btn btn-accent btn-outline cursor-pointer">
                 <i class="fas fa-plus mr-2"></i>
                 <%= t("admin.roles.show.add_user") %>
             </button>
@@ -108,19 +108,36 @@
 </div>
 
 <div class="bg-base-100 shadow rounded-lg p-6 mt-6">
-  <h3 class="text-lg font-medium mb-1">
-    <%= t(".role_permissions_title") %>
-  </h3>
-  <p class="text-sm mb-4">
-    <%= t(".manage_role_permissions_subtitle") %>
-  </p>
+  <div class="flex justify-between items-center mb-6">
+    <div>
+      <h3 class="text-lg font-medium mb-1">
+        <%= t(".role_permissions_title") %>
+      </h3>
+      <p class="text-sm mb-4">
+        <%= t(".manage_role_permissions_subtitle") %>
+      </p>
+    </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-    <% @role.permissions.each do |permission| %>
-      <div class="bg-base-200 rounded-lg p-4 flex items-center space-x-3">
-        <i class="fas fa-key text-gray-600"></i>
-        <span class="text-sm font-medium"><%= permission.name.titleize %></span>
+    <div class="mb-6">
+    <button onclick="document.getElementById('add_permissions_modal_<%= @role.id %>').showModal()" class="btn btn-accent btn-outline cursor-pointer">
+        <i class="fas fa-plus mr-2"></i>
+        <%= t("admin.roles.show.add_permission") %>
+    </button>
+
+    <%= render partial: 'admin/roles/roles_permissions/new', locals: { role: @role } %>
+   </div>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <% @role.roles_permissions.each do |role_permission| %>
+      <div class="bg-base-200 rounded-lg p-4 flex items-center justify-between space-x-3">
+        <div class="flex items-center space-x-3">
+          <i class="fas fa-key text-gray-600"></i>
+          <span class="text-sm font-medium"><%= role_permission.permission.name.titleize %></span>
+        </div>
+        <%= button_to admin_role_roles_permission_path(@role, role_permission), method: :delete, data: { turbo_confirm: t('admin.roles_permissions.confirm_removal', role_name: @role.name) }, class: "btn btn-sm btn-gost text-error" do %>
+          <i class="fas fa-trash"></i>
+        <% end %>
       </div>
     <% end %>
-  </div>
 </div>

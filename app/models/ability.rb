@@ -14,6 +14,8 @@ class Ability
     can :update, Role if user.has_permission?("update_role")
     can :destroy, UsersRole if user.has_permission?("destroy_users_role")
     can :create, UsersRole if user.has_permission?("create_users_role")
+    can :create, RolesPermission if user.has_permission?("create_roles_permission")
+    can :destroy, RolesPermission if user.has_permission?("destroy_roles_permission")
 
 
     can :update, User do |target_user|

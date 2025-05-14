@@ -99,6 +99,73 @@ RSpec.describe Role, type: :model do
         role.users << user1
       end
 
+      it 'does not duplicate existing associations' do
+        expect {
+          role.add_users!([ user1.id, user2.id ])
+        }.to change { role.users.count }.by(1)
+        expect(role.users).to include(user1, user2)
+      end
+    end
+  end
+
+  describe '#add_permissions!' do
+    let(:role) { create(:role) }
+    let!(:permission1) { create(:permission) }
+    let!(:permission2) { create(:permission) }
+    let!(:permission3) { create(:permission) }
+
+    context 'when adding new permissions' do
+      it 'associates the permissions with the role' do
+        expect {
+          role.add_permissions!([ permission1.id, permission2.id ])
+        }.to change { role.permissions.count }.by(2)
+        expect(role.permissions).to include(permission1, permission2)
+      end
+    end
+
+    context 'when permission_ids array is empty' do
+      it 'does not change the associated permissions' do
+        expect {
+          role.add_permissions!([])
+        }.not_to change { role.permissions.count }
+      end
+    end
+
+    context 'when some permission_ids are invalid' do
+      it 'associates only valid permissions' do
+        expect {
+          role.add_permissions!([ permission1.id, 'invalid-id', permission3.id ])
+        }.to change { role.permissions.count }.by(2)
+        expect(role.permissions).to include(permission1, permission3)
+        expect(role.permissions).not_to include(permission2)
+      end
+    end
+
+    context 'when some permissions are already associated' do
+      before do
+        role.permissions << permission1
+      end
+
+      it 'does not duplicate existing associations' do
+        expect {
+          role.add_permissions!([ permission1.id, permission2.id ])
+        }.to change { role.permissions.count }.by(1)
+        expect(role.permissions).to include(permission1, permission2)
+      end
+    end
+  end
+
+  describe '#add_users!' do
+    let(:role) { create(:role) }
+    let!(:user1) { create(:user) }
+    let!(:user2) { create(:user) }
+    let!(:user3) { create(:user) }
+
+    context 'when some users are already associated' do
+      before do
+        role.users << user1
+      end
+
       it 'associates only new users and does not duplicate' do
         expect {
           role.add_users!([ user1.id, user2.id, user3.id ])

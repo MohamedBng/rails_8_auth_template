@@ -33,4 +33,16 @@ class Role < ApplicationRecord
 
     self.users << User.where(id: ids_to_add)
   end
+
+  def add_permissions!(permission_ids)
+    processed_permission_ids = Array(permission_ids).map(&:to_s).compact_blank.uniq
+    return if processed_permission_ids.empty?
+
+    current_permission_ids = self.permission_ids.map(&:to_s)
+    ids_to_add = processed_permission_ids - current_permission_ids
+
+    return if ids_to_add.empty?
+
+    self.permissions << Permission.where(id: ids_to_add)
+  end
 end
