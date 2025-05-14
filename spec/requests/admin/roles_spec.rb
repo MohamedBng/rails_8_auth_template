@@ -9,7 +9,7 @@ RSpec.describe 'Admin::Roles', type: :request do
       end
     end
 
-    context 'when user is authenticated but not an admin' do
+    context 'when user is authenticated but does not have read_role permission' do
       let(:user) { create(:user) }
       before { sign_in(user, scope: :user) }
 
@@ -18,11 +18,11 @@ RSpec.describe 'Admin::Roles', type: :request do
       end
     end
 
-    context 'when user is an admin' do
-      let(:admin_user) { create(:user, permissions_list: [ 'read_role' ]) }
+    context 'when user has read_role permission' do
+      let(:user) { create(:user, permissions_list: ['read_role']) }
       before do
         create_list(:role, 3)
-        sign_in(admin_user, scope: :user)
+        sign_in(user, scope: :user)
         get admin_roles_path
       end
 
@@ -106,9 +106,9 @@ RSpec.describe 'Admin::Roles', type: :request do
       end
     end
 
-    context 'when user is an admin with create_role permission' do
-      let(:admin_user) { create(:user, permissions_list: [ 'create_role' ]) }
-      before { sign_in(admin_user, scope: :user) }
+    context 'when user has create_role permission' do
+      let(:user) { create(:user, permissions_list: ['create_role']) }
+      before { sign_in(user, scope: :user) }
 
       context 'with valid parameters' do
         it 'creates a new Role' do
@@ -164,8 +164,8 @@ RSpec.describe 'Admin::Roles', type: :request do
       end
     end
 
-    context 'when user is an admin with read_role permission' do
-      let(:admin_user) { create(:user, permissions_list: [ 'read_role' ]) }
+    context 'when user has read_role permission' do
+      let(:user) { create(:user, permissions_list: ['read_role']) }
       let!(:target_role) do
         role = create(:role)
         create_list(:user, 2).each { |u| create(:users_role, user: u, role: role) }
@@ -174,7 +174,7 @@ RSpec.describe 'Admin::Roles', type: :request do
       end
 
       before do
-        sign_in(admin_user, scope: :user)
+        sign_in(user, scope: :user)
         get admin_role_path(target_role)
       end
 
@@ -191,6 +191,43 @@ RSpec.describe 'Admin::Roles', type: :request do
         expect(assigned_role).to eq(target_role)
         expect(assigned_role.users_count.to_i).to eq(2)
         expect(assigned_role.permissions_count.to_i).to eq(3)
+      end
+    end
+  end
+
+  describe 'GET #edit' do
+    let(:role) { create(:role) }
+
+    context 'when user is not authenticated' do
+      it 'redirects to the sign in page' do
+        get edit_admin_role_path(role)
+        expect(response).to redirect_to(new_user_session_path)
+      end
+    end
+
+    context 'when user is authenticated but does not have update_role permission' do
+      let(:user) { create(:user) }
+      before { sign_in(user, scope: :user) }
+
+      it 'raises CanCan::AccessDenied' do
+        expect { get edit_admin_role_path(role) }.to raise_error(CanCan::AccessDenied)
+      end
+    end
+
+    context 'when user has update_role permission' do
+      let(:user) { create(:user, permissions_list: ['update_role']) }
+      before { sign_in(user, scope: :user) }
+
+      it 'returns a successful response' do
+        get edit_admin_role_path(role), headers: { 'ACCEPT' => 'text/vnd.turbo-stream.html' }
+        expect(response).to have_http_status(:ok)
+      end
+
+      it 'renders the edit form as a turbo stream' do
+        get edit_admin_role_path(role), headers: { 'ACCEPT' => 'text/vnd.turbo-stream.html' }
+        expect(response.media_type).to eq Mime[:turbo_stream]
+        expect(response.body).to include("turbo-stream")
+        expect(response.body).to include("role_basic_info_#{role.id}")
       end
     end
   end
@@ -216,9 +253,9 @@ RSpec.describe 'Admin::Roles', type: :request do
       end
     end
 
-    context 'when user is an admin with update_role permission' do
-      let(:admin_user) { create(:user, permissions_list: [ 'update_role' ]) }
-      before { sign_in(admin_user, scope: :user) }
+    context 'when user has update_role permission' do
+      let(:user) { create(:user, permissions_list: ['update_role']) }
+      before { sign_in(user, scope: :user) }
 
       context 'with valid parameters' do
         before { patch admin_role_path(role), params: { role: valid_attributes } }
@@ -247,8 +284,11 @@ RSpec.describe 'Admin::Roles', type: :request do
           expect(role.color).to eq('#000000')
         end
 
-        it "re-renders the 'show' template with unprocessable_entity status" do
-          expect(response).to render_template(:show)
+        it 'renders the form partial' do
+          expect(response.media_type).to eq Mime[:turbo_stream]
+        end
+
+        it 'responds with status 422' do
           expect(response).to have_http_status(:unprocessable_entity)
         end
 

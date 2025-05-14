@@ -63,7 +63,13 @@ en:
         other: "%{count} errors prohibited this record from being saved"
   admin:
     roles:
+      update:
+        success: "Role was successfully updated"
+      add_users:
+        title: "Add Users to Role"
+        subtitle: "Assign new users to %{role_name} role"
       show:
+        add_user: "Add User"
         title: "Manage %{role_name} Role"
         subtitle: "Configure role settings and assigned users"
         basic_information: "Basic Information"
@@ -88,6 +94,11 @@ en:
         add_new_role: "Add New Role"
       create:
         success: "Role was successfully created."
+      add_role_to_users:
+        success: "Successfully added %{count} users to the %{role_name} role."
+        no_users_selected: "No users were selected."
+      users_list:
+        add_selected_users: "Add Selected Users"
       users_count:
         zero: "No users"
         one: "1 user"

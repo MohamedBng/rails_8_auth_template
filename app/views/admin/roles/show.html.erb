@@ -1,12 +1,14 @@
-<h1 class="text-2xl font-bold mb-2">
-    <%= t("admin.roles.show.title", role_name: @role.decorate.name) %>
-</h1>
+<div id="role_name_<%= @role.id %>">
+  <h1 class="text-2xl font-bold mb-2">
+      <%= t("admin.roles.show.title", role_name: @role.decorate.name) %>
+  </h1>
+</div>
 
 <p class="text-l mb-6 subtitle">
     <%= t("admin.roles.show.subtitle") %>
 </p>
 
-<%= render "shared/flash" %>
+<%= render "shared/flash_success" %>
 
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
   <div class="bg-base-100 shadow overflow-hidden rounded-lg p-4">
@@ -14,10 +16,10 @@
       <h3 class="text-lg leading-6 font-medium">
           <%= t("admin.roles.show.basic_information") %>
       </h3>
-      <% if can? :edit_basic_info, @role %>
+      <% if can? :update, @role %> 
         <div class="flex space-x-1">
-          <%= link_to edit_basic_info_admin_role_path(@role),
-                    data: { turbo_frame: "role_basic_info_content" },
+          <%= link_to edit_admin_role_path(@role),
+                    data: { turbo_frame: "role_basic_info" },
                     class: "btn btn-accent btn-outline" do %>
             <i class="fa-solid fa-pencil"></i>
             Edit
@@ -26,30 +28,9 @@
       <% end %>
     </div>
 
-    <%= turbo_frame_tag "role_basic_info_content" do %>
-      <div>
-        <dl class="space-y-6">
-          <div>
-            <dt class="text-sm font-medium mb-1">
-              <%= t("admin.roles.show.name") %>
-            </dt>
-            <dd class="text-sm">
-              <%= @role.decorate.name %>
-            </dd>
-          </div>
-
-          <div>
-            <dt class="text-sm font-medium mb-1">
-              <%= t("admin.roles.show.color") %>
-            </dt>
-            <dd class="text-sm flex items-center">
-              <div class="w-6 h-6 rounded-full mr-3 border" style="background-color: <%= @role.color.presence || '#6c757d' %>;"></div>
-              <%= @role.color.presence || t("admin.roles.show.no_color_specified") %>
-            </dd>
-          </div>
-        </dl>
-      </div>
-    <% end %>
+    <turbo-frame id="role_basic_info_<%= @role.id %>">
+      <%= render "admin/roles/basic_infos/plaintext", role: @role %>
+    </turbo-frame>
   </div>
 
   <div class="bg-base-100 shadow rounded-lg p-4 grid grid-cols-1 gap-4">
@@ -84,12 +65,29 @@
 </div>
 
 <div class="bg-base-100 shadow rounded-lg p-6 mt-6">
-  <h3 class="text-lg font-medium mb-1">
-    <%= t(".assigned_users") %>
-  </h3>
-  <p class="text-sm text-gray-600 mb-4">
-    <%= t(".manage_users_with_this_role") %>
-  </p>
+  <div class="flex justify-between items-center mb-6">
+    <div>
+      <h3 class="text-lg font-medium mb-1">
+        <%= t(".assigned_users") %>
+      </h3>
+
+      <p class="text-sm text-gray-600 mb-4">
+        <%= t(".manage_users_with_this_role") %>
+      </p>
+    </div>
+
+    <div class="mb-6">
+        <% if can? :create, UsersRole %>
+            <button onclick="document.getElementById('add_users_modal_<%= @role.id %>').showModal()" class="btn btn-accent cursor-pointer">
+                <i class="fas fa-plus mr-2"></i>
+                <%= t("admin.roles.show.add_user") %>
+            </button>
+
+            <%= render partial: 'admin/roles/add_users_modal', locals: { role: @role } %>
+        <% end %>
+    </div>
+</div>
+
 
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
     <% @role.users.each do |user| %>
@@ -105,7 +103,7 @@
   <h3 class="text-lg font-medium mb-1">
     <%= t(".role_permissions_title") %>
   </h3>
-  <p class="text-sm text-gray-600 mb-4">
+  <p class="text-sm mb-4">
     <%= t(".manage_role_permissions_subtitle") %>
   </p>
 
