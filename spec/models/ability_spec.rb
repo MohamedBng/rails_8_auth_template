@@ -206,4 +206,36 @@ RSpec.describe Ability, type: :model do
       expect(ability).not_to be_able_to(:create, Role)
     end
   end
+
+  context "with create_users_role permission" do
+    let(:user) { create(:user, permissions_list: [ 'create_users_role' ]) }
+
+    it "allows creating user roles" do
+      expect(ability).to be_able_to(:create, UsersRole)
+    end
+  end
+
+  context "without create_users_role permission" do
+    let(:user) { create(:user) }
+
+    it "prevents creating user roles" do
+      expect(ability).not_to be_able_to(:create, UsersRole)
+    end
+  end
+
+  context "with update_role permission" do
+    let(:user) { create(:user, permissions_list: [ 'update_role' ]) }
+
+    it "allows updating roles" do
+      expect(ability).to be_able_to(:update, Role)
+    end
+  end
+
+  context "without update_role permission" do
+    let(:user) { create(:user) }
+
+    it "prevents updating roles" do
+      expect(ability).not_to be_able_to(:update, Role)
+    end
+  end
 end

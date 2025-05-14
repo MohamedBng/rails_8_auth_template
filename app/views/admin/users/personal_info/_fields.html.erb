@@ -1,39 +1,37 @@
-<turbo-frame id="personal_info_user_<%= user.id %>">
-  <div class="card bg-base-100 w-full shadow-sm p-4 mt-4">
-    <div class="flex items-center justify-between mb-4">
-      <div class="flex gap-4">
-        <h3 class="text-lg font-semibold">Personal Information</h3>
-        <%= user.decorate.confirmation_badge %>
-      </div>
-      <% if can? :update, @user %>
-        <div class="flex space-x-1">
-          <%= link_to edit_admin_user_path(user),
-                    data: { turbo_frame: "personal_info_user_#{user.id}" },
-                    class: "btn btn-accent btn-outline" do %>
-            <i class="fa-solid fa-pencil"></i>
-            Edit
-          <% end %>
-        </div>
-      <% end %>
+<div class="card bg-base-100 w-full shadow-sm p-4 mt-4">
+  <div class="flex items-center justify-between mb-4">
+    <div class="flex gap-4">
+      <h3 class="text-lg font-semibold">Personal Information</h3>
+      <%= user.decorate.confirmation_badge %>
     </div>
+    <% if can? :update, @user %>
+      <div class="flex space-x-1">
+        <%= link_to edit_admin_user_path(user),
+                  data: { turbo_frame: "personal_info_user_#{user.id}" },
+                  class: "btn btn-accent btn-outline" do %>
+          <i class="fa-solid fa-pencil"></i>
+          Edit
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 
-    <div class="grid grid-cols-2 gap-4">
-      <div>
-        <label class="text-s font-medium">First Name</label>
-        <span class="block text-sm font-small"><%= user.first_name %></span>
-      </div>
-      <div>
-        <label class="text-s font-medium">Last Name</label>
-        <span class="block text-sm font-small"><%= user.last_name %></span>
-      </div>
-      <div>
-        <label class="text-s font-medium">Email</label>
-        <span class="block text-sm font-small"><%= user.email %></span>
-      </div>
-      <div>
-        <label class="text-s font-medium">Joined At</label>
-        <span class="block text-sm font-small"><%= user.created_at %></span>
-      </div>
+  <div class="grid grid-cols-2 gap-4">
+    <div>
+      <label class="text-s font-medium">First Name</label>
+      <span class="block text-sm font-small"><%= user.first_name %></span>
+    </div>
+    <div>
+      <label class="text-s font-medium">Last Name</label>
+      <span class="block text-sm font-small"><%= user.last_name %></span>
+    </div>
+    <div>
+      <label class="text-s font-medium">Email</label>
+      <span class="block text-sm font-small"><%= user.email %></span>
+    </div>
+    <div>
+      <label class="text-s font-medium">Joined At</label>
+      <span class="block text-sm font-small"><%= user.created_at %></span>
     </div>
   </div>
-</turbo-frame>
+</div>

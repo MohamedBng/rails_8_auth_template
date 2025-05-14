@@ -46,6 +46,27 @@ fr:
 
   admin:
     roles:
+      update:
+        success: "Le rôle a été mis à jour avec succès"
+      add_users:
+        title: "Ajouter des utilisateurs au rôle"
+        subtitle: "Assigner de nouveaux utilisateurs au rôle %{role_name}"
+      show:
+        title: "Gestion du rôle %{role_name}"
+        subtitle: "Configurez les paramètres du rôle et les utilisateurs assignés"
+        add_user: "Ajouter un utilisateur"
+        basic_information: "Informations de base"
+        name: "Nom"
+        color: "Couleur"
+        no_color_specified: "Aucune couleur spécifiée"
+        total_users: "Utilisateurs Totaux"
+        permissions: "Permissions"
+        last_modified: "Dernière Modification"
+        statistics_title: "Statistiques du Rôle"
+        assigned_users: "Utilisateurs Assignés"
+        manage_users_with_this_role: "Gérer les utilisateurs auxquels ce rôle est assigné."
+        role_permissions_title: "Permissions du Rôle"
+        manage_role_permissions_subtitle: "Voir les permissions associées à ce rôle."
       new:
         title: "Nouveau Rôle"
         subtitle: "Remplissez les détails ci-dessous pour créer un nouveau rôle"
@@ -56,6 +77,11 @@ fr:
         add_new_role: "Ajouter un nouveau rôle"
       create:
         success: "Le rôle a été créé avec succès."
+      add_role_to_users:
+        success: "%{count} utilisateurs ont été ajoutés avec succès au rôle %{role_name}."
+        no_users_selected: "Aucun utilisateur n''a été sélectionné."
+      users_list:
+        add_selected_users: "Ajouter les utilisateurs sélectionnés"
       users_count:
         zero: "Aucun utilisateur"
         one: "1 utilisateur"

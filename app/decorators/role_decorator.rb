@@ -9,4 +9,8 @@ class RoleDecorator < Draper::Decorator
       object.name.titleize
     end
   end
+
+  def name
+    object.name.titleize
+  end
 end

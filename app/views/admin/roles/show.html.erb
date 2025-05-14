@@ -1,0 +1,118 @@
+<div id="role_name_<%= @role.id %>">
+  <h1 class="text-2xl font-bold mb-2">
+      <%= t("admin.roles.show.title", role_name: @role.decorate.name) %>
+  </h1>
+</div>
+
+<p class="text-l mb-6 subtitle">
+    <%= t("admin.roles.show.subtitle") %>
+</p>
+
+<%= render "shared/flash_success" %>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+  <div class="bg-base-100 shadow overflow-hidden rounded-lg p-4">
+    <div class="flex justify-between items-center mb-4">
+      <h3 class="text-lg leading-6 font-medium">
+          <%= t("admin.roles.show.basic_information") %>
+      </h3>
+      <% if can? :update, @role %> 
+        <div class="flex space-x-1">
+          <%= link_to edit_admin_role_path(@role),
+                    data: { turbo_frame: "role_basic_info" },
+                    class: "btn btn-accent btn-outline" do %>
+            <i class="fa-solid fa-pencil"></i>
+            Edit
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
+    <turbo-frame id="role_basic_info_<%= @role.id %>">
+      <%= render "admin/roles/basic_infos/plaintext", role: @role %>
+    </turbo-frame>
+  </div>
+
+  <div class="bg-base-100 shadow rounded-lg p-4 grid grid-cols-1 gap-4">
+    <h3 class="text-lg leading-6 font-medium">
+        <%= t(".statistics_title") %>
+    </h3>
+
+    <div class="bg-base-200 rounded-lg p-4 flex justify-between items-center">
+      <div>
+        <h4 class="text-sm font-semibold"><%= t(".total_users") %></h4>
+        <p class="text-xl font-bold"><%= @role.users_count %></p>
+      </div>
+      <i class="fas fa-users text-2xl"></i>
+    </div>
+
+    <div class="bg-base-200 rounded-lg p-4 flex justify-between items-center">
+      <div>
+        <h4 class="text-sm font-semibold"><%= t(".permissions") %></h4>
+        <p class="text-xl font-bold"><%= @role.permissions.count %></p>
+      </div>
+      <i class="fas fa-shield-alt text-2xl"></i>
+    </div>
+
+    <div class="bg-base-200 rounded-lg p-4 flex justify-between items-center">
+      <div>
+        <h4 class="text-sm font-semibold"><%= t(".last_modified") %></h4>
+        <p class="text-sm"><%= l(@role.updated_at, format: :long) %></p>
+      </div>
+      <i class="fas fa-history text-2xl"></i>
+    </div>
+  </div>
+</div>
+
+<div class="bg-base-100 shadow rounded-lg p-6 mt-6">
+  <div class="flex justify-between items-center mb-6">
+    <div>
+      <h3 class="text-lg font-medium mb-1">
+        <%= t(".assigned_users") %>
+      </h3>
+
+      <p class="text-sm text-gray-600 mb-4">
+        <%= t(".manage_users_with_this_role") %>
+      </p>
+    </div>
+
+    <div class="mb-6">
+        <% if can? :create, UsersRole %>
+            <button onclick="document.getElementById('add_users_modal_<%= @role.id %>').showModal()" class="btn btn-accent cursor-pointer">
+                <i class="fas fa-plus mr-2"></i>
+                <%= t("admin.roles.show.add_user") %>
+            </button>
+
+            <%= render partial: 'admin/roles/add_users_modal', locals: { role: @role } %>
+        <% end %>
+    </div>
+</div>
+
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <% @role.users.each do |user| %>
+      <div class="bg-base-200 rounded-lg p-4 flex items-center space-x-3">
+        <%= render(UserAvatarComponent.new(user: user, size: 30)) %>
+        <span class="text-sm font-medium"><%= user.decorate.full_name %></span>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="bg-base-100 shadow rounded-lg p-6 mt-6">
+  <h3 class="text-lg font-medium mb-1">
+    <%= t(".role_permissions_title") %>
+  </h3>
+  <p class="text-sm mb-4">
+    <%= t(".manage_role_permissions_subtitle") %>
+  </p>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <% @role.permissions.each do |permission| %>
+      <div class="bg-base-200 rounded-lg p-4 flex items-center space-x-3">
+        <i class="fas fa-key text-gray-600"></i>
+        <span class="text-sm font-medium"><%= permission.name.titleize %></span>
+      </div>
+    <% end %>
+  </div>
+</div>

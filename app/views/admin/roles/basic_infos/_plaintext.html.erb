@@ -1,0 +1,22 @@
+ <div>
+    <dl class="space-y-6">
+        <div>
+        <dt class="text-sm font-medium mb-1">
+            <%= t("admin.roles.show.name") %>
+        </dt>
+        <dd class="text-sm">
+            <%= @role.decorate.name %>
+        </dd>
+        </div>
+
+        <div>
+        <dt class="text-sm font-medium mb-1">
+            <%= t("admin.roles.show.color") %>
+        </dt>
+        <dd class="text-sm flex items-center">
+            <div class="w-6 h-6 rounded-full mr-3 border" style="background-color: <%= @role.color.presence || '#6c757d' %>;"></div>
+            <%= @role.color.presence || t("admin.roles.show.no_color_specified") %>
+        </dd>
+        </div>
+    </dl>
+</div>

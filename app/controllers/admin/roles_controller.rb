@@ -5,6 +5,10 @@ class Admin::RolesController < Admin::BaseController
     @roles = Role.with_users_count
   end
 
+  def show
+    @role = Role.with_users_count.with_permissions_count.find(params[:id])
+  end
+
   def new
     @role = Role.new
   end
@@ -18,6 +22,29 @@ class Admin::RolesController < Admin::BaseController
     else
       flash.now[:error] = @role.errors.full_messages.to_sentence
       render :new, status: :unprocessable_entity
+    end
+  end
+
+  def edit
+    render turbo_stream: turbo_stream.replace(
+      "role_basic_info_#{@role.id}",
+      partial: "admin/roles/basic_infos/form",
+      locals: { role: @role }
+    )
+  end
+
+  def update
+    if @role.update(role_params)
+      flash.now[:success] = t("admin.roles.update.success")
+      redirect_to admin_role_path(@role)
+    else
+      flash.now[:error] = t("admin.users.update.failure", errors: @role.errors.full_messages.join(", "))
+
+      render turbo_stream: turbo_stream.replace(
+        "role_basic_info_#{@role.id}",
+        partial: "admin/roles/basic_infos/form",
+        locals: { role: @role }
+      ), status: :unprocessable_entity
     end
   end
 
