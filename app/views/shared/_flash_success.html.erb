@@ -1,0 +1,12 @@
+<% [:notice, :success].each do |success_type| %>
+  <% if flash[success_type].present? %>
+    <div class="alert alert-success shadow-lg mb-4 flex items-center justify-between">
+      <p class="text-sm"><%= flash[success_type] %></p>
+      <button type="button"
+              class="btn btn-sm btn-circle btn-outline"
+              onclick="this.closest('.alert').remove()">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+  <% end %>
+<% end %>
