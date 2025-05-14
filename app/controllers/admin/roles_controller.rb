@@ -6,7 +6,7 @@ class Admin::RolesController < Admin::BaseController
   end
 
   def show
-    @role = Role.with_users_count.with_permissions_count.includes(users_roles: :user).find(params[:id])
+    @role = Role.with_users_count.with_permissions_count.includes(users_roles: :user, roles_permissions: :permission).find(params[:id])
   end
 
   def new

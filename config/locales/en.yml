@@ -65,13 +65,23 @@ en:
     user_roles:
       user_removed: "User was successfully removed from %{role_name} Role"
       confirm_removal: "Are you sure you want to remove this user from %{role_name} Role?"
+    roles_permissions:
+      confirm_removal: "Are you sure you want to remove this permission from %{role_name} Role?"
+    permissions:
+      search:
+        placeholder: "Search by permission name"
     roles:
       update:
         success: "Role was successfully updated"
-      add_users:
-        title: "Add Users to Role"
-        subtitle: "Assign new users to %{role_name} role"
+      add_role_to_permissions:
+        success: "Successfully added %{count} permissions to the %{role_name} role."
+      add_permissions:
+        title: "Add Permissions to Role"
+        subtitle: "Select permissions to add to %{role_name} role"
+      remove_permission:
+        success: "Permission was successfully removed from %{role_name} role."
       show:
+        add_permission: "Add Permission"
         add_user: "Add User"
         title: "Manage %{role_name} Role"
         subtitle: "Configure role settings and assigned users"
@@ -81,6 +91,9 @@ en:
         no_color_specified: "No color specified"
         total_users: "Total Users"
         permissions: "Permissions"
+      add_users:
+        title: "Add Users to Role"
+        subtitle: "Assign new users to %{role_name} role"
         last_modified: "Last Modified"
         statistics_title: "Role Statistics"
         assigned_users: "Assigned Users"
@@ -100,8 +113,8 @@ en:
       add_role_to_users:
         success: "Successfully added %{count} users to the %{role_name} role."
         no_users_selected: "No users were selected."
-      users_list:
-        add_selected_users: "Add Selected Users"
+      permissions_list:
+        add_selected_permissions: "Add selected permissions"
       users_count:
         zero: "No users"
         one: "1 user"

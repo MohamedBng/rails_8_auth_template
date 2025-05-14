@@ -48,19 +48,32 @@ fr:
     user_roles:
       user_removed: "L'utilisateur a été supprimé du rôle %{role_name} avec succès"
       confirm_removal: "Êtes-vous sûr de vouloir supprimer l'utilisateur du rôle %{role_name}?"
+    roles_permissions:
+      confirm_removal: "Êtes-vous sûr de vouloir supprimer cette permission du rôle %{role_name}?"
+    permissions:
+      search:
+        placeholder: "Rechercher par nom de permission"
     roles:
       update:
         success: "Le rôle a été mis à jour avec succès"
-      add_users:
-        title: "Ajouter des utilisateurs au rôle"
-        subtitle: "Assigner de nouveaux utilisateurs au rôle %{role_name}"
+      add_role_to_permissions:
+        success: "%{count} permissions ont été ajoutées avec succès au rôle %{role_name}."
+      add_permissions:
+        title: "Ajouter des permissions au rôle"
+        subtitle: "Sélectionnez les permissions à ajouter au rôle %{role_name}"
+      remove_permission:
+        success: "La permission a été supprimée avec succès du rôle %{role_name}."
       show:
+        add_permission: "Ajouter une permission"
         title: "Gestion du rôle %{role_name}"
         subtitle: "Configurez les paramètres du rôle et les utilisateurs assignés"
         add_user: "Ajouter un utilisateur"
         basic_information: "Informations de base"
         name: "Nom"
         color: "Couleur"
+      add_users:
+        title: "Ajouter des utilisateurs au rôle"
+        subtitle: "Assigner de nouveaux utilisateurs au rôle %{role_name}"
         no_color_specified: "Aucune couleur spécifiée"
         total_users: "Utilisateurs Totaux"
         permissions: "Permissions"
@@ -83,6 +96,8 @@ fr:
       add_role_to_users:
         success: "%{count} utilisateurs ont été ajoutés avec succès au rôle %{role_name}."
         no_users_selected: "Aucun utilisateur n''a été sélectionné."
+      permissions_list:
+        add_selected_permissions: "Ajouter les permissions sélectionnées"
       users_list:
         add_selected_users: "Ajouter les utilisateurs sélectionnés"
       users_count:

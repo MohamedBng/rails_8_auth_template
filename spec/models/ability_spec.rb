@@ -199,6 +199,35 @@ RSpec.describe Ability, type: :model do
     end
   end
 
+  context "with create_roles_permission permission" do
+    let(:user) { create(:user, permissions_list: [ 'create_roles_permission' ]) }
+    let(:role) { create(:role) }
+
+    it "allows creating a new roles_permission" do
+      expect(ability).to be_able_to(:create, RolesPermission.new(role: role))
+    end
+
+    it "prevents creating a roles_permission without permission" do
+      user.roles.first.permissions.clear
+      expect(ability).not_to be_able_to(:create, RolesPermission.new(role: role))
+    end
+  end
+
+  context "with destroy_roles_permission permission" do
+    let(:user) { create(:user, permissions_list: [ 'destroy_roles_permission' ]) }
+    let(:role) { create(:role) }
+    let(:roles_permission) { create(:roles_permission, role: role) }
+
+    it "allows destroying a roles_permission" do
+      expect(ability).to be_able_to(:destroy, roles_permission)
+    end
+
+    it "prevents destroying a roles_permission without permission" do
+      user.roles.first.permissions.clear
+      expect(ability).not_to be_able_to(:destroy, roles_permission)
+    end
+  end
+
   context "without create_role permission" do
     let(:user) { create(:user) }
 
