@@ -19,7 +19,7 @@ RSpec.describe 'Admin::Roles', type: :request do
     end
 
     context 'when user has read_role permission' do
-      let(:user) { create(:user, permissions_list: ['read_role']) }
+      let(:user) { create(:user, permissions_list: [ 'read_role' ]) }
       before do
         create_list(:role, 3)
         sign_in(user, scope: :user)
@@ -107,7 +107,7 @@ RSpec.describe 'Admin::Roles', type: :request do
     end
 
     context 'when user has create_role permission' do
-      let(:user) { create(:user, permissions_list: ['create_role']) }
+      let(:user) { create(:user, permissions_list: [ 'create_role' ]) }
       before { sign_in(user, scope: :user) }
 
       context 'with valid parameters' do
@@ -165,7 +165,7 @@ RSpec.describe 'Admin::Roles', type: :request do
     end
 
     context 'when user has read_role permission' do
-      let(:user) { create(:user, permissions_list: ['read_role']) }
+      let(:user) { create(:user, permissions_list: [ 'read_role' ]) }
       let!(:target_role) do
         role = create(:role)
         create_list(:user, 2).each { |u| create(:users_role, user: u, role: role) }
@@ -215,7 +215,7 @@ RSpec.describe 'Admin::Roles', type: :request do
     end
 
     context 'when user has update_role permission' do
-      let(:user) { create(:user, permissions_list: ['update_role']) }
+      let(:user) { create(:user, permissions_list: [ 'update_role' ]) }
       before { sign_in(user, scope: :user) }
 
       it 'returns a successful response' do
@@ -254,7 +254,7 @@ RSpec.describe 'Admin::Roles', type: :request do
     end
 
     context 'when user has update_role permission' do
-      let(:user) { create(:user, permissions_list: ['update_role']) }
+      let(:user) { create(:user, permissions_list: [ 'update_role' ]) }
       before { sign_in(user, scope: :user) }
 
       context 'with valid parameters' do

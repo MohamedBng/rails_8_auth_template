@@ -224,7 +224,7 @@ RSpec.describe Ability, type: :model do
   end
 
   context "with update_role permission" do
-    let(:user) { create(:user, permissions_list: ['update_role']) }
+    let(:user) { create(:user, permissions_list: [ 'update_role' ]) }
 
     it "allows updating roles" do
       expect(ability).to be_able_to(:update, Role)

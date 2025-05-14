@@ -29,7 +29,7 @@ RSpec.describe "Admin::Roles::UserRolesController", type: :request do
     end
 
     context "when user has create_users_role permission" do
-      let(:user) { create(:user, permissions_list: ['create_users_role']) }
+      let(:user) { create(:user, permissions_list: [ 'create_users_role' ]) }
       before { sign_in(user, scope: :user) }
 
       it "adds the selected users to the role" do
