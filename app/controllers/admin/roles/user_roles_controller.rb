@@ -16,7 +16,7 @@ class Admin::Roles::UserRolesController < Admin::BaseController
 
     render turbo_stream: turbo_stream.replace(
       "users_list",
-      partial: "admin/roles/users_list",
+      partial: "admin/roles/user_roles/users_list",
       locals: { role: @role, users_available: @users_available, q: @q }
     )
   end
