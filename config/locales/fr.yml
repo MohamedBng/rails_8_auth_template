@@ -104,6 +104,7 @@ fr:
         no_permissions_available: "Aucune permission disponible à ajouter à ce rôle"
       users_list:
         add_selected_users: "Ajouter les utilisateurs sélectionnés"
+        no_users_available: "Aucun utilisateur disponible à ajouter à ce rôle"
       users_count:
         zero: "Aucun utilisateur"
         one: "1 utilisateur"
