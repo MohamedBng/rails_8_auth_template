@@ -43,7 +43,7 @@
         <h4 class="text-sm font-semibold"><%= t(".total_users") %></h4>
         <p class="text-xl font-bold"><%= @role.users_count %></p>
       </div>
-      <i class="fas fa-users text-2xl"></i>
+      <i class="fas fa-users text-2xl text-primary"></i>
     </div>
 
     <div class="bg-base-200 rounded-lg p-4 flex justify-between items-center">
@@ -51,7 +51,7 @@
         <h4 class="text-sm font-semibold"><%= t(".permissions") %></h4>
         <p class="text-xl font-bold"><%= @role.permissions.count %></p>
       </div>
-      <i class="fas fa-shield-alt text-2xl"></i>
+      <i class="fas fa-shield-alt text-2xl text-accent"></i>
     </div>
 
     <div class="bg-base-200 rounded-lg p-4 flex justify-between items-center">
@@ -59,7 +59,7 @@
         <h4 class="text-sm font-semibold"><%= t(".last_modified") %></h4>
         <p class="text-sm"><%= l(@role.updated_at, format: :long) %></p>
       </div>
-      <i class="fas fa-history text-2xl"></i>
+      <i class="fas fa-history text-2xl text-secondary"></i>
     </div>
   </div>
 </div>
