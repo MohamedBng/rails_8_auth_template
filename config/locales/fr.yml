@@ -6,6 +6,12 @@ fr:
           last_name: "Nom"
           email: "Adresse e-mail"
           roles: "Rôles"
+          phone: "Numéro de téléphone"
+          street: "Rue"
+          postal_code: "Code postal"
+          city: "Ville"
+          country: "Pays"
+          description: "Description"
         role:
           name: "Nom"
           color: "Couleur"
@@ -35,6 +41,9 @@ fr:
       not_saved:
         one: "1 erreur a empêché l'enregistrement de ce %{resource} :"
         other: "%{count} erreurs ont empêché l'enregistrement de ce %{resource} :"
+      geocoding:
+        address_not_found: "L'adresse fournie n'a pas été trouvée. Veuillez vérifier les informations de l'adresse."
+        service_error: "Erreur de service de géocodage : %{message}"
   common:
     save: "Enregistrer"
     cancel: "Annuler"
@@ -56,7 +65,7 @@ fr:
     roles:
       update:
         success: "Le rôle a été mis à jour avec succès"
-      add_users:
+      add_users_action:
         title: "Ajouter des utilisateurs au rôle"
         subtitle: "Assigner de nouveaux utilisateurs au rôle %{role_name}"
       add_role_to_permissions:
@@ -162,4 +171,3 @@ fr:
   time:
     formats:
       long: "%-d %B %Y à %H:%M"
-  cancel: "Annuler"
