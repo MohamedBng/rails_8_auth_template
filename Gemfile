@@ -99,3 +99,5 @@ gem "shrine", "~> 3.6"
 gem "image_processing", "~> 1.14"
 
 gem "fastimage", "~> 2.3"
+
+gem "geocoder", "~> 1.8"
