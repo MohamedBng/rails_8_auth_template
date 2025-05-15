@@ -17,26 +17,11 @@ class Ability
     can :create, RolesPermission if user.has_permission?("create_roles_permission")
     can :destroy, RolesPermission if user.has_permission?("destroy_roles_permission")
 
-
-    can :update, User do |target_user|
-      if user.has_permission?("update_any_user")
-        true
-      elsif user.has_permission?("update_own_user") && user == target_user
-        true
-      else
-        false
-      end
-    end
-
-    can :delete_profile_image, User do |target_user|
-      if user.has_permission?("delete_profile_image")
-        true
-      elsif user.has_permission?("delete_own_profile_image") && user == target_user
-        true
-      else
-        false
-      end
-    end
+    if user.has_permission?("update_any_user")
+      can [:update, :delete_profile_image], User
+    elsif user.has_permission?("update_own_user")
+      can [:update, :delete_profile_image], User, id: user.id
+    end    
 
     can :destroy, User do |target_user|
       true if user.has_permission?("destroy_user") && user != target_user
