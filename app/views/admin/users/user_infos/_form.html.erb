@@ -1,12 +1,25 @@
-<turbo-frame id="personal_info_user_<%= user.id %>">
+<turbo-frame id="user_infos_<%= user.id %>">
   <%= form_with model: user, url: admin_user_path(user), method: :patch,
                 data: { turbo_frame: "_top" } do |f| %>
+
+    <%= render "shared/flash_error"%>
+    <div class="card bg-base-100 w-full shadow-sm p-4 mt-4">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold"><%= t('common.edit_description') %></h3>
+      </div>
+      
+      <div class="mt-4">
+        <div>
+          <%= f.label :description, class: "text-sm font-medium" %>
+          <%= f.text_area :description, rows: 4, class: "textarea w-full p-1" %>
+        </div>
+      </div>
+    </div>
+
     <div class="card bg-base-100 w-full shadow-sm p-4 mt-4">
       <div class="flex items-center justify-between mb-4">
         <h3 class="text-lg font-semibold"><%= t('common.edit_personal_information') %></h3>
       </div>
-
-      <%= render "shared/flash_error" %>
       
       <div class="grid grid-cols-2 gap-4">
         <div>
@@ -44,13 +57,13 @@
           </div>
         </div>
       </div>
-      
-      <div class="flex justify-end mt-4">
-        <%= link_to admin_user_path(user), class: "btn btn-soft btn-error btn-sm mr-2" do %>
-          Cancel
-        <% end %>
-        <%= f.submit "Save", class: "btn btn-accent btn-soft btn-sm" %>
-      </div>
+    </div>
+
+    <div class="flex justify-end mt-4">
+      <%= link_to admin_user_path(user), data: { turbo_frame: "_top" }, class: "btn btn-soft btn-error btn-sm mr-2" do %>
+        Cancel
+      <% end %>
+      <%= f.submit "Save", class: "btn btn-accent btn-soft btn-sm" %>
     </div>
   <% end %>
 </turbo-frame>

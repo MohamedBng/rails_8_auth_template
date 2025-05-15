@@ -1,19 +1,25 @@
 <div class="card bg-base-100 w-full shadow-sm p-4 mt-4">
   <div class="flex items-center justify-between mb-4">
+    <h3 class="text-lg font-semibold"><%= t('common.description') %></h3>
+  </div>
+
+  <div>
+    <% if user.description.present? %>
+      <div class="prose">
+        <%= user.description %>
+      </div>
+    <% else %>
+      <p class="text-gray-500"><%= t('common.not_available') %></p>
+    <% end %>
+  </div>
+</div>
+
+<div class="card bg-base-100 w-full shadow-sm p-4 mt-4">
+  <div class="flex items-center justify-between mb-4">
     <div class="flex gap-4">
       <h3 class="text-lg font-semibold"><%= t('common.personal_information') %></h3>
       <%= user.decorate.confirmation_badge %>
     </div>
-    <% if can? :update, @user %>
-      <div class="flex space-x-1">
-        <%= link_to edit_admin_user_path(user),
-                  data: { turbo_frame: "personal_info_user_#{user.id}" },
-                  class: "btn btn-accent btn-outline" do %>
-          <i class="fa-solid fa-pencil"></i>
-          Edit
-        <% end %>
-      </div>
-    <% end %>
   </div>
 
   <div class="grid grid-cols-2 gap-4">

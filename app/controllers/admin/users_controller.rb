@@ -33,11 +33,14 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def edit
-    render turbo_stream: turbo_stream.replace(
-      "personal_info_user_#{@user.id}",
-      partial: "admin/users/personal_info/form",
-      locals: { user: @user }
-    )
+    render turbo_stream: [
+      turbo_stream.replace(
+        "user_infos_#{@user.id}",
+        partial: "admin/users/user_infos/form",
+        locals: { user: @user }
+      ),
+      turbo_stream.remove("edit_user_infos_button_#{@user.id}")
+    ]
   end
 
   def update
@@ -47,8 +50,8 @@ class Admin::UsersController < Admin::BaseController
     else
       flash.now[:error] = t("admin.users.update.failure", errors: @user.errors.full_messages.join(", "))
       render turbo_stream: turbo_stream.replace(
-        "personal_info_user_#{@user.id}",
-        partial: "admin/users/personal_info/form",
+        "user_infos_#{@user.id}",
+        partial: "admin/users/user_infos/form",
         locals: { user: @user }
       ), status: :unprocessable_entity
     end
@@ -77,8 +80,8 @@ class Admin::UsersController < Admin::BaseController
     else
       flash.now[:error] = t("admin.users.delete_profile_image.failure", errors: @user.errors.full_messages.join(", "))
       render turbo_stream: turbo_stream.replace(
-        "personal_info_user_#{@user.id}",
-        partial: "admin/users/personal_info/form",
+        "user_infos_#{@user.id}",
+        partial: "admin/users/user_infos/plaintext",
         locals: { user: @user }
       ), status: :unprocessable_entity
     end
