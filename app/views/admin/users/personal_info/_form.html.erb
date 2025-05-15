@@ -17,7 +17,34 @@
           <%= f.label :last_name, class: "text-sm font-medium" %>
           <%= f.text_field :last_name, class: "input w-full p-1" %>
         </div>
+        <div>
+          <%= f.label :phone, class: "text-sm font-medium" %>
+          <%= f.telephone_field :phone, class: "input w-full p-1" %>
+        </div>
       </div>
+      
+      <div class="mt-4">
+        <h4 class="text-md font-semibold mb-2">Address</h4>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <%= f.label :street, class: "text-sm font-medium" %>
+            <%= f.text_field :street, class: "input w-full p-1" %>
+          </div>
+          <div>
+            <%= f.label :postal_code, class: "text-sm font-medium" %>
+            <%= f.text_field :postal_code, class: "input w-full p-1" %>
+          </div>
+          <div>
+            <%= f.label :city, class: "text-sm font-medium" %>
+            <%= f.text_field :city, class: "input w-full p-1" %>
+          </div>
+          <div>
+            <%= f.label :country, class: "text-sm font-medium" %>
+            <%= f.text_field :country, class: "input w-full p-1" %>
+          </div>
+        </div>
+      </div>
+      
       <div class="flex justify-end mt-4">
         <%= link_to admin_user_path(user), class: "btn btn-soft btn-error btn-sm mr-2" do %>
           Cancel
