@@ -29,10 +29,18 @@
     </div>
 
     <div class="flex space-x-1">
-      <%= button_to "#", class: "btn btn-accent btn-outline" do %>
-        <i class="fa-solid fa-share-nodes"></i>
-        <%= t("admin.users.actions.share_profile") %>
-      <% end %>
+      <turbo-frame id="edit_user_infos_button_<%= @user.id %>">
+        <% if can? :update, @user %>
+          <div class="flex space-x-1">
+            <%= link_to edit_admin_user_path(@user),
+                      data: { turbo_frame: "user_infos_#{@user.id}" },
+                      class: "btn btn-accent btn-outline" do %>
+              <i class="fa-solid fa-pencil"></i>
+              Edit
+            <% end %>
+          </div>
+        <% end %>
+      </turbo-frame>
 
       <% if can? :destroy, @user %>
         <%= button_to admin_user_path(@user),
@@ -50,6 +58,6 @@
   </div>
 </div>
 
-<turbo-frame id="personal_info_user_<%= @user.id %>">
-  <%= render "admin/users/personal_info/fields", user: @user %>
+<turbo-frame id="user_infos_<%= @user.id %>">
+  <%= render "admin/users/user_infos/plaintext", user: @user %>
 </turbo-frame>

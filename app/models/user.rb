@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   include ImageUploader::Attachment(:profile_image)
+  include Geocodable
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -13,6 +14,8 @@ class User < ApplicationRecord
 
   has_many :users_roles, dependent: :destroy
   has_many :roles, through: :users_roles
+
+  has_rich_text :description
 
   scope :without_role, ->(role) {
     where.not(id: role.users.select(:id))

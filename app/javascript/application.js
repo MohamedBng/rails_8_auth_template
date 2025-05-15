@@ -2,3 +2,6 @@
 import "@hotwired/turbo-rails"
 import "./controllers"
 import "./fontawesome.js"
+
+import "trix"
+import "@rails/actiontext"

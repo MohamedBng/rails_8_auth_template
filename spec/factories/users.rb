@@ -6,6 +6,8 @@ FactoryBot.define do
     password { "password123" }
     password_confirmation { "password123" }
     confirmed_at { Time.current }
+    phone { Faker::PhoneNumber.phone_number }
+    description { Faker::Lorem.paragraph }
 
     transient do
       permissions_list { [] }
@@ -17,12 +19,6 @@ FactoryBot.define do
       evaluator.permissions_list.each do |permission_name|
         permission = Permission.find_or_create_by(name: permission_name)
         user.roles.first.permissions << permission unless user.roles.first.permissions.include?(permission)
-      end
-    end
-
-    trait :with_admin_role do
-      after(:create) do |user|
-        user.roles << create(:role, :admin)
       end
     end
   end

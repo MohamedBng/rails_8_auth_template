@@ -35,6 +35,12 @@ en:
         last_name: "Last Name"
         email: "Email Address"
         roles: "Roles"
+        phone: "Phone Number"
+        street: "Street"
+        postal_code: "Postal Code"
+        city: "City"
+        country: "Country"
+        description: "Description"
       role:
         name: "Name"
         color: "Color"
@@ -51,11 +57,21 @@ en:
   errors:
     messages:
       not_saved:
-        one: "1 error prohibited this %{resource} from being saved:"
-        other: "%{count} errors prohibited this %{resource} from being saved:"
+        one: "1 error prohibited this %{model} from being saved:"
+        other: "%{count} errors prohibited this %{model} from being saved:"
+      geocoding:
+        address_not_found: "The provided address could not be found. Please verify your address information."
+        service_error: "Geocoding service error: %{message}"
   common:
     save: "Save"
     cancel: "Cancel"
+    not_available: "-"
+    personal_information: "Personal Information"
+    edit: "Edit"
+    edit_personal_information: "Edit Personal Information"
+    address: "Address"
+    description: "Description"
+    edit_description: "Edit Description"
     errors:
       form_error:
         zero: "No errors"
@@ -73,7 +89,7 @@ en:
     roles:
       update:
         success: "Role was successfully updated"
-      add_users:
+      add_users_action:
         title: "Add Users to Role"
         subtitle: "Assign new users to %{role_name} role"
       add_role_to_permissions:
@@ -163,7 +179,6 @@ en:
     formats:
       long: "%B %e, %Y"
       short: "%b %e"
-  cancel: "Cancel"
   sidebar:
     users: "Users"
     logout: "Logout"
@@ -180,5 +195,5 @@ en:
       delete: "Delete"
   time:
     formats:
-      long: "%B %e, %Y %H:%M"
-
+      default: "%a, %d %b %Y %H:%M:%S %z"
+      long: "%B %d, %Y at %I:%M %p"
