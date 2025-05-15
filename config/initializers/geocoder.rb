@@ -13,15 +13,15 @@ Geocoder.configure(
   # Exceptions that should not be rescued by default
   # (if you want to implement custom error handling);
   # supports SocketError and Timeout::Error
-  always_raise: [Geocoder::OverQueryLimitError, Geocoder::RequestDenied, Geocoder::InvalidRequest, Geocoder::InvalidApiKey],
+  always_raise: [ Geocoder::OverQueryLimitError, Geocoder::RequestDenied, Geocoder::InvalidRequest, Geocoder::InvalidApiKey ],
 
   # Calculation options
   units: :km,                 # :km for kilometers or :mi for miles
   distances: :linear,         # :spherical or :linear
-  
+
   # Cache options
   cache_options: {
     expiration: 24.hours,     # Expire les résultats après 24 heures
-    prefix: 'geocoder:'
+    prefix: "geocoder:"
   }
 )
