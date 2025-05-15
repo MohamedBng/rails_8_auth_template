@@ -99,29 +99,6 @@ RSpec.describe Ability, type: :model do
       expect(ability).to be_able_to(:update, target_user)
       expect(ability).to be_able_to(:update, user)
     end
-  end
-
-  context "when user has 'delete_own_profile_image' permission" do
-    let(:user) { create(:user) }
-
-    before do
-      permission = create(:permission, name: "delete_own_profile_image")
-      user.roles.first.permissions << permission
-    end
-
-    it "can delete own profile image" do
-      expect(ability).to be_able_to(:delete_profile_image, user)
-      expect(ability).not_to be_able_to(:delete_profile_image, target_user)
-    end
-  end
-
-  context "when user has 'delete_profile_image' permission" do
-    let(:user) { create(:user) }
-
-    before do
-      permission = create(:permission, name: "delete_profile_image")
-      user.roles.first.permissions << permission
-    end
 
     it "can delete any user's profile image" do
       expect(ability).to be_able_to(:delete_profile_image, user)
@@ -141,8 +118,16 @@ RSpec.describe Ability, type: :model do
       expect(ability).to be_able_to(:update, user)
     end
 
+    it "can delete own profile image" do
+      expect(ability).to be_able_to(:delete_profile_image, user)
+    end
+
     it "cannot update other users" do
       expect(ability).not_to be_able_to(:update, target_user)
+    end
+
+    it "cannot delete other users' profile images" do
+      expect(ability).not_to be_able_to(:delete_profile_image, target_user)
     end
   end
 
@@ -152,6 +137,11 @@ RSpec.describe Ability, type: :model do
     it "cannot update any user" do
       expect(ability).not_to be_able_to(:update, target_user)
       expect(ability).not_to be_able_to(:update, user)
+    end
+
+    it "cannot delete any user's profile image" do
+      expect(ability).not_to be_able_to(:delete_profile_image, target_user)
+      expect(ability).not_to be_able_to(:delete_profile_image, user)
     end
   end
 

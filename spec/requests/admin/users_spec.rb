@@ -335,7 +335,7 @@ RSpec.describe 'Admin::Users', type: :request do
     end
 
     context 'when user has permission to delete own profile image' do
-      let(:user) { create(:user, permissions_list: [ 'delete_own_profile_image' ]) }
+      let(:user) { create(:user, permissions_list: [ 'update_own_user' ]) }
       before do
         user.profile_image = dummy_file
         user.save!
@@ -358,7 +358,7 @@ RSpec.describe 'Admin::Users', type: :request do
     end
 
     context 'when user has permission to delete any profile image' do
-      let(:admin_user) { create(:user, permissions_list: [ 'delete_profile_image' ]) }
+      let(:admin_user) { create(:user, permissions_list: [ 'update_any_user' ]) }
       before do
         target_user.profile_image = dummy_file
         target_user.save!

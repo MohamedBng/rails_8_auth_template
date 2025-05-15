@@ -119,12 +119,14 @@
     </div>
 
     <div class="mb-6">
-    <button onclick="document.getElementById('add_permissions_modal_<%= @role.id %>').showModal()" class="btn btn-accent btn-outline cursor-pointer">
-        <i class="fas fa-plus mr-2"></i>
-        <%= t("admin.roles.show.add_permission") %>
-    </button>
+      <% if can? :create, RolesPermission %>
+        <button onclick="document.getElementById('add_permissions_modal_<%= @role.id %>').showModal()" class="btn btn-accent btn-outline cursor-pointer">
+            <i class="fas fa-plus mr-2"></i>
+            <%= t("admin.roles.show.add_permission") %>
+        </button>
 
-    <%= render partial: 'admin/roles/roles_permissions/new', locals: { role: @role } %>
+        <%= render partial: 'admin/roles/roles_permissions/new', locals: { role: @role } %>
+      <% end %>
    </div>
 </div>
 
@@ -135,8 +137,10 @@
           <i class="fas fa-key text-gray-600"></i>
           <span class="text-sm font-medium"><%= role_permission.permission.name.titleize %></span>
         </div>
-        <%= button_to admin_role_roles_permission_path(@role, role_permission), method: :delete, data: { turbo_confirm: t('admin.roles_permissions.confirm_removal', role_name: @role.name) }, class: "btn btn-sm btn-gost text-error" do %>
-          <i class="fas fa-trash"></i>
+        <% if can? :destroy, RolesPermission %>
+          <%= button_to admin_role_roles_permission_path(@role, role_permission), method: :delete, data: { turbo_confirm: t('admin.roles_permissions.confirm_removal', role_name: @role.name) }, class: "btn btn-sm btn-gost text-error" do %>
+            <i class="fas fa-trash"></i>
+          <% end %>
         <% end %>
       </div>
     <% end %>
