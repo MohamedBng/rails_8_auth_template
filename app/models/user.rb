@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   include ImageUploader::Attachment(:profile_image)
+  include Geocodable
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
