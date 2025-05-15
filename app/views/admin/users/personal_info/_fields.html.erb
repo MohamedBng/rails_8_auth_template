@@ -1,7 +1,7 @@
 <div class="card bg-base-100 w-full shadow-sm p-4 mt-4">
   <div class="flex items-center justify-between mb-4">
     <div class="flex gap-4">
-      <h3 class="text-lg font-semibold">Personal Information</h3>
+      <h3 class="text-lg font-semibold"><%= t('common.personal_information') %></h3>
       <%= user.decorate.confirmation_badge %>
     </div>
     <% if can? :update, @user %>
@@ -18,20 +18,20 @@
 
   <div class="grid grid-cols-2 gap-4">
     <div>
-      <label class="text-s font-medium">Email</label>
+      <%= label_tag :email, User.human_attribute_name(:email), class: "text-s font-medium" %>
       <span class="block text-sm font-small"><%= user.email %></span>
     </div>
     <div>
-      <label class="text-s font-medium">Phone</label>
-      <span class="block text-sm font-small"><%= user.phone.presence || '-' %></span>
+      <%= label_tag :phone, User.human_attribute_name(:phone), class: "text-s font-medium" %>
+      <span class="block text-sm font-small"><%= user.phone.presence || t('common.not_available') %></span>
     </div>
     <div>
-      <label class="text-s font-medium">Address</label>
-      <span class="block text-sm font-small"><%= user.full_address || '-' %></span>
+      <%= label_tag :address, User.human_attribute_name(:address), class: "text-s font-medium" %>
+      <span class="block text-sm font-small"><%= user.full_address || t('common.not_available') %></span>
     </div>
     <div>
-      <label class="text-s font-medium">Joined At</label>
-      <span class="block text-sm font-small"><%= user.created_at %></span>
+      <%= label_tag :created_at, User.human_attribute_name(:created_at), class: "text-s font-medium" %>
+      <span class="block text-sm font-small"><%= l(user.created_at, format: :long) %></span>
     </div>
   </div>
 </div>

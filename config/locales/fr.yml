@@ -47,6 +47,11 @@ fr:
   common:
     save: "Enregistrer"
     cancel: "Annuler"
+    not_available: "-"
+    personal_information: "Informations personnelles"
+    edit: "Modifier"
+    edit_personal_information: "Modifier les informations personnelles"
+    address: "Adresse"
     errors:
       form_error:
         zero: "Aucune erreur"
@@ -170,4 +175,5 @@ fr:
       delete: "Supprimer"
   time:
     formats:
-      long: "%-d %B %Y à %H:%M"
+      default: "%a, %d %b %Y %H:%M:%S %z"
+      long: "%d %B %Y à %H:%M"

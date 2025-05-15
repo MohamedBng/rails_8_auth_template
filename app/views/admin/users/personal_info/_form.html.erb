@@ -3,7 +3,7 @@
                 data: { turbo_frame: "_top" } do |f| %>
     <div class="card bg-base-100 w-full shadow-sm p-4 mt-4">
       <div class="flex items-center justify-between mb-4">
-        <h3 class="text-lg font-semibold">Edit Personal Information</h3>
+        <h3 class="text-lg font-semibold"><%= t('common.edit_personal_information') %></h3>
       </div>
 
       <%= render "shared/flash_error" %>
@@ -24,7 +24,7 @@
       </div>
       
       <div class="mt-4">
-        <h4 class="text-md font-semibold mb-2">Address</h4>
+        <h4 class="text-md font-semibold mb-2"><%= t('common.address') %></h4>
         <div class="grid grid-cols-2 gap-4">
           <div>
             <%= f.label :street, class: "text-sm font-medium" %>
