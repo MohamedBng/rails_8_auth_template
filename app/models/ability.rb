@@ -18,10 +18,10 @@ class Ability
     can :destroy, RolesPermission if user.has_permission?("destroy_roles_permission")
 
     if user.has_permission?("update_any_user")
-      can [:update, :delete_profile_image], User
+      can [ :update, :delete_profile_image ], User
     elsif user.has_permission?("update_own_user")
-      can [:update, :delete_profile_image], User, id: user.id
-    end    
+      can [ :update, :delete_profile_image ], User, id: user.id
+    end
 
     can :destroy, User do |target_user|
       true if user.has_permission?("destroy_user") && user != target_user
