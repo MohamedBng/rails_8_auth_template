@@ -560,7 +560,7 @@ DEPENDENCIES
   factory_bot_rails (~> 6.4.4)
   faker (~> 3.5.1)
   fastimage (~> 2.3)
-  geocoder (~> 1.4)
+  geocoder (~> 1.8)
   i18n (~> 1.14.7)
   image_processing (~> 1.14)
   jbuilder
