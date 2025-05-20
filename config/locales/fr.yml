@@ -118,6 +118,7 @@ fr:
         add_new_role: "Ajouter un nouveau rôle"
       create:
         success: "Le rôle a été créé avec succès."
+        failure: "Échec de la création du rôle : %{errors}"
       add_role_to_users:
         success: "%{count} utilisateurs ont été ajoutés avec succès au rôle %{role_name}."
         no_users_selected: "Aucun utilisateur n''a été sélectionné."
