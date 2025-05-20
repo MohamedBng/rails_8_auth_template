@@ -99,6 +99,7 @@ en:
         subtitle: "Select permissions to add to %{role_name} role"
       remove_permission:
         success: "Permission was successfully removed from %{role_name} role."
+
       show:
         add_permission: "Add Permission"
         add_user: "Add User"
@@ -155,6 +156,9 @@ en:
         title: "Add New User"
         subtitle: "Fill in the details below to create a new user account"
         success: "User was successfully created. An email with reset password instructions has been sent."
+      delete_profile_image:
+        success: "Profile image was successfully removed"
+        failure: "Failed to remove profile image: %{errors}"
         failure: "Failed to create user: %{errors}"
       profile_image:
         upload_title: "Update Profile Picture"
