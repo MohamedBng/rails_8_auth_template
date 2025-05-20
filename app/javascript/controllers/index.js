@@ -21,3 +21,7 @@ application.register("file-preview", FilePreviewController)
 
 import EnableSubmitButtonController from "./enable_submit_button_controller"
 application.register("enable-submit-button", EnableSubmitButtonController)
+
+import FlashController from "./flash_controller"
+application.register("flash", FlashController)
+

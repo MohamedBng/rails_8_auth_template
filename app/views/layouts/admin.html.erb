@@ -23,6 +23,7 @@
 </head>
 
 <body class="h-screen overflow-hidden ">
+  <%= render "shared/flash_success" %>
   <div class="flex h-full" data-controller="dashboard">
     <%= render SidebarComponent.new(current_user: current_user) %>
 
