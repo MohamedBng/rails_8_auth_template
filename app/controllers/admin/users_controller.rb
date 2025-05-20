@@ -24,8 +24,7 @@ class Admin::UsersController < Admin::BaseController
     if @user.save
       assign_profile_image(@user, uploaded_io) if uploaded_io
       @user.send_reset_password_instructions
-      flash[:success] = t("admin.users.create.success")
-      redirect_to admin_user_path(@user)
+      redirect_to admin_user_path(@user), notice: t("admin.users.create.success")
     else
       flash.now[:error] = @user.errors.full_messages.to_sentence
       render :new, status: :unprocessable_entity
@@ -45,8 +44,7 @@ class Admin::UsersController < Admin::BaseController
 
   def update
     if @user.update(user_params)
-      flash.now[:success] = t("admin.users.update.success")
-      redirect_to admin_user_path(@user)
+      redirect_to admin_user_path(@user), notice: t("admin.users.update.success")
     else
       flash.now[:error] = t("admin.users.update.failure", errors: @user.errors.full_messages.join(", "))
       render turbo_stream: turbo_stream.replace(
@@ -66,17 +64,14 @@ class Admin::UsersController < Admin::BaseController
       return
     end
 
-    flash[:success] = t("admin.users.destroy.success")
-
-    redirect_to admin_users_path
+    redirect_to admin_users_path, notice: t("admin.users.destroy.success")
   end
 
   def delete_profile_image
     @user.remove_profile_image = true
 
     if @user.save
-      flash.now[:success] = t("admin.users.delete_profile_image.success")
-      redirect_to admin_user_path(@user)
+      redirect_to admin_user_path(@user), notice: t("admin.users.delete_profile_image.success")
     else
       flash.now[:error] = t("admin.users.delete_profile_image.failure", errors: @user.errors.full_messages.join(", "))
       render turbo_stream: turbo_stream.replace(

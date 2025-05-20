@@ -17,8 +17,7 @@ class Admin::RolesController < Admin::BaseController
     @role = Role.new(role_params)
 
     if @role.save
-      flash[:success] = t("admin.roles.create.success")
-      redirect_to admin_roles_path
+      redirect_to admin_roles_path, notice: t("admin.roles.create.success")
     else
       flash.now[:error] = @role.errors.full_messages.to_sentence
       render :new, status: :unprocessable_entity
@@ -35,8 +34,7 @@ class Admin::RolesController < Admin::BaseController
 
   def update
     if @role.update(role_params)
-      flash.now[:success] = t("admin.roles.update.success")
-      redirect_to admin_role_path(@role)
+      redirect_to admin_role_path(@role), notice: t("admin.roles.update.success")
     else
       flash.now[:error] = t("admin.users.update.failure", errors: @role.errors.full_messages.join(", "))
 
