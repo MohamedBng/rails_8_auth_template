@@ -91,6 +91,8 @@ fr:
         basic_information: "Informations de base"
         name: "Nom"
         color: "Couleur"
+      roles:
+        title: "Rôles de l'utilisateur"
       delete_profile_image:
         success: "L'image de profil a été supprimée avec succès"
         failure: "Échec de la suppression de l'image de profil : %{errors}"

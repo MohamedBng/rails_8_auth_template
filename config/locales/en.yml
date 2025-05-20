@@ -152,6 +152,8 @@ en:
         title: "Users"
         add_new_user: "Add New User"
         all_roles: "Select Role"
+      roles:
+        title: "User Roles"
       new:
         title: "Add New User"
         subtitle: "Fill in the details below to create a new user account"
