@@ -120,9 +120,9 @@ RSpec.describe 'Admin::Roles', type: :request do
           expect(response).to redirect_to(admin_roles_path)
         end
 
-        it 'sets a success flash message' do
+        it 'sets a notice flash message' do
           post admin_roles_path, params: valid_attributes
-          expect(flash[:success]).to eq(I18n.t('admin.roles.create.success'))
+          expect(flash[:notice]).to eq(I18n.t('admin.roles.create.success'))
         end
       end
 
@@ -270,8 +270,8 @@ RSpec.describe 'Admin::Roles', type: :request do
           expect(response).to redirect_to(admin_role_path(role))
         end
 
-        it 'sets a success flash message' do
-          expect(flash[:success]).to eq(I18n.t('admin.roles.update.success'))
+        it 'sets a notice flash message' do
+          expect(flash[:notice]).to eq(I18n.t('admin.roles.update.success'))
         end
       end
 

@@ -223,8 +223,8 @@ RSpec.describe 'Admin::Users', type: :request do
           expect(target_user.last_name).to eq 'Doe'
         end
 
-        it 'sets a success flash.now message' do
-          expect(flash.now[:success]).to eq I18n.t('admin.users.update.success')
+        it 'sets a notice flash message' do
+          expect(flash[:notice]).to eq I18n.t('admin.users.update.success')
         end
 
         it 'redirects to the user show page' do
@@ -433,7 +433,7 @@ RSpec.describe 'Admin::Users', type: :request do
         expect(new_user.roles).to eq(Role.where(id: valid_attributes[:role_ids]))
 
         expect(response).to redirect_to(admin_user_path(new_user))
-        expect(flash[:success]).to be_present
+        expect(flash[:notice]).to be_present
       end
 
       it 'sends reset password instructions' do
