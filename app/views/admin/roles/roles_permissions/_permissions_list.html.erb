@@ -49,6 +49,6 @@
             </div>
           </div>
         <% end %>
-        <%= render PaginationComponent.new(pagy: permissions_available) %>
+        <%= render PaginationComponent.new(collection: permissions_available) %>
         <% end %>
 </turbo-frame>
