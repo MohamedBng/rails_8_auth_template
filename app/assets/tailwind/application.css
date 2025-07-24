@@ -1,2 +1,7 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+.google-icon {
+    max-width: 20px;
+    height: auto;
+}
