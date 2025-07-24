@@ -8,6 +8,7 @@ class Admin::Roles::UserRolesController < Admin::BaseController
     result = UsersWithoutRoleQuery.call(
       role:   @role,
       params: params[:q],
+      per_page: params[:per_page],
       page:   params[:page]
     )
 

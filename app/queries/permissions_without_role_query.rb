@@ -11,7 +11,7 @@ class PermissionsWithoutRoleQuery
     @role     = role
     @params   = params.presence || {}
     @page     = page.to_i
-    @per_page = per_page.to_i
+    @per_page = per_page
   end
 
   def call
