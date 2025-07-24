@@ -1,18 +1,16 @@
-# frozen_string_literal: true
-
 class PaginationComponent < ViewComponent::Base
-  attr_reader :pagy
+  attr_reader :collection
 
-  def initialize(pagy:)
-    @pagy = pagy
+  def initialize(collection:)
+    @collection = collection
   end
 
   erb_template <<-ERB
-    <% if pagy.total_pages > 1 %>
+    <% if collection.total_pages > 1 %>
       <div class="flex justify-center mt-4">
         <div class="join">
-          <% (1..pagy.total_pages).each do |page| %>
-            <% if page == pagy.current_page %>
+          <% (1..collection.total_pages).each do |page| %>
+            <% if page == collection.current_page %>
               <span class="join-item btn btn-active"><%= page %></span>
             <% else %>
               <%= link_to page, url_for(params.permit!.to_h.merge(page: page)), class: "join-item btn" %>
