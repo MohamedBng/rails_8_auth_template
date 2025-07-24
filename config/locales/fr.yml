@@ -45,6 +45,7 @@ fr:
         address_not_found: "L'adresse fournie n'a pas été trouvée. Veuillez vérifier les informations de l'adresse."
         service_error: "Erreur de service de géocodage : %{message}"
   common:
+    select_all: "Tout sélectionner"
     per_page: "Résultats par page"
     save: "Enregistrer"
     cancel: "Annuler"
