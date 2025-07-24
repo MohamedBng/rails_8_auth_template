@@ -26,9 +26,21 @@
                     url:   admin_role_roles_permissions_path(role),
                     scope: :role_permission,
                     method: :post,
-                    data:  { turbo_frame: "main", controller: "enable-submit-button" } do |form| %>
+                    data:  { turbo_frame: "main", controller: "select-all enable-submit-button" } do |form| %>
 
         <% if permissions_available.any? %>
+
+            <div class="mb-4 flex items-center justify-end gap-2">
+                <%= label_tag "select_all", t("common.select_all") %>
+                <%= check_box_tag "select_all", "1", false,
+                    class: "checkbox checkbox-accent",
+                    data: {
+                        action: "select-all#toggleAll",
+                        "select-all-target": "master",
+                        "enable-submit-button-target": "checkbox"
+                    } %>
+            </div>
+
             <% permissions_available.each do |permission| %>
                 <div class="bg-base-200 rounded-lg p-4 flex items-center justify-between">
                 <div class="flex items-center space-x-3">
@@ -37,7 +49,7 @@
                 <%= form.check_box :permission_ids,
                     { multiple: true,
                         class: "checkbox checkbox-accent",
-                        data:  { "enable-submit-button-target": "checkbox" }
+                        data:  { "enable-submit-button-target": "checkbox", "select-all-target": "checkbox" }
                     },
                     permission.id,
                     nil %>

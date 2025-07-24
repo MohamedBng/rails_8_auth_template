@@ -63,6 +63,7 @@ en:
         address_not_found: "The provided address could not be found. Please verify your address information."
         service_error: "Geocoding service error: %{message}"
   common:
+    select_all: "Select All"
     per_page: "Results per page"
     save: "Save"
     cancel: "Cancel"
