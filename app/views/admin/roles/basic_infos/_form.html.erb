@@ -6,10 +6,22 @@
       <%= form.text_field :name, class: "input input-bordered w-full", required: true %>
     </div>
 
-    <div class="my-5">
-        <%= form.label :color, class: "label" %>
-        <%= form.color_field :color, class: "w-20 input" %>
+    
+    <div data-controller="color-picker" class="my-5">
+      <%= form.label :color, class: "label", for: "role_color" %>
+
+      <%= form.hidden_field :color,
+            id: "role_color",
+            data: { "color-picker-target": "input" } %>
+
+      <div class="flex items-center gap-2">
+        <div data-color-picker-target="container" class="w-10 h-10 relative"></div>
+        <span class="text-sm"><%= form.object.color || '#000000' %></span>
+      </div>
     </div>
+
+
+    
 
 
     <div class="form-control flex justify-end mt-6 gap-2">

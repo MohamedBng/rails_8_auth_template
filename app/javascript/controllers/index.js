@@ -21,3 +21,10 @@ application.register("file-preview", FilePreviewController)
 
 import EnableSubmitButtonController from "./enable_submit_button_controller"
 application.register("enable-submit-button", EnableSubmitButtonController)
+
+import FlashController from "./flash_controller"
+application.register("flash", FlashController)
+
+import ColorPickerController from "./color_picker_controller"
+application.register("color-picker", ColorPickerController)
+

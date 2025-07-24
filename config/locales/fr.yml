@@ -82,6 +82,7 @@ fr:
         subtitle: "Sélectionnez les permissions à ajouter au rôle %{role_name}"
       remove_permission:
         success: "La permission a été supprimée avec succès du rôle %{role_name}."
+
       show:
         add_permission: "Ajouter une permission"
         title: "Gestion du rôle %{role_name}"
@@ -90,6 +91,11 @@ fr:
         basic_information: "Informations de base"
         name: "Nom"
         color: "Couleur"
+      roles:
+        title: "Rôles de l'utilisateur"
+      delete_profile_image:
+        success: "L'image de profil a été supprimée avec succès"
+        failure: "Échec de la suppression de l'image de profil : %{errors}"
       add_users:
         title: "Ajouter des utilisateurs au rôle"
         subtitle: "Assigner de nouveaux utilisateurs au rôle %{role_name}"
@@ -112,6 +118,7 @@ fr:
         add_new_role: "Ajouter un nouveau rôle"
       create:
         success: "Le rôle a été créé avec succès."
+        failure: "Échec de la création du rôle : %{errors}"
       add_role_to_users:
         success: "%{count} utilisateurs ont été ajoutés avec succès au rôle %{role_name}."
         no_users_selected: "Aucun utilisateur n''a été sélectionné."

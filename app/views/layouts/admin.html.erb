@@ -31,6 +31,7 @@
 
       <main class="flex-1 overflow-auto p-6 w-full max-w-screen-xl mx-auto">
         <turbo-frame id="main">
+          <%= render "shared/flash_success" %>
           <%= yield %>
         </turbo-frame>
       </main>
