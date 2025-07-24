@@ -13,7 +13,7 @@ class PaginationComponent < ViewComponent::Base
             <% if page == collection.current_page %>
               <span class="join-item btn btn-active"><%= page %></span>
             <% else %>
-              <%= link_to page, url_for(params.permit!.to_h.merge(page: page)), remote: true, class: "join-item btn" %>
+              <%= link_to page, url_for(params.permit!.to_h.merge(page: page)), class: "join-item btn" %>
             <% end %>
           <% end %>
         </div>
