@@ -19,7 +19,7 @@
       <% if can? :update, @role %> 
         <div class="flex space-x-1">
           <%= link_to edit_admin_role_path(@role),
-                    data: { turbo_frame: "role_basic_info" },
+                    data: { turbo_frame: "role_basic_info", turbo_prefetch: "false" },
                     class: "btn btn-accent btn-outline" do %>
             <i class="fa-solid fa-pencil"></i>
             Edit

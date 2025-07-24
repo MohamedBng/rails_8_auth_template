@@ -38,7 +38,7 @@
         <% if can? :update, @user %>
           <div class="flex space-x-1">
             <%= link_to edit_admin_user_path(@user),
-                      data: { turbo_frame: "user_infos_#{@user.id}" },
+                      data: { turbo_frame: "user_infos_#{@user.id}", turbo_prefetch: "false" },
                       class: "btn btn-accent btn-outline" do %>
               <i class="fa-solid fa-pencil"></i>
               Edit
